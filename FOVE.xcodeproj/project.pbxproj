@@ -13,7 +13,6 @@
 		A01E2A5118924AA400C84F01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A01E2A4F18924AA400C84F01 /* InfoPlist.strings */; };
 		A01E2A5318924AA400C84F01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A5218924AA400C84F01 /* main.m */; };
 		A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A5618924AA400C84F01 /* FVAppDelegate.m */; };
-		A01E2A5A18924AA400C84F01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01E2A5818924AA400C84F01 /* Main.storyboard */; };
 		A01E2A5D18924AA400C84F01 /* FVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A5C18924AA400C84F01 /* FVViewController.m */; };
 		A01E2A5F18924AA400C84F01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01E2A5E18924AA400C84F01 /* Images.xcassets */; };
 		A01E2A6618924AA400C84F01 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A6518924AA400C84F01 /* XCTest.framework */; };
@@ -21,6 +20,13 @@
 		A01E2A6818924AA400C84F01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4A18924AA400C84F01 /* UIKit.framework */; };
 		A01E2A7018924AA400C84F01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A01E2A6E18924AA400C84F01 /* InfoPlist.strings */; };
 		A01E2A7218924AA400C84F01 /* FOVETests.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A7118924AA400C84F01 /* FOVETests.m */; };
+		A01E2A8018924BD900C84F01 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A7F18924BD900C84F01 /* FacebookSDK.framework */; };
+		A04ACB17189749AC00587F34 /* FVProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04ACB16189749AC00587F34 /* FVProfileViewController.m */; };
+		A05CC08118968BAA00C0D562 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */; };
+		A05CC08218968BAA00C0D562 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */; };
+		A09943E4189BDA4F00782AEE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09943E3189BDA4F00782AEE /* CoreLocation.framework */; };
+		A0B6CD081897F31300AFC61C /* FoveStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B6CD071897F31300AFC61C /* FoveStoryboard.storyboard */; };
+		A0B6CD0E1898093E00AFC61C /* FVSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B6CD0D1898093E00AFC61C /* FVSettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +50,6 @@
 		A01E2A5418924AA400C84F01 /* FOVE-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FOVE-Prefix.pch"; sourceTree = "<group>"; };
 		A01E2A5518924AA400C84F01 /* FVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FVAppDelegate.h; sourceTree = "<group>"; };
 		A01E2A5618924AA400C84F01 /* FVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FVAppDelegate.m; sourceTree = "<group>"; };
-		A01E2A5918924AA400C84F01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A01E2A5B18924AA400C84F01 /* FVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FVViewController.h; sourceTree = "<group>"; };
 		A01E2A5C18924AA400C84F01 /* FVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FVViewController.m; sourceTree = "<group>"; };
 		A01E2A5E18924AA400C84F01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -53,6 +58,15 @@
 		A01E2A6D18924AA400C84F01 /* FOVETests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FOVETests-Info.plist"; sourceTree = "<group>"; };
 		A01E2A6F18924AA400C84F01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A01E2A7118924AA400C84F01 /* FOVETests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FOVETests.m; sourceTree = "<group>"; };
+		A01E2A7F18924BD900C84F01 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		A04ACB15189749AC00587F34 /* FVProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVProfileViewController.h; path = Controller/FVProfileViewController.h; sourceTree = "<group>"; };
+		A04ACB16189749AC00587F34 /* FVProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVProfileViewController.m; path = Controller/FVProfileViewController.m; sourceTree = "<group>"; };
+		A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		A09943E3189BDA4F00782AEE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A0B6CD071897F31300AFC61C /* FoveStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FoveStoryboard.storyboard; path = ../FoveStoryboard.storyboard; sourceTree = "<group>"; };
+		A0B6CD0C1898093E00AFC61C /* FVSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVSettingViewController.h; path = Controller/FVSettingViewController.h; sourceTree = "<group>"; };
+		A0B6CD0D1898093E00AFC61C /* FVSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVSettingViewController.m; path = Controller/FVSettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +74,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A09943E4189BDA4F00782AEE /* CoreLocation.framework in Frameworks */,
+				A05CC08218968BAA00C0D562 /* WindowsAzureMobileServices.framework in Frameworks */,
 				A01E2A4918924AA400C84F01 /* CoreGraphics.framework in Frameworks */,
+				A01E2A8018924BD900C84F01 /* FacebookSDK.framework in Frameworks */,
 				A01E2A4B18924AA400C84F01 /* UIKit.framework in Frameworks */,
+				A05CC08118968BAA00C0D562 /* WindowsAzureMessaging.framework in Frameworks */,
 				A01E2A4718924AA400C84F01 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +119,9 @@
 		A01E2A4518924AA400C84F01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A09943E3189BDA4F00782AEE /* CoreLocation.framework */,
+				A05CC07E18968BAA00C0D562 /* AzureSDK-iOS */,
+				A01E2A7F18924BD900C84F01 /* FacebookSDK.framework */,
 				A01E2A4618924AA400C84F01 /* Foundation.framework */,
 				A01E2A4818924AA400C84F01 /* CoreGraphics.framework */,
 				A01E2A4A18924AA400C84F01 /* UIKit.framework */,
@@ -112,9 +133,13 @@
 		A01E2A4C18924AA400C84F01 /* FOVE */ = {
 			isa = PBXGroup;
 			children = (
+				A0B6CD071897F31300AFC61C /* FoveStoryboard.storyboard */,
+				A0B6CD0C1898093E00AFC61C /* FVSettingViewController.h */,
+				A0B6CD0D1898093E00AFC61C /* FVSettingViewController.m */,
 				A01E2A5518924AA400C84F01 /* FVAppDelegate.h */,
 				A01E2A5618924AA400C84F01 /* FVAppDelegate.m */,
-				A01E2A5818924AA400C84F01 /* Main.storyboard */,
+				A04ACB15189749AC00587F34 /* FVProfileViewController.h */,
+				A04ACB16189749AC00587F34 /* FVProfileViewController.m */,
 				A01E2A5B18924AA400C84F01 /* FVViewController.h */,
 				A01E2A5C18924AA400C84F01 /* FVViewController.m */,
 				A01E2A5E18924AA400C84F01 /* Images.xcassets */,
@@ -150,6 +175,15 @@
 				A01E2A6E18924AA400C84F01 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A05CC07E18968BAA00C0D562 /* AzureSDK-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */,
+				A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */,
+			);
+			path = "AzureSDK-iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A01E2A5F18924AA400C84F01 /* Images.xcassets in Resources */,
+				A0B6CD081897F31300AFC61C /* FoveStoryboard.storyboard in Resources */,
 				A01E2A5118924AA400C84F01 /* InfoPlist.strings in Resources */,
-				A01E2A5A18924AA400C84F01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,9 +284,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04ACB17189749AC00587F34 /* FVProfileViewController.m in Sources */,
 				A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */,
 				A01E2A5318924AA400C84F01 /* main.m in Sources */,
 				A01E2A5D18924AA400C84F01 /* FVViewController.m in Sources */,
+				A0B6CD0E1898093E00AFC61C /* FVSettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,14 +317,6 @@
 				A01E2A5018924AA400C84F01 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A01E2A5818924AA400C84F01 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A01E2A5918924AA400C84F01 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		A01E2A6E18924AA400C84F01 /* InfoPlist.strings */ = {
@@ -381,10 +409,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/nRewik/Documents/FacebookSDK,
+					"/Users/nRewik/Developer/iOS\\ Project/Fove/FOVE/AzureSDK-iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
 				INFOPLIST_FILE = "FOVE/FOVE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -394,10 +429,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/nRewik/Documents/FacebookSDK,
+					"/Users/nRewik/Developer/iOS\\ Project/Fove/FOVE/AzureSDK-iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
 				INFOPLIST_FILE = "FOVE/FOVE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -463,6 +505,7 @@
 				A01E2A7718924AA400C84F01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A01E2A7818924AA400C84F01 /* Build configuration list for PBXNativeTarget "FOVETests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +514,7 @@
 				A01E2A7A18924AA400C84F01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

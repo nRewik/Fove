@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface FVAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MSClient *client;
+@property (strong, nonatomic) id <FBGraphUser> facebookUser;
 
 @end
