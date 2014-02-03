@@ -9,6 +9,7 @@
 #import "FVProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FVAppDelegate.h"
+#import "FVUser.h"
 
 @interface FVProfileViewController ()
 
@@ -35,32 +36,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    
-    id<FBGraphUser> facebookUser = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] facebookUser];
 
-    
-    self.profilePicture.profileID = [facebookUser id];
-    self.nameLabel.text = [facebookUser name];
-    self.genderLabel.text = [NSString stringWithFormat:@"Gender : %@",[facebookUser objectForKey:@"gender"]];
-    
-    //age
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    NSDate *birthday = [dateFormat dateFromString:[facebookUser birthday]];
-
-    NSDate* now = [NSDate date];
-    NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit
-                                       fromDate:birthday
-                                       toDate:now
-                                       options:0];
-    NSInteger age = [ageComponents year];
-    
-    self.ageLabel.text = [NSString stringWithFormat:@"Age : %d",age];
-    
-    //bio
-    //self.bioTextView.text = [facebookUser objectForKey:@"bio"];
+    FVUser *user = [FVUser currentUser];
+    self.profilePicture.profileID = [user.facebook id];
+    self.nameLabel.text = user.name;
+    self.genderLabel.text = [NSString stringWithFormat:@"Gender : %@",user.gender];
+    self.ageLabel.text = [NSString stringWithFormat:@"Age : %d",user.age];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,8 @@
 
 #import "FVSettingViewController.h"
 #import "FVViewController.h"
+#import "FVUser.h"
+#import "FVMailbox.h"
 
 @interface FVSettingViewController ()
 
@@ -16,6 +18,20 @@
 @end
 
 @implementation FVSettingViewController
+
+- (IBAction)getMailboxFromId
+{
+    [FVMailbox getMailboxFormID:@"B79871F6-098B-4BFA-894E-4204715DCCD2" completion:^(FVMailbox *resultMailbox, NSError *error) {
+        if (error)
+        {
+            NSLog(@"%@",error);
+        }
+        else
+        {
+            NSLog(@"%@",resultMailbox.title);
+        }
+    }];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,12 +57,13 @@
 
 -(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView{
     
+    [FVUser currentUser].facebook = nil;
+    
     FVViewController *fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"indexView"];
     [self presentViewController:fvc animated:YES completion:nil];
-    
+    //[[[[UIApplication sharedApplication] delegate] window] setRootViewController:fvc];
     
 }
-
 
 
 @end

@@ -1,0 +1,34 @@
+//
+//  FVMailbox.h
+//  FOVE
+//
+//  Created by Nutchaphon Rewik on 2/3/14.
+//  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import "FVUser.h"
+
+@interface FVMailbox : NSObject
+
+typedef NS_ENUM(NSInteger, FVMediaType) {
+    FVMediaImageType,
+    FVMediaVideo
+};
+
++(void)getMailboxFormID:(NSString *)mailboxID completion: (void (^)(FVMailbox *resultMailbox, NSError *error)) completion;
+
+-(instancetype)initWithMailboxDictionary:(NSDictionary *)dictionary;
+
+@property (strong,nonatomic) NSString *mailbox_id;
+@property (strong,nonatomic) FVUser *owner;
+@property (strong,nonatomic) NSString *title;
+@property (strong,nonatomic) NSString *message;
+@property (strong,nonatomic) NSString *media;
+@property (nonatomic) FVMediaType mediaType;
+@property (nonatomic) NSUInteger fovecount;
+@property (nonatomic) CLLocationCoordinate2D location;
+
+
+@end

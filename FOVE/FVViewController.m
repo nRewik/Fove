@@ -9,6 +9,7 @@
 #import "FVViewController.h"
 #import "FVAppDelegate.h"
 #import "FVProfileViewController.h"
+#import "FVUser.h"
 
 @interface FVViewController ()
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
@@ -42,23 +43,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)testInsertTable
-{
-//    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
-//    NSDictionary *item = @{ @"text" : @"Awesome item" };
-//    MSTable *itemTable = [client tableWithName:@"Item"];
-//    [itemTable insert:item completion:^(NSDictionary *insertedItem, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
-//            NSLog(@"Item inserted, id: %@", [insertedItem objectForKey:@"id"]);
-//        }
-//    }];
-    [self registerFacebookDatabase];
-    
-}
-
 - (IBAction)loadDataFromAzure {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -80,20 +64,17 @@
     
 }
 
-#pragma mark -
-#pragma mark facebook_delegate
+#pragma mark - facebook_delegate
 
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
-    
-    //set fbUser global
-    ((FVAppDelegate *) [[UIApplication sharedApplication] delegate]).facebookUser = user;
-    
-    //NSLog(@"%@",facebookUser);
-    //NSLog(@"1");
-    //NSLog(@"%@" , [[user objectForKey:@"location"] objectForKey:@"name"]);
-    
-    FVProfileViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainTabView"];
-    [self presentViewController:profileVC animated:YES completion:nil];
+    if ([[FVUser currentUser] facebook] == nil) {
+        
+        [[FVUser currentUser] setFacebook:user];
+        [self loginWithFacebook];
+        
+        FVProfileViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainTabView"];
+        [self presentViewController:profileVC animated:YES completion:nil];
+    }
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
@@ -148,20 +129,16 @@
                           otherButtonTitles:nil] show];
     }
 }
-#pragma mark -
 
-#pragma mark -
-#pragma mark registerFacebookDatabase
+#pragma mark - registerFacebookDatabase
 
--(void)registerFacebookDatabase
+-(void)loginWithFacebook
 {
-    id<FBGraphUser> facebookUser = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] facebookUser];
+    id<FBGraphUser> facebookUser = [FVUser currentUser].facebook;
     
     if(facebookUser == nil){
         return;
     }
-    
-    NSLog(@"register FB DB for %@",[facebookUser name]);
     
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -173,33 +150,75 @@
          
          if([items count] <= 0)
          {
-             // 1) insert basic_info
-             NSDictionary *item = @{ @"facebookid" : [facebookUser id] ,
-                                     @"birthday" : [facebookUser birthday],
-                                     @"name" : [facebookUser name],
-                                     @"gender" : [facebookUser objectForKey:@"gender"]
-                                     };
-             [table insert:item completion:^(NSDictionary *item, NSError *error)
-              {
-                  if (error) { NSLog(@"%@",error); return; }
-                  else{ NSLog(@"register basic_info complete"); }
-                  
-                  NSString *itemId = [item objectForKey:@"id"];
-                  
-                  [self insertPagelikes:itemId];
-                  [self insertMovies:itemId];
-                  [self insertMusic:itemId];
-                  [self insertCheckin:itemId];
-              }];
+             NSLog(@"register FB DB for %@",[facebookUser name]);
+             
+             // 0) insert fove userinfo
+             MSTable *userInfoTable = [client tableWithName:@"userinfo"];
+             
+             
+             ////age
+             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+             [dateFormat setDateFormat:@"MM/dd/yyyy"];
+             NSDate *birthday = [dateFormat dateFromString:[facebookUser birthday]];
+             
+             NSDate* now = [NSDate date];
+             NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                                components:NSYearCalendarUnit
+                                                fromDate:birthday
+                                                toDate:now
+                                                options:0];
+             NSInteger age = [ageComponents year];
+             
+             NSDictionary *userItem = @{  @"name" : [facebookUser name],
+                                          @"gender" : [facebookUser objectForKey:@"gender"],
+                                          @"relationship" : [facebookUser objectForKey:@"relationship_status"],
+                                          @"age" : @(age)
+                                          };
+             
+             [userInfoTable insert:userItem completion:^(NSDictionary *item, NSError *error) {
+                 
+                 if(error){
+                     NSLog(@"%@",error);
+                     return;
+                 }
+                 
+                 NSLog(@"registered fove userinfo");
+                 
+                 // 1) insert basic_info
+                 NSDictionary *facebookItem = @{ @"facebookid" : [facebookUser id] ,
+                                                 @"birthday" : [facebookUser birthday],
+                                                 @"name" : [facebookUser name],
+                                                 @"gender" : [facebookUser objectForKey:@"gender"],
+                                                 @"user_id" : [item objectForKey:@"id"]
+                                         };
+                 [table insert:facebookItem completion:^(NSDictionary *item, NSError *error)
+                  {
+                      if (error) { NSLog(@"%@",error); return; }
+                      else{ NSLog(@"register basic_info complete"); }
+                      
+                      NSString *itemId = [item objectForKey:@"id"];
+                      
+                      [self insertPagelikes:itemId];
+                      [self insertMovies:itemId];
+                      [self insertMusic:itemId];
+                      [self insertCheckin:itemId];
+                  }];
+                 
+             }];
          }
          else
          {
-             NSLog(@"already exist in FB Database");
+             //find user associated with facebook id
+             
+             MSTable *userTable = [client tableWithName:@"userinfo"];
+             
+             NSString *userID = [items[0] objectForKey:@"user_id"];
+             [userTable readWithId:userID completion:^(NSDictionary *item, NSError *error) {
+                 [[FVUser currentUser] setUserWithDictionary:item];
+             }];
+             NSLog(@"login with facebook !!");
          }
      }];
-    //NSLog(@"%@",[facebookUser id]);
-    //NSLog(@"%@",facebookUser);
-    return;
 }
 
 
@@ -212,6 +231,9 @@
          if (error) { NSLog(@"%@",error); return; }
          
          NSDictionary *checkin= [[result objectForKey:@"checkins"] objectForKey:@"data"];
+         
+         if (checkin == nil) { return; }
+         
          NSDictionary *item = @{ @"id" : itemId, @"checkin" : [checkin description] };
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
@@ -230,6 +252,9 @@
          if (error) { NSLog(@"%@",error); return; }
          
          NSDictionary *music = [[result objectForKey:@"music"] objectForKey:@"data"];
+         
+         if(music == nil) { return; }
+         
          NSDictionary *item = @{ @"id" : itemId, @"music" : [music description] };
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
@@ -248,6 +273,9 @@
          if (error) { NSLog(@"%@",error); return; }
          
          NSDictionary *movies= [[result objectForKey:@"movies"] objectForKey:@"data"];
+         
+         if(movies == nil){ return; }
+         
          NSDictionary *item = @{ @"id" : itemId, @"movie" : [movies description] };
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
@@ -267,6 +295,9 @@
          if (error) { NSLog(@"%@",error); return; }
          
          NSDictionary *myLikes = [result objectForKey:@"data"];
+         
+         if( myLikes == nil){ return; }
+         
          NSDictionary *item = @{ @"id" : itemId, @"pagelike" : [myLikes description] };
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
