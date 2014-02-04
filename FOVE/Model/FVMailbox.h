@@ -31,5 +31,7 @@ typedef NS_ENUM(NSInteger, FVMediaType) {
 @property (nonatomic) NSUInteger fovecount;
 @property (nonatomic) CLLocationCoordinate2D location;
 
+@property (strong,nonatomic) NSDate *lastUpdate;
+
 
 @end

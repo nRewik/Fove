@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FVMailbox.h"
+
 @interface FVMapViewController : UIViewController
+
+-(void)addMailboxToMap:(FVMailbox *)mailbox;
 
 @end

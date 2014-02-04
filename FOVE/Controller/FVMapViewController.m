@@ -60,14 +60,38 @@
     //self.mapView.userLocation.location = loc;
 }
 
+-(void)addMailboxToMap:(FVMailbox *)mailbox
+{
+    if ( ![self isAnnotateInMap:mailbox] ) {
+        FVMailboxAnnotation *pin = [[FVMailboxAnnotation alloc] initWithMailbox:mailbox];
+        [self.mapView addAnnotation:pin];
+    }
+}
+
+-(BOOL)isAnnotateInMap:(FVMailbox *)mailbox
+{
+    for (int i=0; i<[self.mapView.annotations count]; i++) {
+        id annotation = self.mapView.annotations[i];
+        if ([annotation isKindOfClass:[FVMailboxAnnotation class]]) {
+            FVMailboxAnnotation *pin = (FVMailboxAnnotation *)annotation;
+            if ([pin.mailbox.mailbox_id isEqualToString:mailbox.mailbox_id]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
 
 #pragma mark - mapkit
 
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    //Todo : view selected mailbox
     //...
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
     id annotation = view.annotation;
     if ( [annotation isKindOfClass:[FVMailboxAnnotation class]] ) {
         FVMailboxAnnotation *pin = (FVMailboxAnnotation *)annotation;
@@ -117,10 +141,7 @@
                            for (int i=0; i<mailCount; i++)
                            {
                                FVMailbox *mailbox = (FVMailbox *)mailboxList[i];
-                               if ( ![self isAnnotateInMap:mailbox] ) {
-                                   FVMailboxAnnotation *pin = [[FVMailboxAnnotation alloc] initWithMailbox:mailbox];
-                                   [self.mapView addAnnotation:pin];
-                               }
+                               [self addMailboxToMap:mailbox];
                            }
                        }
                    }
@@ -128,29 +149,44 @@
                
            }
      ];
-    
-    NSLog(@"%d",[self.mapView.annotations count]);
-    
-    
-}
-
--(BOOL)isAnnotateInMap:(FVMailbox *)mailbox
-{
-    for (int i=0; i<[self.mapView.annotations count]; i++) {
-        id annotation = self.mapView.annotations[i];
-        if ([annotation isKindOfClass:[FVMailboxAnnotation class]]) {
-            FVMailboxAnnotation *pin = (FVMailboxAnnotation *)annotation;
-            if ([pin.mailbox.mailbox_id isEqualToString:mailbox.mailbox_id]) {
-                return YES;
-            }
-        }
-    }
-    return NO;
 }
 
 -(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
 {
     NSLog(@"%@",error);
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+    {
+        return nil;
+    }
+    else if( [annotation isKindOfClass:[FVMailboxAnnotation class]])
+    {
+
+        static NSString * const identifier = @"FVMailboxAnnotation";
+        MKAnnotationView* annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        
+        if (annotationView == nil)
+        {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                          reuseIdentifier:identifier];
+        }
+        else
+        {
+            annotationView.annotation = annotation;
+        }
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        annotationView.rightCalloutAccessoryView = button;
+        annotationView.canShowCallout = YES;
+
+        return annotationView;
+    }
+        
+        
+    return nil;
 }
 
 #pragma mark -
@@ -164,7 +200,6 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.zoomEnabled = NO;
     self.mapView.delegate = self;
-    
     
     self.navigationController.navigationBarHidden = YES;
     //transition

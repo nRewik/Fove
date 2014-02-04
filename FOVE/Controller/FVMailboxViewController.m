@@ -8,6 +8,7 @@
 
 #import "FVMailboxViewController.h"
 #import "FVCreateMailboxViewController.h"
+#import "FVMapViewController.h"
 
 @interface FVMailboxViewController ()
 
@@ -19,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigateBar;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
 
@@ -52,7 +54,11 @@
 {
     if( [self.presentingViewController isKindOfClass:[FVCreateMailboxViewController class]])
     {
-        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        UITabBarController *indexTab = (UITabBarController *)self.presentingViewController.presentingViewController;
+        FVMapViewController *mapView = (FVMapViewController *)indexTab.selectedViewController;
+        [mapView addMailboxToMap:self.mailbox];
+    
+        [indexTab dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {
@@ -63,8 +69,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
-    NSLog(@"%@ \n%@",[FVUser currentUser].user_id,self.mailbox.owner.user_id);
     if ( ! [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id] )
     {
         UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
@@ -74,6 +80,11 @@
     self.ownerNameLabel.text = self.mailbox.owner.name;
     self.foveCountLabel.text = [NSString stringWithFormat:@"❤️ %d",self.mailbox.fovecount];
     self.mailboxMassageLabel.text = self.mailbox.message;
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"d LLLL yyyy";
+    self.dateLabel.text = [dateFormat stringFromDate:self.mailbox.lastUpdate];
+    
     
     self.profilePictureView.profileID = [self.mailbox.owner.facebook id];
     

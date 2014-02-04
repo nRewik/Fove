@@ -632,6 +632,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="Tcm-em-6bd" id="wip-7h-PPy"/>
                         <outlet property="editMailboxButton" destination="DPh-F7-F0N" id="bNE-bM-M0N"/>
                         <outlet property="foveCountLabel" destination="56b-Fw-abP" id="UWK-fZ-ABa"/>
                         <outlet property="mailboxMassageLabel" destination="F9I-ej-amG" id="LCr-FH-9dq"/>

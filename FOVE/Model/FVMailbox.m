@@ -42,13 +42,7 @@
     self = [super init];
     if( self )
     {
-        NSString *owner_id = [dictionary objectForKey:@"owner_id"];
-        [FVUser getUserFromID:owner_id completion:^(FVUser *resultUser, NSError *error) {
-            if (!error)
-            {
-                _owner = resultUser;
-            }
-        }];
+        _owner = [[FVUser alloc] initWithUserDictionary:[dictionary objectForKey:@"owner"]];
         
         _mailbox_id = [dictionary objectForKey:@"id"];
         
@@ -79,7 +73,8 @@
         if ( [dictionary objectForKey:@"longitude"] != [NSNull null]) {
             _location.longitude = [[dictionary objectForKey:@"longitude"] doubleValue];
         }
-        
+
+        _lastUpdate = [dictionary objectForKey:@"__updatedAt"];
     }
     return self;
 }
