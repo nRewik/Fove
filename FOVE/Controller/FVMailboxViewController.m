@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *mailboxMassageLabel;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigateBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
+
 @end
 
 
@@ -24,6 +27,17 @@
 
 
 @implementation FVMailboxViewController
+
+
+- (IBAction)editMailbox:(id)sender
+{
+    //todo
+    //.. go to editView
+}
+
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,7 +64,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    NSLog(@"%@ \n%@",[FVUser currentUser].user_id,self.mailbox.owner.user_id);
+    if ( ! [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id] )
+    {
+        UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
+        navItem.rightBarButtonItem = nil;
+    }
     
     self.ownerNameLabel.text = self.mailbox.owner.name;
     self.foveCountLabel.text = [NSString stringWithFormat:@"❤️ %d",self.mailbox.fovecount];

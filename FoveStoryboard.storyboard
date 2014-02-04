@@ -479,6 +479,11 @@
                                                 <action selector="back:" destination="MYZ-zt-QQl" id="KpL-zI-uks"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="◉" id="DPh-F7-F0N">
+                                            <connections>
+                                                <action selector="editMailbox:" destination="MYZ-zt-QQl" id="eHJ-r1-fon"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -627,8 +632,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="editMailboxButton" destination="DPh-F7-F0N" id="bNE-bM-M0N"/>
                         <outlet property="foveCountLabel" destination="56b-Fw-abP" id="UWK-fZ-ABa"/>
                         <outlet property="mailboxMassageLabel" destination="F9I-ej-amG" id="LCr-FH-9dq"/>
+                        <outlet property="navigateBar" destination="aQ2-n2-OY5" id="I95-8C-Zru"/>
                         <outlet property="ownerNameLabel" destination="UEZ-3D-w9y" id="Yod-2u-Nui"/>
                         <outlet property="profilePictureView" destination="a8O-3L-5ih" id="tof-Uw-vGB"/>
                     </connections>
@@ -639,10 +646,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="feedTabBar_icon" width="32" height="32"/>
-        <image name="mapTabBar_icon" width="32" height="32"/>
-        <image name="profileTabBar_icon" width="32" height="32"/>
-        <image name="settingTabBar_icon" width="32" height="32"/>
+        <image name="feedTabBar_icon" width="30" height="30"/>
+        <image name="mapTabBar_icon" width="30" height="30"/>
+        <image name="profileTabBar_icon" width="60" height="60"/>
+        <image name="settingTabBar_icon" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, FVMediaType) {
 };
 
 +(void)getMailboxFormID:(NSString *)mailboxID completion: (void (^)(FVMailbox *resultMailbox, NSError *error)) completion;
++(void)deleteMailboxWithID:(NSString *)mailboxID completion:(void (^)(id itemId, NSError *error)) completion;
 
 -(instancetype)initWithMailboxDictionary:(NSDictionary *)dictionary;
 

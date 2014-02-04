@@ -13,6 +13,16 @@
 
 @implementation FVMailbox
 
+
++(void)deleteMailboxWithID:(NSString *)mailboxID completion:(void (^)(id, NSError *))completion
+{
+    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSTable *mailTable = [client tableWithName:@"mailbox"];
+    [mailTable deleteWithId:mailboxID completion:^(id itemId, NSError *error) {
+        completion(itemId,error);
+    }];
+}
+
 +(void)getMailboxFormID:(NSString *)mailboxID completion:(void (^)(FVMailbox *, NSError *))completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];

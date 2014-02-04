@@ -117,8 +117,10 @@
                            for (int i=0; i<mailCount; i++)
                            {
                                FVMailbox *mailbox = (FVMailbox *)mailboxList[i];
-                                FVMailboxAnnotation *pin = [[FVMailboxAnnotation alloc] initWithMailbox:mailbox];
-                               [self.mapView addAnnotation:pin];
+                               if ( ![self isAnnotateInMap:mailbox] ) {
+                                   FVMailboxAnnotation *pin = [[FVMailboxAnnotation alloc] initWithMailbox:mailbox];
+                                   [self.mapView addAnnotation:pin];
+                               }
                            }
                        }
                    }
@@ -127,7 +129,23 @@
            }
      ];
     
+    NSLog(@"%d",[self.mapView.annotations count]);
     
+    
+}
+
+-(BOOL)isAnnotateInMap:(FVMailbox *)mailbox
+{
+    for (int i=0; i<[self.mapView.annotations count]; i++) {
+        id annotation = self.mapView.annotations[i];
+        if ([annotation isKindOfClass:[FVMailboxAnnotation class]]) {
+            FVMailboxAnnotation *pin = (FVMailboxAnnotation *)annotation;
+            if ([pin.mailbox.mailbox_id isEqualToString:mailbox.mailbox_id]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
 }
 
 -(void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
@@ -144,7 +162,9 @@
     
     //mapview init
     self.mapView.showsUserLocation = YES;
+    self.mapView.zoomEnabled = NO;
     self.mapView.delegate = self;
+    
     
     self.navigationController.navigationBarHidden = YES;
     //transition
