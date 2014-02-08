@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-812" y="-135"/>
         </scene>
-        <!--View Controller - Feed-->
+        <!--Feed View Controller - Feed-->
         <scene sceneID="sRm-qo-JHr">
             <objects>
-                <viewController id="RIm-oF-LO7" sceneMemberID="viewController">
+                <viewController id="RIm-oF-LO7" customClass="FVFeedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9rk-oi-Rmp"/>
                         <viewControllerLayoutGuide type="bottom" id="ByM-Na-2N1"/>
