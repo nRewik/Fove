@@ -65,7 +65,7 @@ static FVBlobStorageService *singletonInstance;
 {
     NSDictionary *parameters = @{
                                  @"containerName" : containerName,
-                                 @"isPublic" : [NSNumber numberWithBool:isPublic]
+                                 @"isPublic" : @(isPublic)
                                  };
     
     [self.client invokeAPI:blobContainer
@@ -119,7 +119,7 @@ static FVBlobStorageService *singletonInstance;
                 parameters:parameters
                    headers:nil
                 completion:^(id result, NSHTTPURLResponse *response, NSError *error){
-                    NSString *sasUrl = [result objectForKey:@"sasUrl"];
+                    NSString *sasUrl = result[@"sasUrl"];
                     completion(sasUrl,error);
                 }
      ];

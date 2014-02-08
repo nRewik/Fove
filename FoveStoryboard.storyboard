@@ -65,11 +65,12 @@
                     <connections>
                         <outlet property="loginActivityIndicatorView" destination="LEG-N7-Hqp" id="kUT-Z9-Uer"/>
                         <outlet property="loginView" destination="rRt-aW-as7" id="Nku-di-fER"/>
+                        <segue destination="fuH-5S-5NY" kind="modal" identifier="goToFove" id="YBd-PK-yuK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic5-hY-qRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-812" y="-135"/>
+            <point key="canvasLocation" x="-865" y="-135"/>
         </scene>
         <!--Feed View Controller - Feed-->
         <scene sceneID="sRm-qo-JHr">
@@ -292,6 +293,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="settingTabBar_icon" id="LLW-iv-0U5"/>
                     <connections>
                         <outlet property="fbLoginView" destination="VxH-gy-sJB" id="vAo-RO-l7T"/>
+                        <segue destination="j8e-ks-Hym" kind="modal" identifier="logout" id="sfU-Z7-LtY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lP-wb-fyj" userLabel="First Responder" sceneMemberID="firstResponder"/>

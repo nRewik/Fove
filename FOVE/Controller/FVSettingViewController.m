@@ -41,13 +41,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView{
-    
+-(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{    
     [FVUser setCurrentUser:nil];
-    
-    FVViewController *fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"indexView"];
-    [self presentViewController:fvc animated:YES completion:nil];
-    
+    [self performSegueWithIdentifier:@"logout" sender:self];
 }
 
 

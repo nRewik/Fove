@@ -38,6 +38,6 @@
 @property (strong,nonatomic) NSString *profileImageUrl;
 
 //social
-@property (strong,nonatomic) id<FBGraphUser> facebook;
+@property (strong,nonatomic) id<FBGraphUser> facebookUserData;
 
 @end

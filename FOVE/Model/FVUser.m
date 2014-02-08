@@ -44,22 +44,22 @@ static FVUser *currentUser;
 {
     self = [super init];
     if( self ){
-        _user_id = [dictionary objectForKey:@"id"];
-        _name = [dictionary objectForKey:@"name"];
-        _gender = [dictionary objectForKey:@"gender"];
-        _status = [dictionary objectForKey:@"status"];
-        _relationship = [dictionary objectForKey:@"relationship"];
+        _user_id = dictionary[@"id"];
+        _name = dictionary[@"name"];
+        _gender = dictionary[@"gender"];
+        _status = dictionary[@"status"];
+        _relationship = dictionary[@"relationship"];
         
-        _profileImageUrl = [dictionary objectForKey:@"profileimage"];
+        _profileImageUrl = dictionary[@"profileimage"];
         
-        if( [dictionary objectForKey:@"age"] != [NSNull null]){
-            _age = [[dictionary objectForKey:@"age"] integerValue];
+        if( dictionary[@"age"] != [NSNull null]){
+            _age = [dictionary[@"age"] integerValue];
         }
-        if( [dictionary objectForKey:@"weight"] != [NSNull null]){
-            _weight = [[dictionary objectForKey:@"weight"] integerValue];
+        if( dictionary[@"weight"] != [NSNull null]){
+            _weight = [dictionary[@"weight"] integerValue];
         }
-        if( [dictionary objectForKey:@"height"] != [NSNull null]){
-            _height = [[dictionary objectForKey:@"height"] integerValue];
+        if( dictionary[@"height"] != [NSNull null]){
+            _height = [dictionary[@"height"] integerValue];
 
         }    }
     return self;
@@ -67,23 +67,23 @@ static FVUser *currentUser;
 
 -(void)setUserWithDictionary:(NSDictionary *)dictionary
 {
-    self.user_id = [dictionary objectForKey:@"id"];
-    self.name = [dictionary objectForKey:@"name"];
-    self.gender = [dictionary objectForKey:@"gender"];
-    self.status = [dictionary objectForKey:@"status"];
-    self.relationship = [dictionary objectForKey:@"relationship"];
+    self.user_id = dictionary[@"id"];
+    self.name = dictionary[@"name"];
+    self.gender = dictionary[@"gender"];
+    self.status = dictionary[@"status"];
+    self.relationship = dictionary[@"relationship"];
     
-    self.profileImageUrl = [dictionary objectForKey:@"profileimage"];
+    self.profileImageUrl = dictionary[@"profileimage"];
 
     
-    if( [dictionary objectForKey:@"age"] != [NSNull null] ){
-        self.age = [[dictionary objectForKey:@"age"] integerValue];
+    if( dictionary[@"age"] != [NSNull null] ){
+        self.age = [dictionary[@"age"] integerValue];
     }
-    if( [dictionary objectForKey:@"weight"] != [NSNull null]){
-        self.weight = [[dictionary objectForKey:@"weight"] integerValue];
+    if( dictionary[@"weight"] != [NSNull null]){
+        self.weight = [dictionary[@"weight"] integerValue];
     }
-    if( [dictionary objectForKey:@"height"] != [NSNull null]){
-        self.height = [[dictionary objectForKey:@"height"] integerValue];
+    if( dictionary[@"height"] != [NSNull null]){
+        self.height = [dictionary[@"height"] integerValue];
         
     }
 }

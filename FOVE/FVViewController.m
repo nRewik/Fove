@@ -55,15 +55,13 @@
     NSAssert( [FVUser currentUser] != nil, @"current user should not be nil before go to fove");
     
     [self.loginActivityIndicatorView stopAnimating];
-    
-    FVProfileViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainTabView"];
-    [self presentViewController:profileVC animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"goToFove" sender:self];
 }
 
 -(void)setupCurrentUserAs:(FVUser *)user withFacebook:(id<FBGraphUser>)facebookUserData
 {
     [FVUser setCurrentUser:user];
-    [FVUser currentUser].facebook = facebookUserData;
+    [FVUser currentUser].facebookUserData = facebookUserData;
 }
 
 #pragma mark - facebook_delegate
@@ -145,10 +143,15 @@
     
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
+    MSQuery *query = [table query];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"facebookid == %@",[facebookUserData id]];
-    [table readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error)
-     {
+    
+    query.predicate = predicate;
+    query.selectFields = @[ @"id" , @"user_id" ];
+    
+    [query readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error){
+        
          if (error) { NSLog(@"%@",error); return; }
          
          if([items count] <= 0)
@@ -192,14 +195,14 @@
                                                  @"birthday" : [facebookUserData birthday],
                                                  @"name" : [facebookUserData name],
                                                  @"gender" : [facebookUserData objectForKey:@"gender"],
-                                                 @"user_id" : [item objectForKey:@"id"]
+                                                 @"user_id" : item[@"id"]
                                          };
-                 NSString *userID = [item objectForKey:@"id"];
+                 NSString *userID = item[@"id"];
                  [table insert:facebookItem completion:^(NSDictionary *item, NSError *error){
                       if (error) { NSLog(@"%@",error); return; }
                       else{ NSLog(@"register facebook basic_info complete"); }
                       
-                      NSString *itemId = [item objectForKey:@"id"];
+                      NSString *itemId = item[@"id"];
                      
                       [self updatePagelikes:itemId withCompletion:^{
                           [self updateMovies:itemId withCompletion:^{
@@ -253,7 +256,7 @@
         else
         {
             //get image from facebook "getImageFromFacebookqueue"
-            NSString *fbImageUrl = [[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+            NSString *fbImageUrl = result[@"picture"][@"data"][@"url"];
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fbImageUrl]];
 
             NSString *blobName = [NSString stringWithFormat:@"%@.png",userID];
@@ -308,7 +311,7 @@
      {
          if (error) { NSLog(@"%@",error); return; }
          
-         NSDictionary *checkin= [[result objectForKey:@"checkins"] objectForKey:@"data"];
+         NSDictionary *checkin= result[@"checkins"][@"data"];
          
          if (checkin == nil)
          {
@@ -338,7 +341,7 @@
      {
          if (error) { NSLog(@"%@",error); return; }
          
-         NSDictionary *music = [[result objectForKey:@"music"] objectForKey:@"data"];
+         NSDictionary *music = result[@"music"][@"data"];
          
          if(music == nil)
          {
@@ -367,7 +370,7 @@
      {
          if (error) { NSLog(@"%@",error); return; }
          
-         NSDictionary *movies= [[result objectForKey:@"movies"] objectForKey:@"data"];
+         NSDictionary *movies= result[@"movies"][@"data"];
          
          if(movies == nil)
          {
@@ -398,7 +401,7 @@
      {
          if (error) { NSLog(@"%@",error); return; }
          
-         NSDictionary *myLikes = [result objectForKey:@"data"];
+         NSDictionary *myLikes = result[@"data"];
          
          if( myLikes == nil)
          {

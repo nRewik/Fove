@@ -42,17 +42,17 @@
     self = [super init];
     if( self )
     {
-        _owner = [[FVUser alloc] initWithUserDictionary:[dictionary objectForKey:@"owner"]];
+        _owner = [[FVUser alloc] initWithUserDictionary:dictionary[@"owner"]];
         
-        _mailbox_id = [dictionary objectForKey:@"id"];
+        _mailbox_id = dictionary[@"id"];
         
-        _title = [dictionary objectForKey:@"title"];
-        _message = [dictionary objectForKey:@"message"];
-        _media = [dictionary objectForKey:@"media"];
+        _title = dictionary[@"title"];
+        _message = dictionary[@"message"];
+        _media = dictionary[@"media"];
         
-        if ( [dictionary objectForKey:@"media_type"] != [NSNull null] )
+        if ( dictionary[@"media_type"] != [NSNull null] )
         {
-            NSString *mediaType = [dictionary objectForKey:@"media_type"];
+            NSString *mediaType = dictionary[@"media_type"];
             
             if ( [mediaType isEqualToString:@"image"])
             {
@@ -64,17 +64,17 @@
             }
         }
         
-        if ( [dictionary objectForKey:@"fovecount"] != [NSNull null]) {
-            _fovecount = [[dictionary objectForKey:@"fovecount"] integerValue];
+        if ( dictionary[@"fovecount"] != [NSNull null]) {
+            _fovecount = [dictionary[@"fovecount"] integerValue];
         }
-        if( [dictionary objectForKey:@"latitude"] != [NSNull null]){
-            _location.latitude = [[dictionary objectForKey:@"latitude"] doubleValue];
+        if( dictionary[@"latitude"] != [NSNull null]){
+            _location.latitude = [dictionary[@"latitude"] doubleValue];
         }
-        if ( [dictionary objectForKey:@"longitude"] != [NSNull null]) {
-            _location.longitude = [[dictionary objectForKey:@"longitude"] doubleValue];
+        if ( dictionary[@"longitude"] != [NSNull null]) {
+            _location.longitude = [dictionary[@"longitude"] doubleValue];
         }
 
-        _lastUpdate = [dictionary objectForKey:@"__updatedAt"];
+        _lastUpdate = dictionary[@"__updatedAt"];
     }
     return self;
 }

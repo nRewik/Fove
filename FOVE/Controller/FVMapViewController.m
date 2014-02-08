@@ -129,11 +129,11 @@
                    if (result != nil)
                    {
                        // add annotation of mailbox around me on map
-                       if ([result objectForKey:@"found"] != [NSNull null])
+                       if (result[@"found"] != [NSNull null])
                        {
-                           NSInteger mailCount = [[result objectForKey:@"found"] integerValue];
+                           NSInteger mailCount = [result[@"found"] integerValue];
                            NSMutableArray *mailboxList = [[NSMutableArray alloc] initWithCapacity:mailCount];
-                           NSArray *mailDictArray = [result objectForKey:@"mailbox_list"];
+                           NSArray *mailDictArray = result[@"mailbox_list"];
                            for (int i=0; i<mailCount; i++)
                            {
                                mailboxList[i] = [[FVMailbox alloc] initWithMailboxDictionary:mailDictArray[i]];
