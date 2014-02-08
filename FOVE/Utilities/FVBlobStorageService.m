@@ -27,6 +27,10 @@ static FVBlobStorageService *singletonInstance;
     return singletonInstance;
 }
 
++(NSString *)blobUrl
+{
+    return blobUrl;
+}
 +(NSString *)profileImageContainer
 {
     return profileImageContainer;

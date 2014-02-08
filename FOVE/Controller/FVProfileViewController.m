@@ -13,7 +13,7 @@
 
 @interface FVProfileViewController ()
 
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
@@ -38,10 +38,13 @@
 	// Do any additional setup after loading the view.
 
     FVUser *user = [FVUser currentUser];
-    self.profilePicture.profileID = [user.facebook id];
     self.nameLabel.text = user.name;
     self.genderLabel.text = [NSString stringWithFormat:@"Gender : %@",user.gender];
     self.ageLabel.text = [NSString stringWithFormat:@"Age : %d",user.age];
+    
+    NSData *profileImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.profileImageUrl]];
+    UIImage *image = [UIImage imageWithData:profileImageData];
+    self.profileImageView.image = image;
 }
 
 - (void)didReceiveMemoryWarning

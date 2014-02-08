@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *foveCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mailboxMassageLabel;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (weak, nonatomic) IBOutlet UIImageView *ownerImageView;
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigateBar;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
@@ -85,9 +85,9 @@
     dateFormat.dateFormat = @"d LLLL yyyy";
     self.dateLabel.text = [dateFormat stringFromDate:self.mailbox.lastUpdate];
     
-    
-    self.profilePictureView.profileID = [self.mailbox.owner.facebook id];
-    
+    NSData *profileImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.mailbox.owner.profileImageUrl]];
+    UIImage *image = [UIImage imageWithData:profileImageData];
+    self.ownerImageView.image = image;
 }
 
 - (void)didReceiveMemoryWarning

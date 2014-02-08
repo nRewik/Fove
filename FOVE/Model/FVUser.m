@@ -51,6 +51,8 @@
         _status = [dictionary objectForKey:@"status"];
         _relationship = [dictionary objectForKey:@"relationship"];
         
+        _profileImageUrl = [dictionary objectForKey:@"profileimage"];
+        
         if( [dictionary objectForKey:@"age"] != [NSNull null]){
             _age = [[dictionary objectForKey:@"age"] integerValue];
         }
@@ -71,6 +73,9 @@
     self.gender = [dictionary objectForKey:@"gender"];
     self.status = [dictionary objectForKey:@"status"];
     self.relationship = [dictionary objectForKey:@"relationship"];
+    
+    self.profileImageUrl = [dictionary objectForKey:@"profileimage"];
+
     
     if( [dictionary objectForKey:@"age"] != [NSNull null] ){
         self.age = [[dictionary objectForKey:@"age"] integerValue];

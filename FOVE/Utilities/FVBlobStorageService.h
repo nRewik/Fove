@@ -10,8 +10,10 @@
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 
 #pragma mark - Settings
-static NSString * const mobileServiceUrl = @"https://fove.azure-mobile.net/";
+static NSString * const mobileServiceUrl = @"https://fove.azure-mobile.net";
 static NSString * const mobileServiceApplicationKey = @"sgsdrHNSdIGQQzYmKrNkFlkcCIwmEY95";
+
+static NSString * const blobUrl = @"http://fovestorage.blob.core.windows.net";
 
 static NSString * const blobContainer = @"blobcontainers";
 static NSString * const blobblobs = @"blobblobs";
@@ -25,6 +27,7 @@ static NSString * const profileImageContainer = @"profileimage";
 @property (nonatomic, strong)   MSClient *client;
 
 +(FVBlobStorageService *) getInstance;
++(NSString *)blobUrl;
 
 #pragma mark - container
 +(NSString *)profileImageContainer;

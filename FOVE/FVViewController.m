@@ -10,6 +10,7 @@
 #import "FVAppDelegate.h"
 #import "FVProfileViewController.h"
 #import "FVUser.h"
+#import "FVBlobStorageService.h"
 
 @interface FVViewController ()
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
@@ -191,6 +192,7 @@
                                                  @"gender" : [facebookUser objectForKey:@"gender"],
                                                  @"user_id" : [item objectForKey:@"id"]
                                          };
+                 NSString *userID = [item objectForKey:@"id"];
                  [table insert:facebookItem completion:^(NSDictionary *item, NSError *error)
                   {
                       if (error) { NSLog(@"%@",error); return; }
@@ -202,6 +204,9 @@
                       [self insertMovies:itemId];
                       [self insertMusic:itemId];
                       [self insertCheckin:itemId];
+                      
+                      
+                      [self getUserProfileImage:userID];
                   }];
                  
              }];
@@ -219,6 +224,61 @@
              NSLog(@"login with facebook !!");
          }
      }];
+}
+
+-(void)getUserProfileImage:(NSString *)userID
+{
+    
+    [FBRequestConnection startWithGraphPath:@"/me?fields=picture.type(large)" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
+    {
+        if(error)
+        {
+            NSLog(@"%@",error);
+        }
+        else
+        {
+            //get image from facebook "getImageFromFacebookqueue"
+            NSString *fbImageUrl = [[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fbImageUrl]];
+
+            NSString *blobName = [NSString stringWithFormat:@"%@.png",userID];
+            FVBlobStorageService *blobStorage = [FVBlobStorageService getInstance];
+            
+            [blobStorage getSasUrlForNewBlob:blobName forContainer:[FVBlobStorageService profileImageContainer] withCompletion:^(NSString *sasUrl, NSError *error)
+             {
+                 [blobStorage postImageToBlobWithUrl:sasUrl NSData:imageData withCompletion:^(BOOL isSuccess)
+                  {
+                      NSLog(@"upload facebook photo = %@",isSuccess?@"YES":@"NO");
+                      NSString *foveImageUrl = [NSString stringWithFormat:@"%@/%@/%@",
+                                                [FVBlobStorageService blobUrl],
+                                                [FVBlobStorageService profileImageContainer],
+                                                blobName
+                                                ];
+                      
+                      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                          [self insertImageURL:foveImageUrl toUserInfo:userID];
+                      }];
+                  }];
+             }];
+        }
+    }];
+}
+
+-(void)insertImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId
+{
+    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSTable *table = [client tableWithName:@"userinfo"];
+    
+    NSDictionary *item = @{ @"id" : userId , @"profileimage" : imageUrl };
+    [table update:item completion:^(NSDictionary *item, NSError *error)
+    {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        else{
+            NSLog(@"insert image url complete");
+        }
+    }];
 }
 
 
