@@ -13,6 +13,7 @@
 
 //singleton object
 +(FVUser *)currentUser;
++(void)setCurrentUser:(FVUser *)user;
 
 //public method
 +(void)getUserFromID:(NSString *)user_id completion: (void (^)(FVUser *resultUser, NSError *error)) completion;

@@ -16,24 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRt-aW-as7" customClass="FBLoginView">
-                                <rect key="frame" x="37" y="398" width="246" height="42"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rRt-aW-as7" customClass="FBLoginView">
+                                <rect key="frame" x="37" y="398" width="247" height="42"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FOVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8t6-NK-tHf">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LEG-N7-Hqp">
+                                <rect key="frame" x="104" y="401" width="112" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8t6-NK-tHf">
                                 <rect key="frame" x="97" y="79" width="127" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FOVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-Iu-Gd4">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-Iu-Gd4">
                                 <rect key="frame" x="97" y="147" width="127" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FOVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHy-hF-gIS">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHy-hF-gIS">
                                 <rect key="frame" x="97" y="215" width="127" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -41,8 +46,24 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1L0-Iu-Gd4" firstAttribute="leading" secondItem="8t6-NK-tHf" secondAttribute="leading" id="A5Z-6O-IUv"/>
+                            <constraint firstItem="LEG-N7-Hqp" firstAttribute="leading" secondItem="X1g-hJ-nzu" secondAttribute="leading" constant="104" id="CFT-QG-7N2"/>
+                            <constraint firstItem="rRt-aW-as7" firstAttribute="top" secondItem="LEG-N7-Hqp" secondAttribute="bottom" constant="-40" id="FRO-9B-p5h"/>
+                            <constraint firstAttribute="trailing" secondItem="LEG-N7-Hqp" secondAttribute="trailing" constant="104" id="UXA-DF-6hW"/>
+                            <constraint firstItem="rRt-aW-as7" firstAttribute="leading" secondItem="X1g-hJ-nzu" secondAttribute="leading" constant="37" id="WeN-II-a3F"/>
+                            <constraint firstItem="8t6-NK-tHf" firstAttribute="top" secondItem="Uf8-Jr-ix2" secondAttribute="bottom" constant="59" id="ZEf-oD-1xx"/>
+                            <constraint firstItem="p3e-ki-lC6" firstAttribute="top" secondItem="rRt-aW-as7" secondAttribute="bottom" constant="128" id="dBy-YI-pmK"/>
+                            <constraint firstItem="1L0-Iu-Gd4" firstAttribute="top" secondItem="8t6-NK-tHf" secondAttribute="bottom" constant="8" symbolic="YES" id="fiv-jD-8xn"/>
+                            <constraint firstItem="BHy-hF-gIS" firstAttribute="top" secondItem="1L0-Iu-Gd4" secondAttribute="bottom" constant="8" symbolic="YES" id="hut-m3-tJd"/>
+                            <constraint firstItem="1L0-Iu-Gd4" firstAttribute="leading" secondItem="BHy-hF-gIS" secondAttribute="leading" id="i6b-13-HtW"/>
+                            <constraint firstItem="BHy-hF-gIS" firstAttribute="centerX" secondItem="X1g-hJ-nzu" secondAttribute="centerX" id="lmu-oE-GNS"/>
+                            <constraint firstItem="rRt-aW-as7" firstAttribute="top" secondItem="X1g-hJ-nzu" secondAttribute="top" constant="398" id="mK8-bD-Pdr"/>
+                            <constraint firstAttribute="trailing" secondItem="rRt-aW-as7" secondAttribute="trailing" constant="36" id="qAr-Kg-rqi"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginActivityIndicatorView" destination="LEG-N7-Hqp" id="kUT-Z9-Uer"/>
                         <outlet property="loginView" destination="rRt-aW-as7" id="Nku-di-fER"/>
                     </connections>
                 </viewController>
@@ -265,16 +286,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9g-J4-xPb">
-                                <rect key="frame" x="37" y="20" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="getMailboxFromId" destination="e3A-NW-8UH" eventType="touchUpInside" id="rY2-le-Gyr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

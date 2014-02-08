@@ -28,18 +28,17 @@
     }];
 }
 
-
+static FVUser *currentUser;
 +(FVUser *)currentUser
 {
-    static FVUser *currentUser;
-    @synchronized(self)
-    {
-        if (!currentUser){
-            currentUser = [[FVUser alloc] init];
-        }
-        return currentUser;
-    }
+    return currentUser;
 }
++(void)setCurrentUser:(FVUser *)user
+{
+    currentUser = user;
+}
+
+
 
 -(instancetype)initWithUserDictionary:(NSDictionary *)dictionary
 {

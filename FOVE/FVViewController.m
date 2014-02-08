@@ -13,6 +13,7 @@
 #import "FVBlobStorageService.h"
 
 @interface FVViewController ()
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginActivityIndicatorView;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @end
 
@@ -23,6 +24,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    [self.loginActivityIndicatorView stopAnimating];
+    
+    //fb login view setup
     NSArray *permission = @[@"user_about_me",
                                 @"user_birthday",
                                 @"user_likes",
@@ -34,7 +38,6 @@
                                 @"user_relationships"
                             ];
     self.loginView.readPermissions = permission;
-    //self.loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
     self.loginView.delegate = self;
 }
 
@@ -44,42 +47,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loadDataFromAzure {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
-    MSTable *table = [client tableWithName:@"Facebook"];
+-(void)goToFove
+{
+    NSAssert( [FVUser currentUser] != nil, @"current user should not be nil before go to fove");
     
-    id<FBGraphUser> facebookUser = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] facebookUser];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"facebookid == %@",[facebookUser id]];
+    [self.loginActivityIndicatorView stopAnimating];
     
-    [table readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
-        if (error) { NSLog(@"%@",error); return; }
-        
-        if([items count] <= 0) return;
-        
-        //first item from query
-        //NSDictionary *data = items[0];
-        //NSLog(@"%@",[data objectForKey:@"pagelikes"]);
-    }];
-    
-    
-    
+    FVProfileViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainTabView"];
+    [self presentViewController:profileVC animated:YES completion:nil];
 }
 
 #pragma mark - facebook_delegate
 
--(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
-    if ([[FVUser currentUser] facebook] == nil) {
-        
-        [[FVUser currentUser] setFacebook:user];
-        [self loginWithFacebook];
-        
-        FVProfileViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainTabView"];
-        [self presentViewController:profileVC animated:YES completion:nil];
+-(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)facebookUserData {
+    if([FVUser currentUser] == nil)
+    {
+        [self loginWithFacebook:facebookUserData];
     }
 }
 
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    //self.statusLabel.text = @"You're logged in as";
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    [self.loginActivityIndicatorView startAnimating];
+    
     self.loginView.hidden = YES;
 }
 
@@ -133,25 +123,23 @@
 
 #pragma mark - registerFacebookDatabase
 
--(void)loginWithFacebook
+-(void)loginWithFacebook:(id<FBGraphUser>)facebookUserData
 {
-    id<FBGraphUser> facebookUser = [FVUser currentUser].facebook;
-    
-    if(facebookUser == nil){
+    if(facebookUserData == nil){
         return;
     }
     
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"facebookid == %@",[facebookUser id]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"facebookid == %@",[facebookUserData id]];
     [table readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error)
      {
          if (error) { NSLog(@"%@",error); return; }
          
          if([items count] <= 0)
          {
-             NSLog(@"register FB DB for %@",[facebookUser name]);
+             NSLog(@"register FB DB for %@",[facebookUserData name]);
              
              // 0) insert fove userinfo
              MSTable *userInfoTable = [client tableWithName:@"userinfo"];
@@ -160,7 +148,7 @@
              ////age
              NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
              [dateFormat setDateFormat:@"MM/dd/yyyy"];
-             NSDate *birthday = [dateFormat dateFromString:[facebookUser birthday]];
+             NSDate *birthday = [dateFormat dateFromString:[facebookUserData birthday]];
              
              NSDate* now = [NSDate date];
              NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
@@ -170,9 +158,9 @@
                                                 options:0];
              NSInteger age = [ageComponents year];
              
-             NSDictionary *userItem = @{  @"name" : [facebookUser name],
-                                          @"gender" : [facebookUser objectForKey:@"gender"],
-                                          @"relationship" : [facebookUser objectForKey:@"relationship_status"],
+             NSDictionary *userItem = @{  @"name" : [facebookUserData name],
+                                          @"gender" : [facebookUserData objectForKey:@"gender"],
+                                          @"relationship" : [facebookUserData objectForKey:@"relationship_status"],
                                           @"age" : @(age)
                                           };
              
@@ -186,27 +174,26 @@
                  NSLog(@"registered fove userinfo");
                  
                  // 1) insert basic_info
-                 NSDictionary *facebookItem = @{ @"facebookid" : [facebookUser id] ,
-                                                 @"birthday" : [facebookUser birthday],
-                                                 @"name" : [facebookUser name],
-                                                 @"gender" : [facebookUser objectForKey:@"gender"],
+                 NSDictionary *facebookItem = @{ @"facebookid" : [facebookUserData id] ,
+                                                 @"birthday" : [facebookUserData birthday],
+                                                 @"name" : [facebookUserData name],
+                                                 @"gender" : [facebookUserData objectForKey:@"gender"],
                                                  @"user_id" : [item objectForKey:@"id"]
                                          };
                  NSString *userID = [item objectForKey:@"id"];
-                 [table insert:facebookItem completion:^(NSDictionary *item, NSError *error)
-                  {
+                 [table insert:facebookItem completion:^(NSDictionary *item, NSError *error){
                       if (error) { NSLog(@"%@",error); return; }
-                      else{ NSLog(@"register basic_info complete"); }
+                      else{ NSLog(@"register facebook basic_info complete"); }
                       
                       NSString *itemId = [item objectForKey:@"id"];
                       
-                      [self insertPagelikes:itemId];
-                      [self insertMovies:itemId];
-                      [self insertMusic:itemId];
-                      [self insertCheckin:itemId];
-                      
-                      
+                      [self updatePagelikes:itemId];
+                      [self updateMovies:itemId];
+                      [self updateMusic:itemId];
+                      [self updateCheckin:itemId];
                       [self getUserProfileImage:userID];
+                      
+                      [self goToFove];
                   }];
                  
              }];
@@ -214,14 +201,20 @@
          else
          {
              //find user associated with facebook id
-             
              MSTable *userTable = [client tableWithName:@"userinfo"];
              
              NSString *userID = [items[0] objectForKey:@"user_id"];
              [userTable readWithId:userID completion:^(NSDictionary *item, NSError *error) {
-                 [[FVUser currentUser] setUserWithDictionary:item];
+                 
+                 //setup current user
+                 FVUser *loginUser = [[FVUser alloc] initWithUserDictionary:item];
+                 [FVUser setCurrentUser:loginUser];
+                 [FVUser currentUser].facebook = facebookUserData;
+                 
+                 [self goToFove];
+                 
+                 NSLog(@"login with facebook !!");
              }];
-             NSLog(@"login with facebook !!");
          }
      }];
 }
@@ -256,7 +249,7 @@
                                                 ];
                       
                       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                          [self insertImageURL:foveImageUrl toUserInfo:userID];
+                          [self updateImageURL:foveImageUrl toUserInfo:userID];
                       }];
                   }];
              }];
@@ -264,7 +257,7 @@
     }];
 }
 
--(void)insertImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId
+-(void)updateImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"userinfo"];
@@ -282,7 +275,7 @@
 }
 
 
--(void)insertCheckin:(NSString *)itemId
+-(void)updateCheckin:(NSString *)itemId
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -298,12 +291,12 @@
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
              if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered checkin"); }
+             else{ NSLog(@"registered facebook checkin"); }
          }];
          
      }];
 }
--(void)insertMusic:(NSString *)itemId
+-(void)updateMusic:(NSString *)itemId
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -319,12 +312,12 @@
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
              if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered music"); }
+             else{ NSLog(@"registered facebook music"); }
          }];
          
      }];
 }
--(void)insertMovies:(NSString *)itemId
+-(void)updateMovies:(NSString *)itemId
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -340,13 +333,13 @@
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
              if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered movies"); }
+             else{ NSLog(@"registered facebook movies"); }
              
          }];
          
      }];
 }
--(void)insertPagelikes:(NSString *)itemId
+-(void)updatePagelikes:(NSString *)itemId
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -362,7 +355,7 @@
          
          [table update:item completion:^(NSDictionary *item, NSError *error) {
              if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered pagelike"); }
+             else{ NSLog(@"registered facebook pagelike"); }
              
          }];
          
