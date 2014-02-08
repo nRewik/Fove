@@ -15,6 +15,9 @@
 @interface FVViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginActivityIndicatorView;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
+
+@property BOOL isFetched;
+
 @end
 
 @implementation FVViewController
@@ -57,9 +60,20 @@
     [self presentViewController:profileVC animated:YES completion:nil];
 }
 
+-(void)setupCurrentUserAs:(FVUser *)user withFacebook:(id<FBGraphUser>)facebookUserData
+{
+    [FVUser setCurrentUser:user];
+    [FVUser currentUser].facebook = facebookUserData;
+}
+
 #pragma mark - facebook_delegate
 
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)facebookUserData {
+    if ( self.isFetched == YES)
+    {
+        return;
+    }
+    self.isFetched = YES;
     if([FVUser currentUser] == nil)
     {
         [self loginWithFacebook:facebookUserData];
@@ -74,7 +88,7 @@
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    //self.statusLabel.text= @"You're not logged in!";
+    self.isFetched = NO;
 }
 
 // Handle possible errors that can occur during login
@@ -186,14 +200,25 @@
                       else{ NSLog(@"register facebook basic_info complete"); }
                       
                       NSString *itemId = [item objectForKey:@"id"];
-                      
-                      [self updatePagelikes:itemId];
-                      [self updateMovies:itemId];
-                      [self updateMusic:itemId];
-                      [self updateCheckin:itemId];
-                      [self getUserProfileImage:userID];
-                      
-                      [self goToFove];
+                     
+                      [self updatePagelikes:itemId withCompletion:^{
+                          [self updateMovies:itemId withCompletion:^{
+                              [self updateMusic:itemId withCompletion:^{
+                                  [self updateCheckin:itemId withCompletion:^{
+                                      [self getUserProfileImage:userID withCompletion:^{
+                                          [FVUser getUserFromID:userID completion:^(FVUser *resultUser, NSError *error) {
+                                              
+                                              [self setupCurrentUserAs:resultUser withFacebook:facebookUserData];
+                                              [self goToFove];
+                                              
+                                              NSLog(@"registration complete");
+                                              
+                                          }];
+                                      }];
+                                  }];
+                              }];
+                          }];
+                      }];
                   }];
                  
              }];
@@ -206,11 +231,8 @@
              NSString *userID = [items[0] objectForKey:@"user_id"];
              [userTable readWithId:userID completion:^(NSDictionary *item, NSError *error) {
                  
-                 //setup current user
                  FVUser *loginUser = [[FVUser alloc] initWithUserDictionary:item];
-                 [FVUser setCurrentUser:loginUser];
-                 [FVUser currentUser].facebook = facebookUserData;
-                 
+                 [self setupCurrentUserAs:loginUser withFacebook:facebookUserData];
                  [self goToFove];
                  
                  NSLog(@"login with facebook !!");
@@ -219,7 +241,7 @@
      }];
 }
 
--(void)getUserProfileImage:(NSString *)userID
+-(void)getUserProfileImage:(NSString *)userID withCompletion:(void (^)() )completion
 {
     
     [FBRequestConnection startWithGraphPath:@"/me?fields=picture.type(large)" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
@@ -249,7 +271,7 @@
                                                 ];
                       
                       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                          [self updateImageURL:foveImageUrl toUserInfo:userID];
+                          [self updateImageURL:foveImageUrl toUserInfo:userID withCompletion:completion];
                       }];
                   }];
              }];
@@ -257,7 +279,7 @@
     }];
 }
 
--(void)updateImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId
+-(void)updateImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId withCompletion:(void (^)() )completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"userinfo"];
@@ -265,17 +287,20 @@
     NSDictionary *item = @{ @"id" : userId , @"profileimage" : imageUrl };
     [table update:item completion:^(NSDictionary *item, NSError *error)
     {
-        if (error) {
+        if (error)
+        {
             NSLog(@"%@",error);
         }
-        else{
+        else
+        {
             NSLog(@"insert image url complete");
+            completion();
         }
     }];
 }
 
 
--(void)updateCheckin:(NSString *)itemId
+-(void)updateCheckin:(NSString *)itemId withCompletion:(void (^)() )completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -285,18 +310,27 @@
          
          NSDictionary *checkin= [[result objectForKey:@"checkins"] objectForKey:@"data"];
          
-         if (checkin == nil) { return; }
-         
-         NSDictionary *item = @{ @"id" : itemId, @"checkin" : [checkin description] };
-         
-         [table update:item completion:^(NSDictionary *item, NSError *error) {
-             if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered facebook checkin"); }
-         }];
+         if (checkin == nil)
+         {
+             completion();
+         }
+         else
+         {
+             NSDictionary *item = @{ @"id" : itemId, @"checkin" : [checkin description] };
+             
+             [table update:item completion:^(NSDictionary *item, NSError *error) {
+                 if (error) { NSLog(@"%@",error); return; }
+                 else
+                 {
+                     NSLog(@"registered facebook checkin");
+                     completion();
+                 }
+             }];
+         }
          
      }];
 }
--(void)updateMusic:(NSString *)itemId
+-(void)updateMusic:(NSString *)itemId withCompletion:(void (^)() )completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -306,18 +340,26 @@
          
          NSDictionary *music = [[result objectForKey:@"music"] objectForKey:@"data"];
          
-         if(music == nil) { return; }
-         
-         NSDictionary *item = @{ @"id" : itemId, @"music" : [music description] };
-         
-         [table update:item completion:^(NSDictionary *item, NSError *error) {
-             if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered facebook music"); }
-         }];
-         
+         if(music == nil)
+         {
+             completion();
+         }
+         else
+         {
+             NSDictionary *item = @{ @"id" : itemId, @"music" : [music description] };
+             
+             [table update:item completion:^(NSDictionary *item, NSError *error) {
+                 if (error) { NSLog(@"%@",error); return; }
+                 else
+                 {
+                     NSLog(@"registered facebook music");
+                     completion();
+                 }
+             }];
+         }
      }];
 }
--(void)updateMovies:(NSString *)itemId
+-(void)updateMovies:(NSString *)itemId withCompletion:(void (^)() )completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -327,19 +369,28 @@
          
          NSDictionary *movies= [[result objectForKey:@"movies"] objectForKey:@"data"];
          
-         if(movies == nil){ return; }
-         
-         NSDictionary *item = @{ @"id" : itemId, @"movie" : [movies description] };
-         
-         [table update:item completion:^(NSDictionary *item, NSError *error) {
-             if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered facebook movies"); }
+         if(movies == nil)
+         {
+             completion();
+         }
+         else
+         {
+             NSDictionary *item = @{ @"id" : itemId, @"movie" : [movies description] };
              
-         }];
+             [table update:item completion:^(NSDictionary *item, NSError *error) {
+                 if (error) { NSLog(@"%@",error); return; }
+                 else
+                 {
+                     NSLog(@"registered facebook movies");
+                     completion();
+                 }
+                 
+             }];
+         }
          
      }];
 }
--(void)updatePagelikes:(NSString *)itemId
+-(void)updatePagelikes:(NSString *)itemId withCompletion:(void (^)() )completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
     MSTable *table = [client tableWithName:@"Facebook"];
@@ -349,15 +400,23 @@
          
          NSDictionary *myLikes = [result objectForKey:@"data"];
          
-         if( myLikes == nil){ return; }
-         
-         NSDictionary *item = @{ @"id" : itemId, @"pagelike" : [myLikes description] };
-         
-         [table update:item completion:^(NSDictionary *item, NSError *error) {
-             if (error) { NSLog(@"%@",error); return; }
-             else{ NSLog(@"registered facebook pagelike"); }
-             
-         }];
+         if( myLikes == nil)
+         {
+             completion();
+         }
+         else
+         {
+             NSDictionary *item = @{ @"id" : itemId, @"pagelike" : [myLikes description] };
+             [table update:item completion:^(NSDictionary *item, NSError *error) {
+                 if (error) { NSLog(@"%@",error); return; }
+                 else
+                 {
+                     NSLog(@"registered facebook pagelike");
+                     completion();
+                 }
+                 
+             }];
+         }
          
      }];
 }
