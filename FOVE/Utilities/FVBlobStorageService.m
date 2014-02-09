@@ -35,6 +35,10 @@ static FVBlobStorageService *singletonInstance;
 {
     return profileImageContainer;
 }
++(NSString *)mailboxMediaContainer
+{
+    return mailboxMediaContainer;
+}
 
 -(FVBlobStorageService *) init
 {
@@ -144,14 +148,25 @@ static FVBlobStorageService *singletonInstance;
 
 -(void)postImageToBlobWithUrl:(NSString *)sasUrl NSData:(NSData *)data withCompletion:(void (^)(BOOL))completion
 {
-    [self postBlobWithUrl:sasUrl NSData:data contentType:@"image/png" withCompletion:completion];
+    [self postBlobWithUrl:sasUrl NSData:data contentType:@"image/jpeg" withCompletion:completion];
 }
-
+-(void)postBlobWithUrl:(NSString *)sasUrl NSData:(NSData *)data withCompletion:(void (^)(BOOL))completion
+{
+    [self postBlobWithUrl:sasUrl NSData:data contentType:nil withCompletion:completion];
+}
 - (void)postBlobWithUrl:(NSString *)sasUrl NSData:(NSData *)data contentType:(NSString *)contentType withCompletion:(void (^)(BOOL))completion
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:sasUrl]];
     [request setHTTPMethod:@"PUT"];
-    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+    if (contentType == nil)
+    {
+        [request addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
+    }
+    else
+    {
+        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+    }
     [request setHTTPBody:data];
     
     [NSURLConnection sendAsynchronousRequest:request

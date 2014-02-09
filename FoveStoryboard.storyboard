@@ -100,6 +100,8 @@
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.99215692281723022" green="0.047058828175067902" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="RIm-oF-LO7" kind="relationship" relationship="viewControllers" id="3tC-B8-T2g"/>
@@ -125,35 +127,25 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wOn-Kz-lCU">
-                                <rect key="frame" x="20" y="28" width="280" height="483"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="491"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8g-yp-jbi">
-                                <rect key="frame" x="270" y="28" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dy-7l-cGO">
+                                <rect key="frame" x="0.0" y="57" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="➕">
+                                <state key="normal" backgroundImage="addMailboxButtton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="K8d-9R-Ddg" kind="modal" identifier="createMailbox" id="ADd-Uo-mjm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYY-er-Jjw">
-                                <rect key="frame" x="20" y="28" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="🏠">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeLoc" destination="ojg-yC-fh4" eventType="touchUpInside" id="7KM-fV-Bgf"/>
+                                    <segue destination="K8d-9R-Ddg" kind="modal" identifier="createMailbox" id="M9b-bz-kcX"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="wOn-Kz-lCU" secondAttribute="trailing" constant="20" symbolic="YES" id="CVb-nj-2nw"/>
-                            <constraint firstItem="UGR-xr-W2R" firstAttribute="top" secondItem="wOn-Kz-lCU" secondAttribute="bottom" constant="20" symbolic="YES" id="FJP-qT-igL"/>
-                            <constraint firstItem="wOn-Kz-lCU" firstAttribute="leading" secondItem="xz7-KS-nxB" secondAttribute="leading" constant="20" symbolic="YES" id="G6R-5n-Ozd"/>
+                            <constraint firstAttribute="trailing" secondItem="wOn-Kz-lCU" secondAttribute="trailing" id="CVb-nj-2nw"/>
+                            <constraint firstItem="UGR-xr-W2R" firstAttribute="top" secondItem="wOn-Kz-lCU" secondAttribute="bottom" id="FJP-qT-igL"/>
+                            <constraint firstItem="wOn-Kz-lCU" firstAttribute="leading" secondItem="xz7-KS-nxB" secondAttribute="leading" id="G6R-5n-Ozd"/>
                             <constraint firstItem="wOn-Kz-lCU" firstAttribute="top" secondItem="ENj-QJ-qVb" secondAttribute="bottom" constant="20" symbolic="YES" id="Hle-cD-enb"/>
                         </constraints>
                     </view>
@@ -180,55 +172,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3N-1b-Uut">
-                                <rect key="frame" x="254" y="518" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Create">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createMailbox" destination="K8d-9R-Ddg" eventType="touchUpInside" id="arp-pa-cek"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-SX-hyq">
-                                <rect key="frame" x="61" y="77" width="239" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLC-hs-1FY">
-                                <rect key="frame" x="20" y="81" width="33" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUU-aK-GLd">
-                                <rect key="frame" x="20" y="115" width="70" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+📷" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbN-fJ-Crt">
-                                <rect key="frame" x="267" y="182" width="33" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e74-B5-WH1">
-                                <rect key="frame" x="20" y="144" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHp-BW-iXY">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.99215692280000001" green="0.047058828179999998" blue="0.1176470667" alpha="1" colorSpace="deviceRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Mail Box" id="Iga-f7-miA">
-                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="FCR-eE-sWf">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" style="done" id="FCR-eE-sWf">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="back:" destination="K8d-9R-Ddg" id="7JZ-aZ-3Rg"/>
                                             </connections>
@@ -236,33 +190,66 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubb-Z5-CKy">
+                                <rect key="frame" x="10" y="74" width="300" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="UlD-0y-JjS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jht-pw-KZR">
+                                <rect key="frame" x="10" y="182" width="300" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="CPe-8L-1Jc"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Djk-13-fyd" userLabel="createMailboxButton">
+                                <rect key="frame" x="254" y="415" width="66" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="createMailboxButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createMailbox" destination="K8d-9R-Ddg" eventType="touchUpInside" id="zzT-MZ-e3d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7Y-do-h62" userLabel="addMediaButton">
+                                <rect key="frame" x="149" y="273" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="0.37933577979999999" green="1" blue="0.13081574639999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="addMedia" destination="K8d-9R-Ddg" eventType="touchUpInside" id="AGv-Y3-KSg"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.9960784912109375" green="0.80000007152557373" blue="0.81176477670669556" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="e74-B5-WH1" firstAttribute="centerX" secondItem="lHp-BW-iXY" secondAttribute="centerX" id="3qB-TD-8ud"/>
-                            <constraint firstItem="e74-B5-WH1" firstAttribute="top" secondItem="EUU-aK-GLd" secondAttribute="bottom" constant="8" symbolic="YES" id="5Vg-4q-dRG"/>
                             <constraint firstItem="lHp-BW-iXY" firstAttribute="leading" secondItem="r8O-DA-Kyj" secondAttribute="leading" constant="20" symbolic="YES" id="7t8-TH-IN3"/>
-                            <constraint firstItem="DB3-SX-hyq" firstAttribute="trailing" secondItem="e74-B5-WH1" secondAttribute="trailing" id="9TX-Dy-phh"/>
-                            <constraint firstItem="EUU-aK-GLd" firstAttribute="leading" secondItem="e74-B5-WH1" secondAttribute="leading" id="Flj-gt-Wg6"/>
-                            <constraint firstItem="fLC-hs-1FY" firstAttribute="leading" secondItem="EUU-aK-GLd" secondAttribute="leading" id="Jgc-hv-pCC"/>
-                            <constraint firstItem="QbN-fJ-Crt" firstAttribute="top" secondItem="e74-B5-WH1" secondAttribute="bottom" constant="8" symbolic="YES" id="KpX-qb-aLm"/>
-                            <constraint firstItem="fLC-hs-1FY" firstAttribute="leading" secondItem="r8O-DA-Kyj" secondAttribute="leading" constant="20" symbolic="YES" id="RX2-1j-BNO"/>
-                            <constraint firstItem="EUU-aK-GLd" firstAttribute="top" secondItem="DB3-SX-hyq" secondAttribute="bottom" constant="8" symbolic="YES" id="RmJ-9I-I5M"/>
-                            <constraint firstItem="P3N-1b-Uut" firstAttribute="trailing" secondItem="QbN-fJ-Crt" secondAttribute="trailing" id="Sbe-Tx-PBL"/>
-                            <constraint firstItem="DB3-SX-hyq" firstAttribute="leading" secondItem="fLC-hs-1FY" secondAttribute="trailing" constant="8" symbolic="YES" id="Wpa-Wu-933"/>
-                            <constraint firstAttribute="bottom" secondItem="P3N-1b-Uut" secondAttribute="bottom" constant="20" symbolic="YES" id="Yra-Qz-f9o"/>
-                            <constraint firstItem="DB3-SX-hyq" firstAttribute="top" secondItem="lHp-BW-iXY" secondAttribute="bottom" constant="13" id="ZbO-26-OK6"/>
-                            <constraint firstItem="EUU-aK-GLd" firstAttribute="top" secondItem="fLC-hs-1FY" secondAttribute="bottom" constant="13" id="bcS-cN-4cF"/>
-                            <constraint firstItem="e74-B5-WH1" firstAttribute="trailing" secondItem="QbN-fJ-Crt" secondAttribute="trailing" id="mjl-6D-dSv"/>
+                            <constraint firstAttribute="trailing" secondItem="jht-pw-KZR" secondAttribute="trailing" constant="10" id="Df2-Z3-JCK"/>
+                            <constraint firstItem="z7Y-do-h62" firstAttribute="bottom" secondItem="jht-pw-KZR" secondAttribute="bottom" constant="-112" id="KNU-Ai-5FE"/>
+                            <constraint firstItem="ubb-Z5-CKy" firstAttribute="top" secondItem="lHp-BW-iXY" secondAttribute="bottom" constant="10" id="NB4-XB-cTK"/>
+                            <constraint firstItem="jht-pw-KZR" firstAttribute="leading" secondItem="r8O-DA-Kyj" secondAttribute="leading" constant="10" id="NXM-HI-bXI"/>
+                            <constraint firstItem="z7Y-do-h62" firstAttribute="top" secondItem="jht-pw-KZR" secondAttribute="top" constant="91" id="SUr-if-CP0"/>
+                            <constraint firstItem="z7Y-do-h62" firstAttribute="leading" secondItem="jht-pw-KZR" secondAttribute="leading" constant="139" id="Wbe-AO-eb8"/>
+                            <constraint firstItem="ubb-Z5-CKy" firstAttribute="leading" secondItem="r8O-DA-Kyj" secondAttribute="leading" constant="10" id="jkp-BT-mZH"/>
                             <constraint firstItem="lHp-BW-iXY" firstAttribute="top" secondItem="H3p-gM-Bzr" secondAttribute="bottom" constant="20" symbolic="YES" id="oT4-I6-LAC"/>
+                            <constraint firstItem="jht-pw-KZR" firstAttribute="top" secondItem="ubb-Z5-CKy" secondAttribute="bottom" constant="8" id="t6Z-5e-7dL"/>
+                            <constraint firstAttribute="trailing" secondItem="ubb-Z5-CKy" secondAttribute="trailing" constant="10" id="td0-ee-O2Q"/>
                             <constraint firstAttribute="trailing" secondItem="lHp-BW-iXY" secondAttribute="trailing" constant="20" symbolic="YES" id="vpV-VZ-NSA"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Create Mailbox" id="mea-za-dFY"/>
                     <connections>
-                        <outlet property="messageTextField" destination="e74-B5-WH1" id="lrV-WQ-YUz"/>
-                        <outlet property="titleTextField" destination="DB3-SX-hyq" id="2sE-1h-49y"/>
+                        <outlet property="addMediaButton" destination="z7Y-do-h62" id="adh-GR-6Pw"/>
+                        <outlet property="mediaView" destination="jht-pw-KZR" id="Yo6-Pb-ydQ"/>
+                        <outlet property="messageTextArea" destination="ubb-Z5-CKy" id="Trr-vg-ZLM"/>
                         <segue destination="MYZ-zt-QQl" kind="modal" identifier="viewCreatedMailbox" id="tuB-K6-12K"/>
                     </connections>
                 </viewController>
@@ -662,6 +649,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addMailboxButtton" width="87" height="56"/>
+        <image name="createMailboxButton" width="95" height="54"/>
         <image name="feedTabBar_icon" width="30" height="30"/>
         <image name="mapTabBar_icon" width="30" height="30"/>
         <image name="profileTabBar_icon" width="60" height="60"/>

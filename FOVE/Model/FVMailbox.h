@@ -14,7 +14,7 @@
 
 typedef NS_ENUM(NSInteger, FVMediaType) {
     FVMediaImageType,
-    FVMediaVideo
+    FVMediaVideoType
 };
 
 +(void)getMailboxFormID:(NSString *)mailboxID completion: (void (^)(FVMailbox *resultMailbox, NSError *error)) completion;

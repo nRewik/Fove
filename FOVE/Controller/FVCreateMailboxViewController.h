@@ -10,7 +10,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-@interface FVCreateMailboxViewController : UIViewController
+@interface FVCreateMailboxViewController : UIViewController 
 
 @property (nonatomic) CLLocationCoordinate2D location;
 

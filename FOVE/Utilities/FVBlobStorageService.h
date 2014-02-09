@@ -19,6 +19,8 @@ static NSString * const blobContainer = @"blobcontainers";
 static NSString * const blobblobs = @"blobblobs";
 
 static NSString * const profileImageContainer = @"profileimage";
+static NSString * const mailboxMediaContainer = @"mailboxmedia";
+
 #pragma mark -
 
 
@@ -31,6 +33,7 @@ static NSString * const profileImageContainer = @"profileimage";
 
 #pragma mark - container
 +(NSString *)profileImageContainer;
++(NSString *)mailboxMediaContainer;
 #pragma mark -
 
 - (void) getContainersList:(void (^)(id result, NSError *error)) completion;
@@ -40,6 +43,8 @@ static NSString * const profileImageContainer = @"profileimage";
 - (void) deleteBlob:(NSString *)blobName fromContainer:(NSString *)containerName withCompletion:(void (^)(id result, NSError *error))completion;
 
 - (void) postImageToBlobWithUrl:(NSString *)sasUrl NSData:(NSData *)data withCompletion:(void (^)(BOOL isSuccess))completion;
+- (void) postBlobWithUrl:(NSString *)sasUrl NSData:(NSData *)data withCompletion:(void (^)(BOOL))completion;
+- (void) postBlobWithUrl:(NSString *)sasUrl NSData:(NSData *)data contentType:(NSString *)contentType withCompletion:(void (^)(BOOL))completion;
 
 
 @end

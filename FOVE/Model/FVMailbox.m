@@ -60,7 +60,7 @@
             }
             else if([mediaType isEqualToString:@"video"])
             {
-                _mediaType = FVMediaVideo;
+                _mediaType = FVMediaVideoType;
             }
         }
         

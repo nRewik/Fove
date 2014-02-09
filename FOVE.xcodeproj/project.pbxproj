@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */; };
+		A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0118A1918A78B6E00664363 /* MediaPlayer.framework */; };
 		A01E2A4718924AA400C84F01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4618924AA400C84F01 /* Foundation.framework */; };
 		A01E2A4918924AA400C84F01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4818924AA400C84F01 /* CoreGraphics.framework */; };
 		A01E2A4B18924AA400C84F01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4A18924AA400C84F01 /* UIKit.framework */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxViewController.h; path = Controller/FVMailboxViewController.h; sourceTree = "<group>"; };
 		A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxViewController.m; path = Controller/FVMailboxViewController.m; sourceTree = "<group>"; };
+		A0118A1918A78B6E00664363 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A01E2A4318924AA400C84F01 /* FOVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOVE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01E2A4618924AA400C84F01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A01E2A4818924AA400C84F01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */,
 				A09943EA189BE42B00782AEE /* MapKit.framework in Frameworks */,
 				A09943E4189BDA4F00782AEE /* CoreLocation.framework in Frameworks */,
 				A05CC08218968BAA00C0D562 /* WindowsAzureMobileServices.framework in Frameworks */,
@@ -149,6 +152,7 @@
 		A01E2A4518924AA400C84F01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0118A1918A78B6E00664363 /* MediaPlayer.framework */,
 				A09943E9189BE42B00782AEE /* MapKit.framework */,
 				A09943E3189BDA4F00782AEE /* CoreLocation.framework */,
 				A05CC07E18968BAA00C0D562 /* AzureSDK-iOS */,
@@ -231,10 +235,10 @@
 		A029C71D189E2B4400B167C7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A06856C4189CC967007F0015 /* FVMapViewController.h */,
-				A06856C5189CC967007F0015 /* FVMapViewController.m */,
 				A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */,
 				A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */,
+				A06856C4189CC967007F0015 /* FVMapViewController.h */,
+				A06856C5189CC967007F0015 /* FVMapViewController.m */,
 				A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */,
 				A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */,
 				A0B6CD0C1898093E00AFC61C /* FVSettingViewController.h */,
