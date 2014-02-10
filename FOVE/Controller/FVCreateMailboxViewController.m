@@ -8,6 +8,7 @@
 
 #import "FVCreateMailboxViewController.h"
 #import "FVMailboxViewController.h"
+#import "FVMediaPlayerView.h"
 
 #import "FVMailbox.h"
 #import "FVUser.h"
@@ -32,8 +33,9 @@
 
 @property (strong,nonatomic) FVMailbox *createdMailbox;
 
+
+@property (strong, nonatomic) IBOutlet FVMediaPlayerView *mediaView;
 @property (strong, nonatomic) IBOutlet UITextView *messageTextArea;
-@property (strong, nonatomic) IBOutlet UIView *mediaView;
 @property (weak, nonatomic) IBOutlet UIButton *addMediaButton;
 
 
@@ -187,38 +189,7 @@
     return YES;
 }
 
-
-#pragma mark - setup media
-
--(void)setupMoviewPlayerControllerWithURL:(NSURL *)url
-{
-    [self.moviewPlayerController.view removeFromSuperview];
-    
-    self.moviewPlayerController = [[MPMoviePlayerController alloc] initWithContentURL: url];
-    self.moviewPlayerController.controlStyle = MPMovieControlStyleNone;
-
-    [self.moviewPlayerController.view setFrame: self.mediaView.bounds];  // player's frame must match parent's
-    [self.mediaView addSubview: self.moviewPlayerController.view];
-}
--(void)setupImageViewWithImage:(UIImage *)image
-{
-    [self.imageView removeFromSuperview];
-    
-    self.imageView = [[UIImageView alloc] initWithImage:image];
-    self.imageView.frame = self.mediaView.bounds;
-
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.imageView.clipsToBounds = YES;
-    
-    [self.mediaView addSubview:self.imageView];
-}
-
 #pragma mark - media control logic
-
-- (IBAction)playVideo
-{
-    [self.moviewPlayerController play];
-}
 
 - (IBAction)addMedia
 {
@@ -239,9 +210,7 @@
     if([mediaType isEqualToString:(NSString *)kUTTypeMovie])
     {
         NSURL *movieUrl = [info valueForKey:UIImagePickerControllerMediaURL];
-        [self setupMoviewPlayerControllerWithURL:movieUrl];
-        
-        [self.moviewPlayerController play];
+        [self.mediaView setupWithMovieUrl:movieUrl];
         
         self.selectedMediaExtension = [movieUrl pathExtension];
         self.selectedMediaData = [NSData dataWithContentsOfURL:movieUrl];
@@ -250,7 +219,7 @@
     else if( [mediaType isEqualToString:(NSString *)kUTTypeImage] )
     {
         UIImage *selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
-        [self setupImageViewWithImage:selectedImage];
+        [self.mediaView setupWithImage:selectedImage];
         
         self.selectedMediaExtension = @"jpg";
         self.selectedMediaData = UIImageJPEGRepresentation( selectedImage , 0.15 );

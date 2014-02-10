@@ -44,11 +44,10 @@
     {
         _owner = [[FVUser alloc] initWithUserDictionary:dictionary[@"owner"]];
         
-        _mailbox_id = dictionary[@"id"];
-        
-        _title = dictionary[@"title"];
-        _message = dictionary[@"message"];
-        _media = dictionary[@"media"];
+        _mailbox_id = dictionary[@"id"] == [NSNull null]? nil : dictionary[@"id"];
+        _title = dictionary[@"title"] == [NSNull null]? nil : dictionary[@"title"];
+        _message = dictionary[@"message"] == [NSNull null]? nil : dictionary[@"message"];
+        _media = dictionary[@"media"] == [NSNull null]? nil : dictionary[@"media"];
         
         if ( dictionary[@"media_type"] != [NSNull null] )
         {
@@ -74,7 +73,7 @@
             _location.longitude = [dictionary[@"longitude"] doubleValue];
         }
 
-        _lastUpdate = dictionary[@"__updatedAt"];
+        _lastUpdate = dictionary[@"__updatedAt"] == [NSNull null]? nil : dictionary[@"__updatedAt"];
     }
     return self;
 }

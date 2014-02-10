@@ -36,7 +36,7 @@
 -(instancetype)initWithMailbox:(FVMailbox *)mailbox
 {
     _mailbox = mailbox;
-    return [self initWithTitle:mailbox.title subtitle:mailbox.message coordinate:mailbox.location];
+    return [self initWithTitle:mailbox.owner.name subtitle:mailbox.message coordinate:mailbox.location];
 }
 
 @end

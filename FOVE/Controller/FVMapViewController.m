@@ -21,7 +21,7 @@
 @interface FVMapViewController () <CLLocationManagerDelegate,MKMapViewDelegate>
 
 @property (strong,nonatomic) FVMailbox *currentSelectedMailbox;
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -53,11 +53,6 @@
     
     
     
-}
-
-- (IBAction)changeLoc {
-    //CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(13.7281169, 100.7791107);
-    //self.mapView.userLocation.location = loc;
 }
 
 -(void)addMailboxToMap:(FVMailbox *)mailbox

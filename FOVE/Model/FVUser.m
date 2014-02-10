@@ -44,13 +44,13 @@ static FVUser *currentUser;
 {
     self = [super init];
     if( self ){
-        _user_id = dictionary[@"id"];
-        _name = dictionary[@"name"];
-        _gender = dictionary[@"gender"];
-        _status = dictionary[@"status"];
-        _relationship = dictionary[@"relationship"];
+        _user_id = dictionary[@"id"] == [NSNull null] ? nil : dictionary[@"id"] ;
+        _name = dictionary[@"name"] == [NSNull null] ? nil : dictionary[@"name"] ;
+        _gender = dictionary[@"gender"] == [NSNull null] ? nil : dictionary[@"gender"] ;
+        _status = dictionary[@"status"] == [NSNull null] ? nil : dictionary[@"status"] ;
+        _relationship = dictionary[@"relationship"] == [NSNull null] ? nil : dictionary[@"relationship"] ;
         
-        _profileImageUrl = dictionary[@"profileimage"];
+        _profileImageUrl = dictionary[@"profileimage"] == [NSNull null] ? nil : dictionary[@"profileimage"] ;
         
         if( dictionary[@"age"] != [NSNull null]){
             _age = [dictionary[@"age"] integerValue];
@@ -67,13 +67,13 @@ static FVUser *currentUser;
 
 -(void)setUserWithDictionary:(NSDictionary *)dictionary
 {
-    self.user_id = dictionary[@"id"];
-    self.name = dictionary[@"name"];
-    self.gender = dictionary[@"gender"];
-    self.status = dictionary[@"status"];
-    self.relationship = dictionary[@"relationship"];
+    self.user_id = dictionary[@"id"] == [NSNull null] ? nil : dictionary[@"id"] ;
+    self.name = dictionary[@"name"] == [NSNull null] ? nil : dictionary[@"name"] ;
+    self.gender = dictionary[@"gender"] == [NSNull null] ? nil : dictionary[@"gender"] ;
+    self.status = dictionary[@"status"] == [NSNull null] ? nil : dictionary[@"status"] ;
+    self.relationship = dictionary[@"relationship"] == [NSNull null] ? nil : dictionary[@"relationship"] ;
     
-    self.profileImageUrl = dictionary[@"profileimage"];
+    self.profileImageUrl = dictionary[@"profileimage"] == [NSNull null] ? nil : dictionary[@"profileimage"] ;
 
     
     if( dictionary[@"age"] != [NSNull null] ){
