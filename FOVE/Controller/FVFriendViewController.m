@@ -14,6 +14,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *profileNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *profileStatusLabel;
+
+//mock up
+@property (weak, nonatomic) IBOutlet UIImageView *chatchatImageView;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *profileImages;
+
 @property (strong,nonatomic) FVUser *selectedUser;
 
 @end
@@ -24,23 +29,45 @@
 {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewMyProfile:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewProfile:)];
     tap.cancelsTouchesInView = YES;
     tap.numberOfTapsRequired = 1;
     tap.delegate = self;
     [self.profileImageView addGestureRecognizer:tap];
     self.profileImageView.userInteractionEnabled = YES;
     
+    [self.chatchatImageView addGestureRecognizer:tap];
+    self.chatchatImageView.userInteractionEnabled = YES;
+    
     //set profile Image
     NSURL *imageUrl = [NSURL URLWithString:[[FVUser currentUser] profileImageUrl]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [UIImage imageWithData:imageData];
     self.profileImageView.image = image;
+    
+    for (int i=1; i<=6; i++) {
+        UIImageView *imv = (UIImageView *)self.profileImages[i-1];
+        imv.image = [UIImage imageNamed:[NSString stringWithFormat:@"test_profile_%d",i]];
+    }
 }
 
--(void)viewMyProfile:(UIGestureRecognizer *)gestureRecognizer
+-(void)viewProfile:(UIGestureRecognizer *)gestureRecognizer
 {
-    self.selectedUser = [FVUser currentUser];
+    if(gestureRecognizer.view == self.profileImageView) {
+        self.selectedUser = [FVUser currentUser];
+    }
+    else{
+        FVUser *user = [[FVUser alloc] init];
+        user.name = @"Chatchat Sitthiphan";
+        user.status = @"I'm strongest persion in the un.";
+        user.profileImageUrl = @"http://news.mthai.com/wp-content/uploads/2014/02/1502401_593529397362530_66696691_o-500x281.jpg";
+        user.age = 99;
+        user.gender = @"male";
+        user.relationship = @"Single";
+        
+        self.selectedUser = user;
+        
+    }
     [self performSegueWithIdentifier:@"viewProfile" sender:self];
 }
 
