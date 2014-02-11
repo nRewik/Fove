@@ -35,6 +35,7 @@
 		A05CC08118968BAA00C0D562 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */; };
 		A05CC08218968BAA00C0D562 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */; };
 		A06856C6189CC967007F0015 /* FVMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06856C5189CC967007F0015 /* FVMapViewController.m */; };
+		A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A086301918AA6EB900D2BC4D /* FVChatViewController.m */; };
 		A09943E4189BDA4F00782AEE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09943E3189BDA4F00782AEE /* CoreLocation.framework */; };
 		A09943EA189BE42B00782AEE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09943E9189BE42B00782AEE /* MapKit.framework */; };
 		A0B6CD081897F31300AFC61C /* FoveStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B6CD071897F31300AFC61C /* FoveStoryboard.storyboard */; };
@@ -97,6 +98,8 @@
 		A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		A06856C4189CC967007F0015 /* FVMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMapViewController.h; path = Controller/FVMapViewController.h; sourceTree = "<group>"; };
 		A06856C5189CC967007F0015 /* FVMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMapViewController.m; path = Controller/FVMapViewController.m; sourceTree = "<group>"; };
+		A086301818AA6EB900D2BC4D /* FVChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVChatViewController.h; path = Controller/FVChatViewController.h; sourceTree = "<group>"; };
+		A086301918AA6EB900D2BC4D /* FVChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVChatViewController.m; path = Controller/FVChatViewController.m; sourceTree = "<group>"; };
 		A09943E3189BDA4F00782AEE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A09943E9189BE42B00782AEE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A0B6CD071897F31300AFC61C /* FoveStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FoveStoryboard.storyboard; path = ../FoveStoryboard.storyboard; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 		A029C71D189E2B4400B167C7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A086301818AA6EB900D2BC4D /* FVChatViewController.h */,
+				A086301918AA6EB900D2BC4D /* FVChatViewController.m */,
 				A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */,
 				A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */,
 				A06856C4189CC967007F0015 /* FVMapViewController.h */,
@@ -394,6 +399,7 @@
 				A06856C6189CC967007F0015 /* FVMapViewController.m in Sources */,
 				A0251A0818A9F622005A6536 /* FVFriendViewController.m in Sources */,
 				A02EFD2F189FECBD001E5516 /* FVMailboxAnnotation.m in Sources */,
+				A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */,
 				A02EFD2B189FE8D8001E5516 /* FVMail.m in Sources */,
 				A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */,
 				A01E2A5318924AA400C84F01 /* main.m in Sources */,

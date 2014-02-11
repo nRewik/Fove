@@ -18,6 +18,7 @@
 //mock up
 @property (weak, nonatomic) IBOutlet UIImageView *chatchatImageView;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *profileImages;
+@property (weak, nonatomic) IBOutlet UILabel *goToChatTab;
 
 @property (strong,nonatomic) FVUser *selectedUser;
 
@@ -29,15 +30,23 @@
 {
     [super viewDidLoad];
     
+    //mock up
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewProfile:)];
     tap.cancelsTouchesInView = YES;
     tap.numberOfTapsRequired = 1;
-    tap.delegate = self;
     [self.profileImageView addGestureRecognizer:tap];
     self.profileImageView.userInteractionEnabled = YES;
     
     [self.chatchatImageView addGestureRecognizer:tap];
     self.chatchatImageView.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToChat)];
+    tapChat.cancelsTouchesInView = YES;
+    tapChat.numberOfTapsRequired = 1;
+    [self.goToChatTab addGestureRecognizer:tapChat];
+    self.goToChatTab.userInteractionEnabled = YES;
+    
+    
     
     //set profile Image
     NSURL *imageUrl = [NSURL URLWithString:[[FVUser currentUser] profileImageUrl]];
@@ -51,12 +60,20 @@
     }
 }
 
+-(void)goToChat
+{
+    [self performSegueWithIdentifier:@"chat" sender:self];
+    
+}
+
 -(void)viewProfile:(UIGestureRecognizer *)gestureRecognizer
 {
     if(gestureRecognizer.view == self.profileImageView) {
         self.selectedUser = [FVUser currentUser];
     }
     else{
+        
+        //mock up
         FVUser *user = [[FVUser alloc] init];
         user.name = @"Chatchat Sitthiphan";
         user.status = @"I'm strongest persion in the un.";

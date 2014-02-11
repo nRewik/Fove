@@ -112,8 +112,8 @@
                         <color key="barTintColor" red="0.99215692281723022" green="0.047058828175067902" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="RIm-oF-LO7" kind="relationship" relationship="viewControllers" id="3tC-B8-T2g"/>
                         <segue destination="ojg-yC-fh4" kind="relationship" relationship="viewControllers" id="Kel-OM-R3o"/>
+                        <segue destination="RIm-oF-LO7" kind="relationship" relationship="viewControllers" id="3tC-B8-T2g"/>
                         <segue destination="CiX-h4-ofG" kind="relationship" relationship="viewControllers" id="eWy-h9-Bcv"/>
                         <segue destination="e3A-NW-8UH" kind="relationship" relationship="viewControllers" id="6SA-in-cL1"/>
                     </connections>
@@ -582,7 +582,141 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZc-FL-YdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="190"/>
+            <point key="canvasLocation" x="910" y="-80"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mJq-Ql-aKp">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="of3-Pk-xPi" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IjB-8p-Hf6">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wRs-Bv-I8h" kind="relationship" relationship="rootViewController" id="DZn-FR-eQO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vfs-dS-r6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="788" y="616"/>
+        </scene>
+        <!--Chat View Controller - Anna Kiku-->
+        <scene sceneID="KmJ-Nt-LLz">
+            <objects>
+                <viewController id="wRs-Bv-I8h" customClass="FVChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HLn-aY-oct"/>
+                        <viewControllerLayoutGuide type="bottom" id="jvl-fC-44J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="upV-Wd-sKl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-ca-0st">
+                                <rect key="frame" x="240" y="75" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="8uL-VE-8xK"/>
+                                    <constraint firstAttribute="height" constant="60" id="w4t-NJ-bkF"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eiN-DP-4s0">
+                                <rect key="frame" x="20" y="143" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EEe-Vc-dah"/>
+                                    <constraint firstAttribute="width" constant="60" id="uSY-aH-xne"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✉️ Since 3 days ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7E-z6-zoV">
+                                <rect key="frame" x="164" y="513" width="136" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFp-es-x1M">
+                                <rect key="frame" x="20" y="76" width="212" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="สวัสดีคัฟ ผมอาร์ต ครับ ยินดีที่ได้รู้จัก คร้าฟฟฟฟฟฟฟ" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="tSN-6i-ZBX">
+                                        <rect key="frame" x="12" y="12" width="188" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="54" id="SqN-5B-jDk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="tSN-6i-ZBX" secondAttribute="centerY" constant="-0.5" id="ECU-gG-bsI"/>
+                                    <constraint firstAttribute="trailing" secondItem="tSN-6i-ZBX" secondAttribute="trailing" constant="12" id="WnQ-v1-gu9"/>
+                                    <constraint firstAttribute="height" constant="59" id="pUH-KN-Ckn"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PF7-pX-Eae">
+                                <rect key="frame" x="88" y="143" width="212" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="นู๋ชื่อบาร์บี้ค่ะ ยินดีที่ได้รุจักเช่นกัล" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="183" translatesAutoresizingMaskIntoConstraints="NO" id="f0d-1u-16T">
+                                        <rect key="frame" x="17" y="21" width="183" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="54" id="VoQ-zq-3hL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="f0d-1u-16T" secondAttribute="centerY" constant="-0.5" id="L85-zK-fgR"/>
+                                    <constraint firstAttribute="height" constant="59" id="U1u-k7-hOR"/>
+                                    <constraint firstAttribute="trailing" secondItem="f0d-1u-16T" secondAttribute="trailing" constant="12" id="mad-b3-XOE"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Type Here ..." borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YPE-3f-zsz" userLabel="chatTextField">
+                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="B5W-Sa-0fz"/>
+                                </constraints>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="PF7-pX-Eae" firstAttribute="leading" secondItem="eiN-DP-4s0" secondAttribute="trailing" constant="8" id="3pG-UJ-V2Q"/>
+                            <constraint firstItem="eiN-DP-4s0" firstAttribute="top" secondItem="tSN-6i-ZBX" secondAttribute="bottom" constant="19" id="7Zx-5m-dcn"/>
+                            <constraint firstItem="Xi0-ca-0st" firstAttribute="top" secondItem="HLn-aY-oct" secondAttribute="bottom" constant="11" id="D6A-UW-SVz"/>
+                            <constraint firstItem="aFp-es-x1M" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="20" id="Fxc-Pq-B0d"/>
+                            <constraint firstAttribute="trailing" secondItem="PF7-pX-Eae" secondAttribute="trailing" constant="20" id="MgD-2l-6LT"/>
+                            <constraint firstItem="YPE-3f-zsz" firstAttribute="top" secondItem="D7E-z6-zoV" secondAttribute="bottom" constant="8" id="Uo4-sz-eCM"/>
+                            <constraint firstItem="aFp-es-x1M" firstAttribute="top" secondItem="HLn-aY-oct" secondAttribute="bottom" constant="12" id="bQv-Gg-6Tr"/>
+                            <constraint firstItem="Xi0-ca-0st" firstAttribute="leading" secondItem="aFp-es-x1M" secondAttribute="trailing" constant="8" id="frq-5F-AqF"/>
+                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="YPE-3f-zsz" secondAttribute="bottom" id="iNe-z9-vkV"/>
+                            <constraint firstItem="eiN-DP-4s0" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="20" id="o9z-Dv-HEN"/>
+                            <constraint firstAttribute="trailing" secondItem="D7E-z6-zoV" secondAttribute="trailing" constant="20" id="pmD-9y-XUO"/>
+                            <constraint firstAttribute="trailing" secondItem="YPE-3f-zsz" secondAttribute="trailing" id="rVv-xB-nr8"/>
+                            <constraint firstItem="YPE-3f-zsz" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" id="taI-zC-PDU"/>
+                            <constraint firstAttribute="trailing" secondItem="Xi0-ca-0st" secondAttribute="trailing" constant="20" id="wSf-Bo-gsf"/>
+                            <constraint firstItem="PF7-pX-Eae" firstAttribute="top" secondItem="Xi0-ca-0st" secondAttribute="bottom" constant="8" id="wzj-nR-0Op"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Anna Kiku" id="H8d-3W-dpI"/>
+                    <connections>
+                        <outlet property="artImageView" destination="Xi0-ca-0st" id="kz3-wP-tGc"/>
+                        <outlet property="catImageView" destination="eiN-DP-4s0" id="mkJ-NL-EHz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fnf-vm-Tlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262" y="616"/>
         </scene>
         <!--Friend View Controller - Friend-->
         <scene sceneID="lvY-CV-dIL">
@@ -909,6 +1043,7 @@
                     <tabBarItem key="tabBarItem" title="Friend" image="profileTabBar_icon" id="X69-9W-lG8"/>
                     <connections>
                         <outlet property="chatchatImageView" destination="wiP-15-q9G" id="T8u-6D-fhA"/>
+                        <outlet property="goToChatTab" destination="hVM-Bk-KXP" id="NVe-rb-klW"/>
                         <outlet property="profileImageView" destination="IFh-7W-Iak" id="tSy-PP-uKr"/>
                         <outlet property="profileNameLabel" destination="a13-hh-ZVQ" id="cYx-I0-lkG"/>
                         <outlet property="profileStatusLabel" destination="AEG-bZ-A3R" id="VFb-qO-Hfi"/>
@@ -919,6 +1054,7 @@
                         <outletCollection property="profileImages" destination="Ibq-Bq-fQq" id="RBY-Kv-3BV"/>
                         <outletCollection property="profileImages" destination="BRI-1e-s1Y" id="Hdi-KS-jMN"/>
                         <segue destination="tUZ-aY-pdc" kind="modal" identifier="viewProfile" id="zos-9s-9RL"/>
+                        <segue destination="of3-Pk-xPi" kind="modal" identifier="chat" id="w3C-A2-Vod"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyU-4T-wa6" userLabel="First Responder" sceneMemberID="firstResponder"/>
