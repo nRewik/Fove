@@ -92,6 +92,10 @@
             else{
                 NSLog(@"3/3 update media to mailbox table complete");
                 NSLog(@"create mailbox id = %@ complete",mailboxID);
+                
+                self.createdMailbox.mediaType = mediaType;
+                self.createdMailbox.media = blobUrl;
+                [self performSegueWithIdentifier:@"viewCreatedMailbox" sender:self];
             }
         }];
     });
@@ -156,7 +160,6 @@
             {
                 [self uploadBlobMediaToMailboxContainer:self.createdMailbox.mailbox_id];
             }
-            [self performSegueWithIdentifier:@"viewCreatedMailbox" sender:self];
         }
     }];
     
@@ -227,6 +230,9 @@
     }
     
     self.isSelectedMedia = YES;
+    
+    [self.addMediaButton removeFromSuperview];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

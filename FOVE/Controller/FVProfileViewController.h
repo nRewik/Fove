@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FVUser.h"
 
 @interface FVProfileViewController : UIViewController
+
+@property (strong,nonatomic) FVUser *user;
 
 @end

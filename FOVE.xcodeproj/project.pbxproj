@@ -26,6 +26,7 @@
 		A01E376B189F6BC3001CCEBA /* FVMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E376A189F6BC3001CCEBA /* FVMailbox.m */; };
 		A0212FCE18A5EE3F00B8B0A2 /* FVFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */; };
 		A0212FD218A5F36100B8B0A2 /* FVBlobStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = A0212FD118A5F36100B8B0A2 /* FVBlobStorageService.m */; };
+		A0251A0818A9F622005A6536 /* FVFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0251A0718A9F622005A6536 /* FVFriendViewController.m */; };
 		A029C71B189E2B1D00B167C7 /* FVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A029C71A189E2B1D00B167C7 /* FVUser.m */; };
 		A02EFD2B189FE8D8001E5516 /* FVMail.m in Sources */ = {isa = PBXBuildFile; fileRef = A02EFD2A189FE8D8001E5516 /* FVMail.m */; };
 		A02EFD2F189FECBD001E5516 /* FVMailboxAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A02EFD2E189FECBD001E5516 /* FVMailboxAnnotation.m */; };
@@ -80,6 +81,8 @@
 		A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVFeedViewController.m; path = Controller/FVFeedViewController.m; sourceTree = "<group>"; };
 		A0212FD018A5F36100B8B0A2 /* FVBlobStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVBlobStorageService.h; path = Utilities/FVBlobStorageService.h; sourceTree = "<group>"; };
 		A0212FD118A5F36100B8B0A2 /* FVBlobStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVBlobStorageService.m; path = Utilities/FVBlobStorageService.m; sourceTree = "<group>"; };
+		A0251A0618A9F622005A6536 /* FVFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVFriendViewController.h; path = Controller/FVFriendViewController.h; sourceTree = "<group>"; };
+		A0251A0718A9F622005A6536 /* FVFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVFriendViewController.m; path = Controller/FVFriendViewController.m; sourceTree = "<group>"; };
 		A029C719189E2B1D00B167C7 /* FVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVUser.h; path = Model/FVUser.h; sourceTree = "<group>"; };
 		A029C71A189E2B1D00B167C7 /* FVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVUser.m; path = Model/FVUser.m; sourceTree = "<group>"; };
 		A02EFD29189FE8D8001E5516 /* FVMail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMail.h; path = Model/FVMail.h; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				A01E2A5C18924AA400C84F01 /* FVViewController.m */,
 				A0212FCC18A5EE3F00B8B0A2 /* FVFeedViewController.h */,
 				A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */,
+				A0251A0618A9F622005A6536 /* FVFriendViewController.h */,
+				A0251A0718A9F622005A6536 /* FVFriendViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				A0212FD218A5F36100B8B0A2 /* FVBlobStorageService.m in Sources */,
 				A0212FCE18A5EE3F00B8B0A2 /* FVFeedViewController.m in Sources */,
 				A06856C6189CC967007F0015 /* FVMapViewController.m in Sources */,
+				A0251A0818A9F622005A6536 /* FVFriendViewController.m in Sources */,
 				A02EFD2F189FECBD001E5516 /* FVMailboxAnnotation.m in Sources */,
 				A02EFD2B189FE8D8001E5516 /* FVMail.m in Sources */,
 				A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */,

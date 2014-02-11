@@ -10,8 +10,9 @@
 #import "FVCreateMailboxViewController.h"
 #import "FVMapViewController.h"
 #import "FVMediaPlayerView.h"
+#import "FVProfileViewController.h"
 
-@interface FVMailboxViewController ()
+@interface FVMailboxViewController () <UIGestureRecognizerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
@@ -40,17 +41,15 @@
     //.. go to editView
 }
 
-
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    id destination = segue.destinationViewController;
+    if ([destination isKindOfClass:[FVProfileViewController class]]) {
+        if ([segue.identifier isEqualToString:@"viewProfile"]) {
+            FVProfileViewController *pvc = (FVProfileViewController *)destination;
+            pvc.user = self.mailbox.owner;
+        }
     }
-    return self;
 }
 
 - (IBAction)back:(id)sender
@@ -75,12 +74,22 @@
     
     [self updateUI];
     [self updateMedia];
+    
+    [self ownerPictuerTapGestureSetup];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)ownerPictuerTapGestureSetup
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewOwnerProfile:)];
+    tap.cancelsTouchesInView = YES;
+    tap.numberOfTapsRequired = 1;
+    tap.delegate = self;
+    [self.ownerImageView addGestureRecognizer:tap];
+    self.ownerImageView.userInteractionEnabled = YES;
+}
+-(void)viewOwnerProfile:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self performSegueWithIdentifier:@"viewProfile" sender:self];
 }
 
 
@@ -105,11 +114,11 @@
         self.ownerImageView.image = image;
         
         if ([self.mailbox.owner.gender isEqualToString:@"male"]) {
-            self.sexImageView.image = [UIImage imageWithContentsOfFile:@"gender_male_sign"];
+            self.sexImageView.image = [UIImage imageNamed:@"gender_male_sign"];
         }
         else if ([self.mailbox.owner.gender isEqualToString:@"female"])
         {
-            self.sexImageView.image = [UIImage imageWithContentsOfFile:@"gender_female_sign"];
+            self.sexImageView.image = [UIImage imageNamed:@"gender_female_sign"];
         }
         
         //hide edit button if not owner
