@@ -604,8 +604,8 @@
                                     <constraint firstAttribute="height" constant="2" id="RAP-Pg-EbV"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-vr-e8l" userLabel="profileHead">
-                                <rect key="frame" x="20" y="28" width="51" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-vr-e8l" userLabel="profileHead">
+                                <rect key="frame" x="20" y="28" width="79" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.99215692280000001" green="0.047058828179999998" blue="0.1176470667" alpha="1" colorSpace="deviceRGB"/>
@@ -915,7 +915,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iRg-Cx-rMY"/>
         <segue reference="tuB-K6-12K"/>
+        <segue reference="zos-9s-9RL"/>
     </inferredMetricsTieBreakers>
 </document>
