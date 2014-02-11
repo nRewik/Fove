@@ -37,16 +37,17 @@
     [self.profileImageView addGestureRecognizer:tap];
     self.profileImageView.userInteractionEnabled = YES;
     
-    [self.chatchatImageView addGestureRecognizer:tap];
+    UITapGestureRecognizer *tapChatChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewChatChatProfile)];
+    tapChatChat.cancelsTouchesInView = YES;
+    tapChatChat.numberOfTapsRequired = 1;
+    [self.chatchatImageView addGestureRecognizer:tapChatChat];
     self.chatchatImageView.userInteractionEnabled = YES;
     
-    UITapGestureRecognizer *tapChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToChat)];
-    tapChat.cancelsTouchesInView = YES;
-    tapChat.numberOfTapsRequired = 1;
-    [self.goToChatTab addGestureRecognizer:tapChat];
+    UITapGestureRecognizer *tapNerd = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToChat)];
+    tapNerd.cancelsTouchesInView = YES;
+    tapNerd.numberOfTapsRequired = 1;
+    [self.goToChatTab addGestureRecognizer:tapNerd];
     self.goToChatTab.userInteractionEnabled = YES;
-    
-    
     
     //set profile Image
     NSURL *imageUrl = [NSURL URLWithString:[[FVUser currentUser] profileImageUrl]];
@@ -66,25 +67,25 @@
     
 }
 
+//mock up
+-(void)viewChatChatProfile
+{
+    FVUser *user = [[FVUser alloc] init];
+    user.name = @"Chatchat Sitthiphan";
+    user.status = @"I'm strongest persion in the un.";
+    user.profileImageUrl = @"http://news.mthai.com/wp-content/uploads/2014/02/1502401_593529397362530_66696691_o-500x281.jpg";
+    user.age = 99;
+    user.gender = @"male";
+    user.relationship = @"Single";
+    
+    self.selectedUser = user;
+
+    [self performSegueWithIdentifier:@"viewProfile" sender:self];
+}
+
 -(void)viewProfile:(UIGestureRecognizer *)gestureRecognizer
 {
-    if(gestureRecognizer.view == self.profileImageView) {
-        self.selectedUser = [FVUser currentUser];
-    }
-    else{
-        
-        //mock up
-        FVUser *user = [[FVUser alloc] init];
-        user.name = @"Chatchat Sitthiphan";
-        user.status = @"I'm strongest persion in the un.";
-        user.profileImageUrl = @"http://news.mthai.com/wp-content/uploads/2014/02/1502401_593529397362530_66696691_o-500x281.jpg";
-        user.age = 99;
-        user.gender = @"male";
-        user.relationship = @"Single";
-        
-        self.selectedUser = user;
-        
-    }
+    self.selectedUser = [FVUser currentUser];
     [self performSegueWithIdentifier:@"viewProfile" sender:self];
 }
 

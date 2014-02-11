@@ -244,6 +244,8 @@
 		A029C71D189E2B4400B167C7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A0212FCC18A5EE3F00B8B0A2 /* FVFeedViewController.h */,
+				A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */,
 				A086301818AA6EB900D2BC4D /* FVChatViewController.h */,
 				A086301918AA6EB900D2BC4D /* FVChatViewController.m */,
 				A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */,
@@ -258,8 +260,6 @@
 				A04ACB16189749AC00587F34 /* FVProfileViewController.m */,
 				A01E2A5B18924AA400C84F01 /* FVViewController.h */,
 				A01E2A5C18924AA400C84F01 /* FVViewController.m */,
-				A0212FCC18A5EE3F00B8B0A2 /* FVFeedViewController.h */,
-				A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */,
 				A0251A0618A9F622005A6536 /* FVFriendViewController.h */,
 				A0251A0718A9F622005A6536 /* FVFriendViewController.m */,
 			);
