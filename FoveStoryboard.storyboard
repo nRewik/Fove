@@ -475,23 +475,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VxH-gy-sJB" customClass="FBLoginView">
-                                <rect key="frame" x="37" y="263" width="246" height="88"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VxH-gy-sJB" customClass="FBLoginView">
+                                <rect key="frame" x="37" y="263" width="246" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="aYh-Om-G8K"/>
+                                    <constraint firstAttribute="width" constant="246" id="gbc-8W-BTQ"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="VxH-gy-sJB" secondAttribute="centerX" id="I0H-dZ-LrY"/>
+                            <constraint firstAttribute="centerY" secondItem="VxH-gy-sJB" secondAttribute="centerY" constant="0.5" id="P7c-FI-hnb"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settingTabBar_icon" id="LLW-iv-0U5"/>
                     <connections>
                         <outlet property="fbLoginView" destination="VxH-gy-sJB" id="vAo-RO-l7T"/>
-                        <segue destination="j8e-ks-Hym" kind="modal" identifier="logout" id="sfU-Z7-LtY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lP-wb-fyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="874"/>
+            <point key="canvasLocation" x="243" y="860"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="9M1-tC-74x">

@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     self.fbLoginView.delegate = self;
 }
 
@@ -42,9 +43,9 @@
 }
 
 -(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
-{    
+{
     [FVUser setCurrentUser:nil];
-    [self performSegueWithIdentifier:@"logout" sender:self];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

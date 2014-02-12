@@ -44,6 +44,12 @@
     self.loginView.delegate = self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.loginView.hidden = NO;
+    self.isFetched = NO;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -67,8 +73,7 @@
 #pragma mark - facebook_delegate
 
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)facebookUserData {
-    if ( self.isFetched == YES)
-    {
+    if (self.isFetched) {
         return;
     }
     self.isFetched = YES;
@@ -80,13 +85,14 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
+    NSLog(@"show login");
     [self.loginActivityIndicatorView startAnimating];
-    
     self.loginView.hidden = YES;
 }
 
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    self.isFetched = NO;
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    
 }
 
 // Handle possible errors that can occur during login
