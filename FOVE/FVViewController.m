@@ -58,7 +58,7 @@
 
 -(void)goToFove
 {
-    NSAssert( [FVUser currentUser] != nil, @"current user should not be nil before go to fove");
+    NSAssert( [FVUser currentUser] != nil , @"current user should not be nil before go to fove");
     
     [self.loginActivityIndicatorView stopAnimating];
     [self performSegueWithIdentifier:@"goToFove" sender:self];
@@ -85,7 +85,6 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
-    NSLog(@"show login");
     [self.loginActivityIndicatorView startAnimating];
     self.loginView.hidden = YES;
 }
@@ -288,6 +287,13 @@
     }];
 }
 
+-(NSString *)convertToJsonString:(NSDictionary *)dictionary
+{
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
+    return jsonString;
+}
+
 -(void)updateImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId withCompletion:(void (^)() )completion
 {
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
@@ -325,7 +331,7 @@
          }
          else
          {
-             NSDictionary *item = @{ @"id" : itemId, @"checkin" : [checkin description] };
+             NSDictionary *item = @{ @"id" : itemId, @"checkin" : [self convertToJsonString:checkin] };
              
              [table update:item completion:^(NSDictionary *item, NSError *error) {
                  if (error) { NSLog(@"%@",error); return; }
@@ -355,7 +361,7 @@
          }
          else
          {
-             NSDictionary *item = @{ @"id" : itemId, @"music" : [music description] };
+             NSDictionary *item = @{ @"id" : itemId, @"music" : [self convertToJsonString:music] };
              
              [table update:item completion:^(NSDictionary *item, NSError *error) {
                  if (error) { NSLog(@"%@",error); return; }
@@ -384,7 +390,7 @@
          }
          else
          {
-             NSDictionary *item = @{ @"id" : itemId, @"movie" : [movies description] };
+             NSDictionary *item = @{ @"id" : itemId, @"movie" : [self convertToJsonString:movies] };
              
              [table update:item completion:^(NSDictionary *item, NSError *error) {
                  if (error) { NSLog(@"%@",error); return; }
@@ -415,7 +421,7 @@
          }
          else
          {
-             NSDictionary *item = @{ @"id" : itemId, @"pagelike" : [myLikes description] };
+             NSDictionary *item = @{ @"id" : itemId, @"pagelike" : [self convertToJsonString:myLikes] };
              [table update:item completion:^(NSDictionary *item, NSError *error) {
                  if (error) { NSLog(@"%@",error); return; }
                  else

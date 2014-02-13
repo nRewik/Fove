@@ -17,11 +17,6 @@
 		A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A5618924AA400C84F01 /* FVAppDelegate.m */; };
 		A01E2A5D18924AA400C84F01 /* FVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A5C18924AA400C84F01 /* FVViewController.m */; };
 		A01E2A5F18924AA400C84F01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01E2A5E18924AA400C84F01 /* Images.xcassets */; };
-		A01E2A6618924AA400C84F01 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A6518924AA400C84F01 /* XCTest.framework */; };
-		A01E2A6718924AA400C84F01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4618924AA400C84F01 /* Foundation.framework */; };
-		A01E2A6818924AA400C84F01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4A18924AA400C84F01 /* UIKit.framework */; };
-		A01E2A7018924AA400C84F01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A01E2A6E18924AA400C84F01 /* InfoPlist.strings */; };
-		A01E2A7218924AA400C84F01 /* FOVETests.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E2A7118924AA400C84F01 /* FOVETests.m */; };
 		A01E2A8018924BD900C84F01 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A7F18924BD900C84F01 /* FacebookSDK.framework */; };
 		A01E376B189F6BC3001CCEBA /* FVMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = A01E376A189F6BC3001CCEBA /* FVMailbox.m */; };
 		A0212FCE18A5EE3F00B8B0A2 /* FVFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */; };
@@ -43,16 +38,6 @@
 		A0E8717E189CE3F40093D98A /* FVCreateMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A01E2A6918924AA400C84F01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A01E2A3B18924AA400C84F01 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A01E2A4218924AA400C84F01;
-			remoteInfo = FOVE;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxViewController.h; path = Controller/FVMailboxViewController.h; sourceTree = "<group>"; };
 		A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxViewController.m; path = Controller/FVMailboxViewController.m; sourceTree = "<group>"; };
@@ -70,11 +55,7 @@
 		A01E2A5B18924AA400C84F01 /* FVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FVViewController.h; sourceTree = "<group>"; };
 		A01E2A5C18924AA400C84F01 /* FVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FVViewController.m; sourceTree = "<group>"; };
 		A01E2A5E18924AA400C84F01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A01E2A6418924AA400C84F01 /* FOVETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FOVETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01E2A6518924AA400C84F01 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A01E2A6D18924AA400C84F01 /* FOVETests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FOVETests-Info.plist"; sourceTree = "<group>"; };
-		A01E2A6F18924AA400C84F01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A01E2A7118924AA400C84F01 /* FOVETests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FOVETests.m; sourceTree = "<group>"; };
 		A01E2A7F18924BD900C84F01 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		A01E3769189F6BC3001CCEBA /* FVMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailbox.h; path = Model/FVMailbox.h; sourceTree = "<group>"; };
 		A01E376A189F6BC3001CCEBA /* FVMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailbox.m; path = Model/FVMailbox.m; sourceTree = "<group>"; };
@@ -126,16 +107,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A01E2A6118924AA400C84F01 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A01E2A6618924AA400C84F01 /* XCTest.framework in Frameworks */,
-				A01E2A6818924AA400C84F01 /* UIKit.framework in Frameworks */,
-				A01E2A6718924AA400C84F01 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -143,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				A01E2A4C18924AA400C84F01 /* FOVE */,
-				A01E2A6B18924AA400C84F01 /* FOVETests */,
 				A01E2A4518924AA400C84F01 /* Frameworks */,
 				A01E2A4418924AA400C84F01 /* Products */,
 			);
@@ -153,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				A01E2A4318924AA400C84F01 /* FOVE.app */,
-				A01E2A6418924AA400C84F01 /* FOVETests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,24 +166,6 @@
 				A01E2A4F18924AA400C84F01 /* InfoPlist.strings */,
 				A01E2A5218924AA400C84F01 /* main.m */,
 				A01E2A5418924AA400C84F01 /* FOVE-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A01E2A6B18924AA400C84F01 /* FOVETests */ = {
-			isa = PBXGroup;
-			children = (
-				A01E2A7118924AA400C84F01 /* FOVETests.m */,
-				A01E2A6C18924AA400C84F01 /* Supporting Files */,
-			);
-			path = FOVETests;
-			sourceTree = "<group>";
-		};
-		A01E2A6C18924AA400C84F01 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A01E2A6D18924AA400C84F01 /* FOVETests-Info.plist */,
-				A01E2A6E18924AA400C84F01 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -306,24 +257,6 @@
 			productReference = A01E2A4318924AA400C84F01 /* FOVE.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A01E2A6318924AA400C84F01 /* FOVETests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A01E2A7818924AA400C84F01 /* Build configuration list for PBXNativeTarget "FOVETests" */;
-			buildPhases = (
-				A01E2A6018924AA400C84F01 /* Sources */,
-				A01E2A6118924AA400C84F01 /* Frameworks */,
-				A01E2A6218924AA400C84F01 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A01E2A6A18924AA400C84F01 /* PBXTargetDependency */,
-			);
-			name = FOVETests;
-			productName = FOVETests;
-			productReference = A01E2A6418924AA400C84F01 /* FOVETests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -341,9 +274,6 @@
 							};
 						};
 					};
-					A01E2A6318924AA400C84F01 = {
-						TestTargetID = A01E2A4218924AA400C84F01;
-					};
 				};
 			};
 			buildConfigurationList = A01E2A3E18924AA400C84F01 /* Build configuration list for PBXProject "FOVE" */;
@@ -360,7 +290,6 @@
 			projectRoot = "";
 			targets = (
 				A01E2A4218924AA400C84F01 /* FOVE */,
-				A01E2A6318924AA400C84F01 /* FOVETests */,
 			);
 		};
 /* End PBXProject section */
@@ -373,14 +302,6 @@
 				A01E2A5F18924AA400C84F01 /* Images.xcassets in Resources */,
 				A0B6CD081897F31300AFC61C /* FoveStoryboard.storyboard in Resources */,
 				A01E2A5118924AA400C84F01 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A01E2A6218924AA400C84F01 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A01E2A7018924AA400C84F01 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,37 +332,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A01E2A6018924AA400C84F01 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A01E2A7218924AA400C84F01 /* FOVETests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A01E2A6A18924AA400C84F01 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A01E2A4218924AA400C84F01 /* FOVE */;
-			targetProxy = A01E2A6918924AA400C84F01 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A01E2A4F18924AA400C84F01 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A01E2A5018924AA400C84F01 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A01E2A6E18924AA400C84F01 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A01E2A6F18924AA400C84F01 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -532,6 +429,7 @@
 					"$(inherited)",
 					/Users/nRewik/Documents/FacebookSDK,
 					"/Users/nRewik/Developer/iOS\\ Project/Fove/FOVE/AzureSDK-iOS",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
@@ -552,6 +450,7 @@
 					"$(inherited)",
 					/Users/nRewik/Documents/FacebookSDK,
 					"/Users/nRewik/Developer/iOS\\ Project/Fove/FOVE/AzureSDK-iOS",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
@@ -560,48 +459,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A01E2A7918924AA400C84F01 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FOVE.app/FOVE";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "FOVETests/FOVETests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A01E2A7A18924AA400C84F01 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FOVE.app/FOVE";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
-				INFOPLIST_FILE = "FOVETests/FOVETests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -622,15 +479,6 @@
 			buildConfigurations = (
 				A01E2A7618924AA400C84F01 /* Debug */,
 				A01E2A7718924AA400C84F01 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A01E2A7818924AA400C84F01 /* Build configuration list for PBXNativeTarget "FOVETests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A01E2A7918924AA400C84F01 /* Debug */,
-				A01E2A7A18924AA400C84F01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
