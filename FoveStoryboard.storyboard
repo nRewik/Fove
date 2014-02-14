@@ -810,67 +810,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoR-Aa-Sjl">
-                                <rect key="frame" x="145" y="72" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="▲">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="previous" destination="wRs-Bv-I8h" eventType="touchUpInside" id="yxT-3B-nfj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKR-3v-aSc">
-                                <rect key="frame" x="145" y="530" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="▼">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="next" destination="wRs-Bv-I8h" eventType="touchUpInside" id="tUD-as-XDJ"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Om-oI-gdq">
-                                <rect key="frame" x="20" y="110" width="280" height="412"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MA5-gg-prC" userLabel="postCardView">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="412"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylN-5f-xlb" customClass="FVPostCardView">
+                                <rect key="frame" x="10" y="372" width="300" height="188"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="MA5-gg-prC" firstAttribute="top" secondItem="8Om-oI-gdq" secondAttribute="top" id="BC9-GI-wgu"/>
-                                    <constraint firstAttribute="trailing" secondItem="MA5-gg-prC" secondAttribute="trailing" id="Fhz-yg-yls"/>
-                                    <constraint firstAttribute="bottom" secondItem="MA5-gg-prC" secondAttribute="bottom" id="GJJ-FB-y5g"/>
-                                    <constraint firstItem="MA5-gg-prC" firstAttribute="leading" secondItem="8Om-oI-gdq" secondAttribute="leading" id="PiC-fe-5QN"/>
+                                    <constraint firstAttribute="height" constant="188" id="9Tc-yY-yhL"/>
+                                    <constraint firstAttribute="width" constant="300" id="f7i-oh-XTS"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="8Om-oI-gdq" firstAttribute="top" secondItem="GoR-Aa-Sjl" secondAttribute="bottom" constant="8" symbolic="YES" id="779-Jq-28F"/>
-                            <constraint firstAttribute="centerX" secondItem="HKR-3v-aSc" secondAttribute="centerX" id="Eka-ez-PZj"/>
-                            <constraint firstItem="HKR-3v-aSc" firstAttribute="top" secondItem="8Om-oI-gdq" secondAttribute="bottom" constant="8" symbolic="YES" id="GjL-5V-qS5"/>
-                            <constraint firstItem="GoR-Aa-Sjl" firstAttribute="top" secondItem="HLn-aY-oct" secondAttribute="bottom" constant="20" symbolic="YES" id="N6V-cU-dhc"/>
-                            <constraint firstAttribute="centerX" secondItem="GoR-Aa-Sjl" secondAttribute="centerX" id="ndZ-Zp-QeR"/>
-                            <constraint firstItem="8Om-oI-gdq" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="20" symbolic="YES" id="ool-bU-4iz"/>
-                            <constraint firstAttribute="trailing" secondItem="8Om-oI-gdq" secondAttribute="trailing" constant="20" symbolic="YES" id="qh9-83-Yrt"/>
-                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="HKR-3v-aSc" secondAttribute="bottom" constant="20" symbolic="YES" id="yGj-95-uJW"/>
+                            <constraint firstAttribute="centerX" secondItem="ylN-5f-xlb" secondAttribute="centerX" id="lFw-dm-BJd"/>
+                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="ylN-5f-xlb" secondAttribute="bottom" constant="20" symbolic="YES" id="uIP-g6-adW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Anna Kiku" id="H8d-3W-dpI"/>
                     <connections>
-                        <outlet property="nextButton" destination="HKR-3v-aSc" id="oaY-mR-D9T"/>
-                        <outlet property="postCardContainer" destination="8Om-oI-gdq" id="o45-KL-Nto"/>
-                        <outlet property="postCardView" destination="MA5-gg-prC" id="mDo-9f-vGX"/>
-                        <outlet property="previousButton" destination="GoR-Aa-Sjl" id="z8T-ni-RGa"/>
+                        <outlet property="postCardView" destination="ylN-5f-xlb" id="Qzs-2z-iUO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnf-vm-Tlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1411" y="616"/>
+            <point key="canvasLocation" x="1396" y="626"/>
         </scene>
         <!--Friend View Controller - Friend-->
         <scene sceneID="lvY-CV-dIL">
@@ -1197,7 +1160,7 @@
                     <tabBarItem key="tabBarItem" title="Friend" image="profileTabBar_icon" id="X69-9W-lG8"/>
                     <connections>
                         <outlet property="chatchatImageView" destination="wiP-15-q9G" id="T8u-6D-fhA"/>
-                        <outlet property="goToChatTab" destination="hVM-Bk-KXP" id="NVe-rb-klW"/>
+                        <outlet property="goToChatTab" destination="2Ke-55-AdQ" id="BA7-x5-Tqz"/>
                         <outlet property="profileImageView" destination="IFh-7W-Iak" id="tSy-PP-uKr"/>
                         <outlet property="profileNameLabel" destination="a13-hh-ZVQ" id="cYx-I0-lkG"/>
                         <outlet property="profileStatusLabel" destination="AEG-bZ-A3R" id="VFb-qO-Hfi"/>
@@ -1465,6 +1428,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="tuB-K6-12K"/>
-        <segue reference="iRg-Cx-rMY"/>
+        <segue reference="zos-9s-9RL"/>
     </inferredMetricsTieBreakers>
 </document>
