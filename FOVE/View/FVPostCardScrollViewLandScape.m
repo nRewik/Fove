@@ -1,19 +1,19 @@
 //
-//  FVPostCardScrollViewPortrait.m
+//  FVPostCardScrollViewLandScape.m
 //  FOVE
 //
 //  Created by Nutchaphon Rewik on 2/15/14.
 //  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
 //
 
-#import "FVPostCardScrollViewPortrait.h"
-#import "FVPostCardPortraitView.h"
+#import "FVPostCardScrollViewLandScape.h"
+#import "FVPostCardLandScapeView.h"
 
-#define postCardViewWidth 300
-#define postCardViewHeight 188
+#define postCardViewWidth 480
+#define postCardViewHeight 300
 #define postCardGap 10
 
-@implementation FVPostCardScrollViewPortrait
+@implementation FVPostCardScrollViewLandScape
 {
     UIScrollView *_scrollView;
 }
@@ -22,6 +22,7 @@
 {
     [self setup];
 }
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -37,19 +38,19 @@
     
     [_scrollView removeFromSuperview];
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-    _scrollView.contentInset = UIEdgeInsetsMake(10,0, 0, 0);
+    //_scrollView.contentInset = UIEdgeInsetsMake(10,0, 0, 0);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
     
-    CGFloat eachPostCardHeight = postCardViewHeight + postCardGap;
+    CGFloat eachPostCardWidth = postCardViewWidth + postCardGap;
     int numberOfPostcard = [self.postCards count];
     
-    _scrollView.contentSize = CGSizeMake(postCardViewWidth, eachPostCardHeight*numberOfPostcard);
+    _scrollView.contentSize = CGSizeMake( eachPostCardWidth * numberOfPostcard, postCardViewHeight);
     
     for (int i=0; i<numberOfPostcard; i++) {
-        CGFloat yPosition = i * eachPostCardHeight;
-        CGRect xFrame = CGRectMake(0, yPosition, postCardViewWidth, postCardViewHeight);
-        FVPostCardPortraitView *postCardView = [[FVPostCardPortraitView alloc] initWithFrame:xFrame];
+        CGFloat xPosition = i * eachPostCardWidth;
+        CGRect xFrame = CGRectMake( xPosition, 0, postCardViewWidth, postCardViewHeight);
+        FVPostCardLandScapeView *postCardView = [[FVPostCardLandScapeView alloc] initWithFrame:xFrame];
         postCardView.postCard = self.postCards[i];
         
         [_scrollView addSubview:postCardView];

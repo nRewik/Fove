@@ -6,17 +6,47 @@
 //  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
 //
 
-#import "FVChatViewController.h"
+#import "FVPostCardPortraitViewController.h"
 #import "FVPostCardScrollViewPortrait.h"
 #import "FVPostCard.h"
 
-@interface FVChatViewController ()
+@interface FVPostCardPortraitViewController ()
 
 @property (weak, nonatomic) IBOutlet FVPostCardScrollViewPortrait *postCardScrollView;
 
 @end
 
-@implementation FVChatViewController
+@implementation FVPostCardPortraitViewController
+{
+    BOOL _isShowingLandscapeView;
+}
+
+- (void)awakeFromNib
+{
+    _isShowingLandscapeView = NO;
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation) && !_isShowingLandscapeView){
+        [self performSegueWithIdentifier:@"viewPostCardLandScape" sender:self];
+        _isShowingLandscapeView = YES;
+    }
+    else if (UIDeviceOrientationIsPortrait(deviceOrientation) && _isShowingLandscapeView){
+        [self dismissViewControllerAnimated:YES completion:nil];
+        _isShowingLandscapeView = NO;
+    }
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //todo
+}
 
 - (void)viewDidLoad
 {

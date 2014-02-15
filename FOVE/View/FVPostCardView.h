@@ -1,9 +1,9 @@
 //
 //  FVPostCardView.h
-//  FOVE
+//  
 //
-//  Created by Nutchaphon Rewik on 2/14/14.
-//  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
+//  Created by Nutchaphon Rewik on 2/15/14.
+//
 //
 
 #import <UIKit/UIKit.h>
@@ -12,5 +12,7 @@
 @interface FVPostCardView : UIView
 
 @property (strong,nonatomic) FVPostCard *postCard;
+@property (strong,nonatomic,readonly) UIImageView *frontView;
+@property (strong,nonatomic,readonly) UIImageView *backView;
 
 @end
