@@ -11,13 +11,9 @@
 #import "FVProfileViewController.h"
 
 @interface FVFriendViewController () <UIGestureRecognizerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UILabel *profileNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *profileStatusLabel;
 
 //mock up
 @property (weak, nonatomic) IBOutlet UIImageView *chatchatImageView;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *profileImages;
 @property (weak, nonatomic) IBOutlet UILabel *goToChatTab;
 
 @property (strong,nonatomic) FVUser *selectedUser;
@@ -31,12 +27,6 @@
     [super viewDidLoad];
     
     //mock up
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewProfile:)];
-    tap.cancelsTouchesInView = YES;
-    tap.numberOfTapsRequired = 1;
-    [self.profileImageView addGestureRecognizer:tap];
-    self.profileImageView.userInteractionEnabled = YES;
-    
     UITapGestureRecognizer *tapChatChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewChatChatProfile)];
     tapChatChat.cancelsTouchesInView = YES;
     tapChatChat.numberOfTapsRequired = 1;
@@ -49,16 +39,16 @@
     [self.goToChatTab addGestureRecognizer:tapNerd];
     self.goToChatTab.userInteractionEnabled = YES;
     
-    //set profile Image
-    NSURL *imageUrl = [NSURL URLWithString:[[FVUser currentUser] profileImageUrl]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-    UIImage *image = [UIImage imageWithData:imageData];
-    self.profileImageView.image = image;
-    
-    for (int i=1; i<=6; i++) {
-        UIImageView *imv = (UIImageView *)self.profileImages[i-1];
-        imv.image = [UIImage imageNamed:[NSString stringWithFormat:@"test_profile_%d",i]];
-    }
+//    //set profile Image
+//    NSURL *imageUrl = [NSURL URLWithString:[[FVUser currentUser] profileImageUrl]];
+//    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+//    UIImage *image = [UIImage imageWithData:imageData];
+//    self.profileImageView.image = image;
+//    
+//    for (int i=1; i<=6; i++) {
+//        UIImageView *imv = (UIImageView *)self.profileImages[i-1];
+//        imv.image = [UIImage imageNamed:[NSString stringWithFormat:@"test_profile_%d",i]];
+//    }
 }
 
 -(void)goToChat
