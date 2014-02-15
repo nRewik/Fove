@@ -330,7 +330,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dy-7l-cGO">
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dy-7l-cGO">
                                 <rect key="frame" x="0.0" y="57" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="addMailboxButtton">
@@ -810,25 +810,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylN-5f-xlb" customClass="FVPostCardView">
-                                <rect key="frame" x="10" y="372" width="300" height="188"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOy-cQ-GJX" userLabel="PostCardScrollViewPortrait" customClass="FVPostCardScrollViewPortrait">
+                                <rect key="frame" x="10" y="0.0" width="300" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="188" id="9Tc-yY-yhL"/>
-                                    <constraint firstAttribute="width" constant="300" id="f7i-oh-XTS"/>
-                                </constraints>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="ylN-5f-xlb" secondAttribute="centerX" id="lFw-dm-BJd"/>
-                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="ylN-5f-xlb" secondAttribute="bottom" constant="20" symbolic="YES" id="uIP-g6-adW"/>
+                            <constraint firstItem="GOy-cQ-GJX" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="Gyd-ND-mwY"/>
+                            <constraint firstAttribute="trailing" secondItem="GOy-cQ-GJX" secondAttribute="trailing" constant="10" id="LZQ-Mb-AHa"/>
+                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="GOy-cQ-GJX" secondAttribute="bottom" id="NjN-aK-XnG"/>
+                            <constraint firstItem="GOy-cQ-GJX" firstAttribute="top" secondItem="upV-Wd-sKl" secondAttribute="top" id="age-Ob-aNr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Anna Kiku" id="H8d-3W-dpI"/>
                     <connections>
-                        <outlet property="postCardView" destination="ylN-5f-xlb" id="Qzs-2z-iUO"/>
+                        <outlet property="postCardScrollView" destination="GOy-cQ-GJX" id="Md8-rG-VX9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnf-vm-Tlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1427,7 +1425,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tuB-K6-12K"/>
+        <segue reference="riO-Fi-pEk"/>
         <segue reference="zos-9s-9RL"/>
     </inferredMetricsTieBreakers>
 </document>

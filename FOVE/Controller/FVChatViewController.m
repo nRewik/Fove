@@ -7,11 +7,12 @@
 //
 
 #import "FVChatViewController.h"
-#import "FVPostCardView.h"
+#import "FVPostCardScrollViewPortrait.h"
+#import "FVPostCard.h"
 
 @interface FVChatViewController ()
 
-@property (strong, nonatomic) IBOutlet FVPostCardView *postCardView;
+@property (weak, nonatomic) IBOutlet FVPostCardScrollViewPortrait *postCardScrollView;
 
 @end
 
@@ -26,14 +27,26 @@
     UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"< Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
     self.navigationItem.leftBarButtonItem=backBtn;
     
-    [self randomNewImagePostCard];
+    NSMutableArray *postCards = [[NSMutableArray alloc] init];
+    for (int i=0; i<5; i++) {
+        UIImage *frontImage = [self randomFronTImagePostCard];
+        UIImage *backImage = [self randomBackImagePostCard];
+        FVPostCard *postCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
+        
+        [postCards addObject:postCard];
+    }
+    self.postCardScrollView.postCards = postCards;
 }
 
--(void)randomNewImagePostCard
+-(UIImage *)randomFronTImagePostCard
 {
     NSInteger idx = arc4random() % 4;
-    self.postCardView.frontImage = [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_front_%d",idx]];
-    self.postCardView.backImage = [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_back_%d",idx]];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_front_%d",idx]];
+}
+-(UIImage *)randomBackImagePostCard
+{
+    NSInteger idx = arc4random() % 4;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_back_%d",idx]];
 }
 
 -(void)goBack

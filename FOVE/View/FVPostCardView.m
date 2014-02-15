@@ -8,6 +8,8 @@
 
 #import "FVPostCardView.h"
 
+#define flipDuration 1
+
 @implementation FVPostCardView
 {
     UIImageView *_frontView;
@@ -16,14 +18,11 @@
     BOOL _isLockToFlip;
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+-(void)awakeFromNib
 {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
-    return self;
+    [self setup];
 }
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -68,7 +67,7 @@
     
     [UIView transitionFromView:originView
                         toView:destinationView
-                      duration:1
+                      duration:flipDuration
                        options:UIViewAnimationOptionTransitionFlipFromRight
                     completion:^(BOOL finished) {
                         if (finished)
@@ -80,21 +79,11 @@
      ];
 }
 
--(void)setWithFrontImage:(UIImage *)frontImage backImage:(UIImage *)backImage
+-(void)setPostCard:(FVPostCard *)postCard
 {
-    self.frontImage = frontImage;
-    self.backImage = backImage;
-}
-
--(void)setFrontImage:(UIImage *)frontImage
-{
-    _frontImage = frontImage;
-    _frontView.image = self.frontImage;
-}
--(void)setBackImage:(UIImage *)backImage
-{
-    _backImage = backImage;
-    _backView.image = self.backImage;
+    _postCard = postCard;
+    _frontView.image = self.postCard.frontImage;
+    _backView.image = self.postCard.backImage;
 }
 
 @end

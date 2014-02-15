@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FVPostCard.h"
 
 @interface FVPostCardView : UIView
 
-@property (strong,nonatomic) UIImage *frontImage;
-@property (strong,nonatomic) UIImage *backImage;
-
--(void)setWithFrontImage:(UIImage *)frontImage backImage:(UIImage *)backImage;
+@property (strong,nonatomic) FVPostCard *postCard;
 
 @end
