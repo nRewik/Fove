@@ -1,5 +1,5 @@
 //
-//  FVFriendViewController.h
+//  FVPostCardViewController.h
 //  FOVE
 //
 //  Created by Nutchaphon Rewik on 2/16/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FVFriendViewController : UIViewController
+@interface FVPostCardGalleryViewController : UIViewController
 
 @end

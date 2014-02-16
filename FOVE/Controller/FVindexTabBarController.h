@@ -1,5 +1,5 @@
 //
-//  FVFriendViewController.h
+//  FVindexTabBarController.h
 //  FOVE
 //
 //  Created by Nutchaphon Rewik on 2/16/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FVFriendViewController : UIViewController
+@interface FVindexTabBarController : UITabBarController
 
 @end

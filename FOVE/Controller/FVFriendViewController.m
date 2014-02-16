@@ -2,7 +2,7 @@
 //  FVFriendViewController.m
 //  FOVE
 //
-//  Created by Nutchaphon Rewik on 2/11/14.
+//  Created by Nutchaphon Rewik on 2/16/14.
 //  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
 //
 
@@ -10,67 +10,22 @@
 #import "FVUser.h"
 #import "FVProfileViewController.h"
 
-@interface FVFriendViewController () <UIGestureRecognizerDelegate>
-
-//mock up
-@property (weak, nonatomic) IBOutlet UIImageView *chatchatImageView;
-@property (weak, nonatomic) IBOutlet UILabel *goToChatTab;
-
+@interface FVFriendViewController ()
 @property (strong,nonatomic) FVUser *selectedUser;
-
 @end
+
+#define chatSegueID @"chat"
 
 @implementation FVFriendViewController
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //mock up
-    UITapGestureRecognizer *tapChatChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewChatChatProfile)];
-    tapChatChat.cancelsTouchesInView = YES;
-    tapChatChat.numberOfTapsRequired = 1;
-    [self.chatchatImageView addGestureRecognizer:tapChatChat];
-    self.chatchatImageView.userInteractionEnabled = YES;
-    
-    UITapGestureRecognizer *tapNerd = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToChat)];
-    tapNerd.cancelsTouchesInView = YES;
-    tapNerd.numberOfTapsRequired = 1;
-    [self.goToChatTab addGestureRecognizer:tapNerd];
-    self.goToChatTab.userInteractionEnabled = YES;
-    
-//    //set profile Image
-//    NSURL *imageUrl = [NSURL URLWithString:[[FVUser currentUser] profileImageUrl]];
-//    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-//    UIImage *image = [UIImage imageWithData:imageData];
-//    self.profileImageView.image = image;
-//    
-//    for (int i=1; i<=6; i++) {
-//        UIImageView *imv = (UIImageView *)self.profileImages[i-1];
-//        imv.image = [UIImage imageNamed:[NSString stringWithFormat:@"test_profile_%d",i]];
-//    }
+	// Do any additional setup after loading the view.
 }
-
--(void)goToChat
+- (IBAction)goToChat
 {
-    [self performSegueWithIdentifier:@"chat" sender:self];
-    
-}
-
-//mock up
--(void)viewChatChatProfile
-{
-    FVUser *user = [[FVUser alloc] init];
-    user.name = @"Chatchat Sitthiphan";
-    user.status = @"I'm strongest persion in the un.";
-    user.profileImageUrl = @"http://news.mthai.com/wp-content/uploads/2014/02/1502401_593529397362530_66696691_o-500x281.jpg";
-    user.age = 99;
-    user.gender = @"male";
-    user.relationship = @"Single";
-    
-    self.selectedUser = user;
-
-    [self performSegueWithIdentifier:@"viewProfile" sender:self];
+    [self performSegueWithIdentifier:chatSegueID sender:self];
 }
 
 -(void)viewProfile:(UIGestureRecognizer *)gestureRecognizer
@@ -89,7 +44,10 @@
         }
     }
 }
-
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 
 @end
