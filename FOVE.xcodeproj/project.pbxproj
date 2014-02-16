@@ -234,9 +234,9 @@
 			isa = PBXGroup;
 			children = (
 				A056F67218B0F1FF001C6987 /* FriendView */,
+				A056F67618B0FA5A001C6987 /* ChatView */,
 				A031413718B09A9B00CBF55F /* FVCreatePostCardViewController.h */,
 				A031413818B09A9B00CBF55F /* FVCreatePostCardViewController.m */,
-				A056F67618B0FA5A001C6987 /* ChatView */,
 				A0212FCC18A5EE3F00B8B0A2 /* FVFeedViewController.h */,
 				A0212FCD18A5EE3F00B8B0A2 /* FVFeedViewController.m */,
 				A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */,

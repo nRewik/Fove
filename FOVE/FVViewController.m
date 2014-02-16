@@ -49,11 +49,9 @@
     self.loginView.hidden = NO;
     self.isFetched = NO;
 }
-
-- (void)didReceiveMemoryWarning
+-(NSUInteger)supportedInterfaceOrientations
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void)goToFove
