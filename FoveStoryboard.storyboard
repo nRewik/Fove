@@ -390,13 +390,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubb-Z5-CKy">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Type message here..." translatesAutoresizingMaskIntoConstraints="NO" id="ubb-Z5-CKy">
                                 <rect key="frame" x="10" y="74" width="300" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="UlD-0y-JjS"/>
                                 </constraints>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
@@ -436,6 +437,11 @@
                                     <action selector="createMailbox" destination="K8d-9R-Ddg" eventType="touchUpInside" id="zzT-MZ-e3d"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="70A-i5-P7B" userLabel="Activity Indicator">
+                                <rect key="frame" x="226" y="424" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.99215692280000001" green="0.047058828179999998" blue="0.1176470667" alpha="1" colorSpace="deviceRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -454,6 +460,8 @@
                     <navigationItem key="navigationItem" title="Create Mailbox" id="mea-za-dFY"/>
                     <connections>
                         <outlet property="addMediaButton" destination="z7Y-do-h62" id="adh-GR-6Pw"/>
+                        <outlet property="createMailboxActivityIndicator" destination="70A-i5-P7B" id="p4p-hq-moy"/>
+                        <outlet property="createMailboxButton" destination="Djk-13-fyd" id="2ki-Es-FyY"/>
                         <outlet property="mediaView" destination="jht-pw-KZR" id="3Ew-42-ZvW"/>
                         <outlet property="messageTextArea" destination="ubb-Z5-CKy" id="Trr-vg-ZLM"/>
                         <segue destination="MYZ-zt-QQl" kind="modal" identifier="viewCreatedMailbox" id="tuB-K6-12K"/>
@@ -1314,7 +1322,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="riO-Fi-pEk"/>
+        <segue reference="tuB-K6-12K"/>
         <segue reference="zos-9s-9RL"/>
     </inferredMetricsTieBreakers>
 </document>

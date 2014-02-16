@@ -20,7 +20,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 
-@interface FVCreateMailboxViewController () <UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface FVCreateMailboxViewController () <UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 
 @property (strong,nonatomic) MPMoviePlayerController *moviewPlayerController;
 @property (strong,nonatomic) UIImageView *imageView;
@@ -33,26 +33,23 @@
 
 @property (strong,nonatomic) FVMailbox *createdMailbox;
 
-
 @property (strong, nonatomic) IBOutlet FVMediaPlayerView *mediaView;
 @property (strong, nonatomic) IBOutlet UITextView *messageTextArea;
 @property (weak, nonatomic) IBOutlet UIButton *addMediaButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *createMailboxActivityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *createMailboxButton;
+
+@property (strong,nonatomic) UIAlertView *noMessageAlert;
+@property (strong,nonatomic) UIAlertView *noMediaAlert;
 
 
 @end
 
+#define MESSAGE_PLACE_HOLDER @"Type messsage here..."
+
 @implementation FVCreateMailboxViewController
 
 #pragma mark - view controller state
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -60,15 +57,30 @@
 	// Do any additional setup after loading the view.
     
     self.messageTextArea.delegate = self;
+    self.createMailboxActivityIndicator.hidden = YES;
+
+    self.noMessageAlert = [[UIAlertView alloc] initWithTitle:@"NO MESSAGE"
+                                                           message:@"Please type a message"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil
+                                 ];
+    
+    self.noMediaAlert = [[UIAlertView alloc] initWithTitle:@"NO PHOTO/VIDEO"
+                                                         message:@"Please choose a photo or video"
+                                                        delegate:self
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil
+                               ];
+
 }
 
-- (void)didReceiveMemoryWarning
+-(NSUInteger)supportedInterfaceOrientations
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return UIInterfaceOrientationMaskPortrait;
 }
 
-#pragma mark - view logic
+#pragma mark - azure
 
 -(void)updateMediaToMailbox:(NSString *)mailboxID blobUrl:(NSString *)blobUrl mediaType:(FVMediaType)mediaType
 {
@@ -135,9 +147,28 @@
 
 - (IBAction)createMailbox
 {
+    //if don't type a message
+    NSCharacterSet *charset = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *message =  [self.messageTextArea.text stringByTrimmingCharactersInSet:charset];
+    if( self.messageTextArea.tag == 0 || [message isEqualToString:@""] )
+    {
+        [self.noMessageAlert show];
+        return;
+    }
+    //if don't select any media
+    if ( ! self.isSelectedMedia ) {
+        [self.noMediaAlert show];
+        return;
+    }
+    
+    
+    self.createMailboxActivityIndicator.hidden = NO;
+    [self.createMailboxActivityIndicator startAnimating];
+    self.createMailboxButton.enabled = NO;
+    
     NSDictionary *mailboxInfo = @{
                                @"owner_id": [[FVUser currentUser] user_id],
-                               @"message" : self.messageTextArea.text,
+                               @"message" : message,
                                @"latitude" : @(self.location.latitude),
                                @"longitude" : @(self.location.longitude)
                                };
@@ -162,8 +193,9 @@
             }
         }
     }];
-    
 }
+
+#pragma mark - view controller eventhandler
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -181,6 +213,38 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - UIAlertView Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView == self.noMessageAlert) {
+        self.messageTextArea.text = @"";
+        [self.messageTextArea becomeFirstResponder];
+    }
+}
+
+#pragma mark - textview delegate
+
+//place holder workaround
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    if(textView.tag == 0) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+        textView.tag = 1;
+    }
+    return YES;
+}
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if([textView.text length] == 0)
+    {
+        textView.text = MESSAGE_PLACE_HOLDER;
+        textView.textColor = [UIColor lightGrayColor];
+        textView.tag = 0;
+    }
+}
+/////place holder workaround
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
