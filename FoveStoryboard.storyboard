@@ -78,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic5-hY-qRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865" y="-135"/>
+            <point key="canvasLocation" x="-863" y="-135"/>
         </scene>
         <!--Feed View Controller - Feed-->
         <scene sceneID="sRm-qo-JHr">
@@ -1250,6 +1250,42 @@
             </objects>
             <point key="canvasLocation" x="1411" y="-476"/>
         </scene>
+        <!--Create Post Card View Controller-->
+        <scene sceneID="OlH-ht-L6o">
+            <objects>
+                <viewController id="ehV-sp-DXV" customClass="FVCreatePostCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EyC-9A-E9F"/>
+                        <viewControllerLayoutGuide type="bottom" id="7sH-fm-0QI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1HH-W8-cEW">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4O-e5-54i" customClass="FVCreatePostCardView">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7sH-fm-0QI" firstAttribute="top" secondItem="z4O-e5-54i" secondAttribute="bottom" id="Ew2-Po-bfV"/>
+                            <constraint firstItem="z4O-e5-54i" firstAttribute="top" secondItem="1HH-W8-cEW" secondAttribute="top" id="fbv-dS-n5X"/>
+                            <constraint firstAttribute="trailing" secondItem="z4O-e5-54i" secondAttribute="trailing" id="jcm-gf-pal"/>
+                            <constraint firstItem="z4O-e5-54i" firstAttribute="leading" secondItem="1HH-W8-cEW" secondAttribute="leading" id="r3X-mx-K9c"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="createPostCardView" destination="z4O-e5-54i" id="tuC-Eo-di2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pnq-9u-ymt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-619" y="590"/>
+        </scene>
     </scenes>
     <resources>
         <image name="addMailboxButtton" width="87" height="56"/>
@@ -1270,6 +1306,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="riO-Fi-pEk"/>
-        <segue reference="zos-9s-9RL"/>
+        <segue reference="iRg-Cx-rMY"/>
     </inferredMetricsTieBreakers>
 </document>
