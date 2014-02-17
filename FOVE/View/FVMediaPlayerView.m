@@ -18,6 +18,11 @@
 @end
 
 @implementation FVMediaPlayerView
+{
+    UIImageView *_thumbnailMovieImageView;
+    UIButton *_playButton;
+    BOOL _hasMovie;
+}
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -27,6 +32,71 @@
     }
     return self;
 }
+
+-(void)addMoviePlayerControl
+{
+    CGRect buttonFrame = CGRectMake(0, 0, 50, 50);
+    _playButton = [[UIButton alloc] initWithFrame:buttonFrame];
+    _playButton.center = self.moviePlayerController.view.center;
+    
+    UIImage *buttonImage = [UIImage imageNamed:@"play_media_button"];
+    [_playButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [_playButton setContentMode:UIViewContentModeScaleAspectFill];
+    _playButton.clipsToBounds = YES;
+    
+    [_playButton addTarget:self action:@selector(playMovie) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.moviePlayerController.view addSubview:_playButton];
+}
+
+-(void)playMovie
+{
+    _playButton.hidden = YES;
+    if (_thumbnailMovieImageView != nil) {
+        _thumbnailMovieImageView.hidden = YES;
+    }
+    [self.moviePlayerController play];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(finishPlayMovie)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+}
+
+-(void)finishPlayMovie
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:nil];
+    if (_thumbnailMovieImageView != nil) {
+        _thumbnailMovieImageView.hidden = NO;
+    }
+    _playButton.hidden = NO;
+}
+
+-(void)handleThumbnailImageRequestFinishNotification:(NSNotification*)note
+{
+    NSDictionary *userinfo = [note userInfo];
+    NSError* error = [userinfo objectForKey:MPMoviePlayerThumbnailErrorKey];
+    if (error){
+        NSLog(@"Error: %@",error);
+    }
+    else
+    {
+        UIImage *thumbnailImage = [userinfo valueForKey:MPMoviePlayerThumbnailImageKey];
+        _thumbnailMovieImageView = [[UIImageView alloc] initWithFrame:self.moviePlayerController.view.bounds];
+        _thumbnailMovieImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _thumbnailMovieImageView.clipsToBounds = YES;
+        
+        _thumbnailMovieImageView.image = thumbnailImage;
+        [self.moviePlayerController.view insertSubview:_thumbnailMovieImageView belowSubview:_playButton];
+        
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                  object:nil];
+}
+
 
 -(void)setupWithMovieUrl:(NSURL *)movieUrl
 {
@@ -40,7 +110,16 @@
     self.moviePlayerController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview: self.moviePlayerController.view];
     
-    [self.moviePlayerController play];
+    
+    //thumbnail
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleThumbnailImageRequestFinishNotification:)
+                                                 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                               object:nil];
+    [self.moviePlayerController requestThumbnailImagesAtTimes:@[@(1.f)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+    
+    [self addMoviePlayerControl];
+    _hasMovie = YES;
 }
 
 -(void)setupWithImage:(UIImage *)image
@@ -56,15 +135,21 @@
     [self addSubview:self.imageView];
     
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    _hasMovie = NO;
 }
 
 -(void)clearMediaView
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     [self.imageView removeFromSuperview];
     [self.moviePlayerController.view removeFromSuperview];
-    
-    self.imageView = nil;
-    self.moviePlayerController = nil;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

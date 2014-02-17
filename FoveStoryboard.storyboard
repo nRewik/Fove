@@ -399,7 +399,7 @@
                                 </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jht-pw-KZR" userLabel="mediaView" customClass="FVMediaPlayerView">
                                 <rect key="frame" x="10" y="182" width="300" height="225"/>
@@ -1507,7 +1507,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="riO-Fi-pEk"/>
+        <segue reference="tuB-K6-12K"/>
         <segue reference="iRg-Cx-rMY"/>
     </inferredMetricsTieBreakers>
 </document>
