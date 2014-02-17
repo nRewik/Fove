@@ -28,7 +28,7 @@
 }
 
 #define TOOLBAR_WIDTH 56
-#define imageRatio 1.6
+#define IMAGE_RATIO 1.6
 
 #define FLIP_DUTATION 1.0
 
@@ -71,7 +71,7 @@
     CGRect toolbarFrame = CGRectMake(0,0, TOOLBAR_WIDTH,phoneHeight);
     _toolBarView = [[UIView alloc] initWithFrame:toolbarFrame];
     
-    CGFloat postCardWidth = phoneHeight * imageRatio;
+    CGFloat postCardWidth = phoneHeight * IMAGE_RATIO;
     CGFloat postCardHeight = phoneHeight;
     
     CGRect postCardFrame = CGRectMake(TOOLBAR_WIDTH, 0, postCardWidth, postCardHeight);
@@ -81,7 +81,7 @@
     
     _toolBarDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TOOLBAR_WIDTH, phoneHeight)];
     
-    [self setupButton];
+    [self setupToolBarButtons];
     
     [self addSubview:_postCardView];
     [self addSubview:_toolBarDetailView];
@@ -91,14 +91,14 @@
     _toolBarView.backgroundColor = [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.000];
     _toolBarDetailView.backgroundColor = [UIColor grayColor];
     
-    UIImage *frontImage = [UIImage imageNamed:@"test_postcard_back_2"];
+    UIImage *frontImage = [UIImage imageNamed:@"postcard_back_template"];
     UIImage *backImage = [UIImage imageNamed:@"test_postcard_front_2"];
     FVPostCard *postCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
     _postCardView.postCard = postCard;
 }
 
-#pragma mark - add button
--(void)setupButton
+#pragma mark - add toolbar buttons
+-(void)setupToolBarButtons
 {
     NSArray *buttonImageNames = @[BUTTON_ADD_STICKER_NAME,
                                   BUTTON_ADD_TEXT_NAME,
@@ -106,22 +106,23 @@
                                   BUTTON_LOAD_POSTCARD_TEMPLATE_NAME,
                                   BUTTON_FLIP_POSTCARD_NAME ];
     
-    for (int i=0; i<[buttonImageNames count]; i++) {
-        [self addButton:buttonImageNames[i] order:i+1];
-    }
-    
-    [self setupFlipButton];
-    [self setupAddStickerButton];
+    [buttonImageNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self addToolBarButton:buttonImageNames[idx] order:idx+1];
+    }];
 }
 
--(void)addButton:(NSString *)buttonImageName order:(NSUInteger)order
+-(void)addToolBarButton:(NSString *)buttonImageName order:(NSUInteger)order
 {
+    //toolbar button
     CGRect frame = CGRectMake( 0 , (BUTTON_HEIGHT+LINEBREAK_HEIGHT) * (order - 1), BUTTON_WIDTH, BUTTON_HEIGHT);
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     
     UIImage *buttonImage = [UIImage imageNamed:buttonImageName];
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [_toolBarView addSubview:button];
+    ////
     
+    //line break
     CGRect lineBreakFrame = CGRectMake(  TOOLBAR_WIDTH/2 - LINEBREAK_WIDTH/2,
                                        (BUTTON_HEIGHT+LINEBREAK_HEIGHT) * (order - 1) + BUTTON_HEIGHT,
                                        LINEBREAK_WIDTH,
@@ -130,18 +131,19 @@
     UIView *lineBreak = [[UIView alloc] initWithFrame:lineBreakFrame];
     lineBreak.backgroundColor = [UIColor whiteColor];
     [_toolBarView addSubview:lineBreak];
+    ////
     
-    [_toolBarView addSubview:button];
     
+    //set button reference
     if ([buttonImageName isEqualToString:BUTTON_FLIP_POSTCARD_NAME]){
         _flipButton = button;
+        [self setupFlipButton];
     }
     else if ([buttonImageName isEqualToString:BUTTON_ADD_STICKER_NAME]){
         _addStickerButton = button;
+        [self setupAddStickerButton];
     }
 }
-
-
 #pragma mark - add sticker button
 -(void)setupAddStickerButton
 {
