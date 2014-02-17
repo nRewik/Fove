@@ -1246,7 +1246,7 @@
                                                 <action selector="back:" destination="MYZ-zt-QQl" id="KpL-zI-uks"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="◉" id="DPh-F7-F0N" userLabel="editMailboxBarButton">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="DPh-F7-F0N" userLabel="editMailboxBarButton">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="editMailbox:" destination="MYZ-zt-QQl" id="eHJ-r1-fon"/>
@@ -1507,7 +1507,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zos-9s-9RL"/>
         <segue reference="riO-Fi-pEk"/>
+        <segue reference="iRg-Cx-rMY"/>
     </inferredMetricsTieBreakers>
 </document>
