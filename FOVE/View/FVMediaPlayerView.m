@@ -11,11 +11,11 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface FVMediaPlayerView()
-
 @property (strong,nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong,nonatomic) UIImageView *imageView;
-
 @end
+
+#define PLAY_BUTTON_SIZE 60
 
 @implementation FVMediaPlayerView
 {
@@ -35,7 +35,7 @@
 
 -(void)addMoviePlayerControl
 {
-    CGRect buttonFrame = CGRectMake(0, 0, 50, 50);
+    CGRect buttonFrame = CGRectMake(0, 0, PLAY_BUTTON_SIZE,PLAY_BUTTON_SIZE);
     _playButton = [[UIButton alloc] initWithFrame:buttonFrame];
     _playButton.center = self.moviePlayerController.view.center;
     
