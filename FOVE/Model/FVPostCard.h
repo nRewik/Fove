@@ -12,6 +12,8 @@
 
 @property (strong,nonatomic) UIImage *frontImage;
 @property (strong,nonatomic) UIImage *backImage;
+@property (nonatomic) BOOL isFlip;
+
 
 -(id)initWithFrontImage:(UIImage *)frontImage backImage:(UIImage *)backImage;
 @end

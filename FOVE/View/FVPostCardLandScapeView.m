@@ -12,7 +12,6 @@
 
 @implementation FVPostCardLandScapeView
 {
-    BOOL _isFlip;
     BOOL _isLockToFlip;
 }
 
@@ -44,8 +43,8 @@
         return;
     }
     _isLockToFlip = YES;
-    UIView *originView = _isFlip ? self.backView: self.frontView;
-    UIView *destinationView = _isFlip ? self.frontView : self.backView;
+    UIView *originView = self.postCard.isFlip ? self.backView: self.frontView;
+    UIView *destinationView = self.postCard.isFlip ? self.frontView : self.backView;
     
     [UIView transitionFromView:originView
                         toView:destinationView
@@ -54,7 +53,7 @@
                     completion:^(BOOL finished) {
                         if (finished)
                         {
-                            _isFlip = !_isFlip;
+                            self.postCard.isFlip = !self.postCard.isFlip;
                         }
                         _isLockToFlip = NO;
                     }

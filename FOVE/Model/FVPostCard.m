@@ -16,6 +16,8 @@
     if (self) {
         _frontImage = frontImage;
         _backImage = backImage;
+        
+        _isFlip = NO;
     }
     return self;
 }
