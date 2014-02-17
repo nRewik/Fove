@@ -13,7 +13,7 @@
 @interface FVFriendSegmentedViewController ()
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sengmentedControl;
-@property (weak, nonatomic) IBOutlet UIViewController *currentViewController;
+@property (strong, nonatomic) IBOutlet UIViewController *currentViewController;
 
 @end
 
@@ -32,6 +32,7 @@
     [self.contentView addSubview:vc.view];
     self.currentViewController = vc;
 }
+
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
     UIViewController *vc = [self viewControllerForSegmentIndex:sender.selectedSegmentIndex];
