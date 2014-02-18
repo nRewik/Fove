@@ -1244,27 +1244,27 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_profile_5" translatesAutoresizingMaskIntoConstraints="NO" id="KoJ-pE-Zw9">
-                                <rect key="frame" x="260" y="246" width="50" height="50"/>
+                                <rect key="frame" x="10" y="246" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="x9a-YJ-Jql"/>
-                                    <constraint firstAttribute="width" constant="50" id="xQu-LQ-fb8"/>
+                                    <constraint firstAttribute="width" constant="50" id="HDp-S5-IVu"/>
+                                    <constraint firstAttribute="height" constant="50" id="xPv-bE-UVc"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_profile_3" translatesAutoresizingMaskIntoConstraints="NO" id="YN7-Jf-GbF">
                                 <rect key="frame" x="10" y="418" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BlJ-DP-1Ss"/>
-                                    <constraint firstAttribute="width" constant="50" id="DoR-k2-Tz3"/>
+                                    <constraint firstAttribute="width" constant="50" id="2AL-eZ-li4"/>
+                                    <constraint firstAttribute="height" constant="50" id="9B5-UF-cPT"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Jp-YQS" customClass="FVPostCardPortraitView">
-                                <rect key="frame" x="10" y="246" width="242" height="152"/>
+                                <rect key="frame" x="68" y="246" width="242" height="152"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="152" id="3y9-HW-wcP"/>
+                                    <constraint firstAttribute="height" constant="152" id="YBx-jb-jnb"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="หวัดดีครับ รูปสวยจัง ถ่ายมาจากที่หรอ ^_^" translatesAutoresizingMaskIntoConstraints="NO" id="F08-PA-hYM">
@@ -1272,7 +1272,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="eCR-Y5-LEZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="rab-26-Kut"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1280,20 +1280,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="YN7-Jf-GbF" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="1JD-9I-5Rd"/>
-                            <constraint firstItem="bO8-Jp-YQS" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="2Ty-D2-mgK"/>
+                            <constraint firstItem="KoJ-pE-Zw9" firstAttribute="top" secondItem="bO8-Jp-YQS" secondAttribute="top" id="0zf-kh-oiz"/>
+                            <constraint firstItem="KoJ-pE-Zw9" firstAttribute="top" secondItem="6Fn-or-PEt" secondAttribute="bottom" constant="20" id="2hM-zd-Ezv"/>
                             <constraint firstItem="Jr6-CR-whc" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="4M3-kc-YZW"/>
-                            <constraint firstItem="KoJ-pE-Zw9" firstAttribute="leading" secondItem="bO8-Jp-YQS" secondAttribute="trailing" constant="8" id="5uI-Yo-Yfx"/>
+                            <constraint firstItem="KoJ-pE-Zw9" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="4dq-iT-Yaf"/>
+                            <constraint firstItem="F08-PA-hYM" firstAttribute="top" secondItem="YN7-Jf-GbF" secondAttribute="top" id="6ER-2y-dg4"/>
                             <constraint firstItem="6Fn-or-PEt" firstAttribute="leading" secondItem="Jr6-CR-whc" secondAttribute="trailing" constant="8" id="7jC-2B-Pjf"/>
-                            <constraint firstItem="YN7-Jf-GbF" firstAttribute="top" secondItem="bO8-Jp-YQS" secondAttribute="bottom" constant="20" id="AsI-jB-kxD"/>
-                            <constraint firstItem="KoJ-pE-Zw9" firstAttribute="top" secondItem="6Fn-or-PEt" secondAttribute="bottom" constant="20" id="KJm-sk-AMY"/>
-                            <constraint firstAttribute="trailing" secondItem="KoJ-pE-Zw9" secondAttribute="trailing" constant="10" id="WGQ-Kv-Nqa"/>
-                            <constraint firstItem="F08-PA-hYM" firstAttribute="top" secondItem="YN7-Jf-GbF" secondAttribute="top" id="bpc-Sa-lrm"/>
-                            <constraint firstItem="KoJ-pE-Zw9" firstAttribute="top" secondItem="bO8-Jp-YQS" secondAttribute="top" id="d58-dp-Mq1"/>
+                            <constraint firstItem="bO8-Jp-YQS" firstAttribute="leading" secondItem="KoJ-pE-Zw9" secondAttribute="trailing" constant="8" id="S5P-WB-GEu"/>
+                            <constraint firstItem="F08-PA-hYM" firstAttribute="leading" secondItem="YN7-Jf-GbF" secondAttribute="trailing" constant="10" id="UsY-XW-uYl"/>
+                            <constraint firstItem="YN7-Jf-GbF" firstAttribute="top" secondItem="bO8-Jp-YQS" secondAttribute="bottom" constant="20" id="aXQ-Ba-gqb"/>
                             <constraint firstItem="6Fn-or-PEt" firstAttribute="top" secondItem="Jr6-CR-whc" secondAttribute="top" id="eXy-uf-8Ai"/>
-                            <constraint firstAttribute="trailing" secondItem="F08-PA-hYM" secondAttribute="trailing" constant="10" id="lIx-Kg-tEM"/>
-                            <constraint firstItem="F08-PA-hYM" firstAttribute="leading" secondItem="YN7-Jf-GbF" secondAttribute="trailing" constant="10" id="o84-u7-Sjg"/>
+                            <constraint firstAttribute="trailing" secondItem="F08-PA-hYM" secondAttribute="trailing" constant="10" id="geb-nI-B3B"/>
+                            <constraint firstAttribute="trailing" secondItem="bO8-Jp-YQS" secondAttribute="trailing" constant="10" id="i48-wq-TqH"/>
                             <constraint firstItem="Jr6-CR-whc" firstAttribute="top" secondItem="HLn-aY-oct" secondAttribute="bottom" constant="10" id="opY-3D-GuZ"/>
+                            <constraint firstItem="YN7-Jf-GbF" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="p4g-Fk-U13"/>
                             <constraint firstAttribute="trailing" secondItem="6Fn-or-PEt" secondAttribute="trailing" constant="10" id="uKa-Z4-Zt2"/>
                         </constraints>
                     </view>
