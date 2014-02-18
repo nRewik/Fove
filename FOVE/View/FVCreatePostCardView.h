@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FVCreatePostCardView : UIView
+@protocol FVCreatePostCardViewDelegate;
 
+@interface FVCreatePostCardView : UIView
+@property (strong,nonatomic) id<FVCreatePostCardViewDelegate> delegate;
+@end
+
+@protocol FVCreatePostCardViewDelegate <NSObject>
+-(void)didCancelCreatePostCard;
 @end

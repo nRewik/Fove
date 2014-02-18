@@ -1305,7 +1305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnf-vm-Tlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1842" y="1346"/>
+            <point key="canvasLocation" x="1872" y="1316"/>
         </scene>
         <!--Friend Segmented View Controller - Friend-->
         <scene sceneID="lvY-CV-dIL">
@@ -1440,37 +1440,24 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9e8-pX-DkT" userLabel="CommentView">
-                                <rect key="frame" x="0.0" y="438" width="320" height="130"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type here ..." translatesAutoresizingMaskIntoConstraints="NO" id="MA9-0e-lMO" userLabel="commentTextView">
-                                        <rect key="frame" x="20" y="10" width="280" height="71"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtR-ww-VyI">
+                                        <rect key="frame" x="191" y="10" width="109" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kg-dB-qqP" userLabel="postButton">
-                                        <rect key="frame" x="258" y="89" width="62" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="62" id="KcP-up-gUJ"/>
-                                            <constraint firstAttribute="height" constant="35" id="OSk-Cs-pmJ"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="postButton">
+                                        <state key="normal" title="Send Post Card">
+                                            <color key="titleColor" red="0.99215692281723022" green="0.047058828175067902" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ehV-sp-DXV" kind="modal" identifier="createPostCard" id="lti-IK-Zte"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="1kg-dB-qqP" secondAttribute="bottom" constant="6" id="4TM-O0-xcr"/>
-                                    <constraint firstAttribute="trailing" secondItem="MA9-0e-lMO" secondAttribute="trailing" constant="20" id="58L-DO-ssv"/>
-                                    <constraint firstItem="MA9-0e-lMO" firstAttribute="leading" secondItem="9e8-pX-DkT" secondAttribute="leading" constant="20" id="RDP-Sb-y9I"/>
-                                    <constraint firstAttribute="trailing" secondItem="1kg-dB-qqP" secondAttribute="trailing" id="e3p-Tq-K80"/>
-                                    <constraint firstAttribute="height" constant="130" id="ig8-gf-GRK"/>
-                                    <constraint firstItem="1kg-dB-qqP" firstAttribute="top" secondItem="MA9-0e-lMO" secondAttribute="bottom" constant="8" id="uNH-o7-wUV"/>
-                                    <constraint firstItem="MA9-0e-lMO" firstAttribute="top" secondItem="9e8-pX-DkT" secondAttribute="top" constant="10" id="yjp-zS-TTY"/>
+                                    <constraint firstAttribute="height" constant="50" id="OwC-vt-myC"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2YH-If-kQ1" userLabel="profileImageView">
@@ -1482,7 +1469,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6p-dd-mGu" userLabel="mediaView" customClass="FVMediaPlayerView">
-                                <rect key="frame" x="20" y="227" width="280" height="201"/>
+                                <rect key="frame" x="20" y="227" width="280" height="281"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1626,7 +1613,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnq-9u-ymt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-533" y="784"/>
+            <point key="canvasLocation" x="1994" y="-452"/>
         </scene>
     </scenes>
     <resources>
@@ -1637,7 +1624,6 @@
         <image name="foveButton" width="50" height="50"/>
         <image name="gender_female_sign" width="30" height="30"/>
         <image name="mapTabBar_icon" width="30" height="30"/>
-        <image name="postButton" width="95" height="54"/>
         <image name="postcard_back_template" width="512" height="320"/>
         <image name="profileTabBar_icon" width="60" height="60"/>
         <image name="settingTabBar_icon" width="30" height="30"/>
@@ -1662,6 +1648,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="tuB-K6-12K"/>
-        <segue reference="zos-9s-9RL"/>
+        <segue reference="iRg-Cx-rMY"/>
     </inferredMetricsTieBreakers>
 </document>

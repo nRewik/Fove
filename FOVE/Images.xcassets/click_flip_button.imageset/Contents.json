@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "add_sticker_button_2.png"
+      "filename" : "click_flip_button.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "add_sticker_button_2@2x.png"
+      "filename" : "click_flip_button@2x.png"
     }
   ],
   "info" : {

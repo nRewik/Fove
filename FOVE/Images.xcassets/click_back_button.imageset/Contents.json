@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "flip_postcard_button.png"
+      "filename" : "click_back_button.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "flip_postcard_button@2x.png"
+      "filename" : "click_back_button@2x.png"
     }
   ],
   "info" : {
