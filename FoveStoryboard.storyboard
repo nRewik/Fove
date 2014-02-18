@@ -1215,10 +1215,10 @@
             </objects>
             <point key="canvasLocation" x="1330" y="784"/>
         </scene>
-        <!--Post Card Portrait View Controller - Anna Kiku-->
+        <!--Chat View Controller - Anna Kiku-->
         <scene sceneID="KmJ-Nt-LLz">
             <objects>
-                <viewController id="wRs-Bv-I8h" customClass="FVPostCardPortraitViewController" sceneMemberID="viewController">
+                <viewController id="wRs-Bv-I8h" customClass="FVChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HLn-aY-oct"/>
                         <viewControllerLayoutGuide type="bottom" id="jvl-fC-44J"/>

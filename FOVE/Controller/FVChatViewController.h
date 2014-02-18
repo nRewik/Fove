@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FVPostCardPortraitViewController : UIViewController
+@interface FVChatViewController : UIViewController
 
 @end

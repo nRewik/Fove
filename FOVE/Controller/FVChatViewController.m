@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
 //
 
-#import "FVPostCardPortraitViewController.h"
+#import "FVChatViewController.h"
 #import "FVPostCardScrollViewPortrait.h"
 #import "FVPostCard.h"
 
-@interface FVPostCardPortraitViewController ()
+@interface FVChatViewController ()
 
 @property (weak, nonatomic) IBOutlet FVPostCardScrollViewPortrait *postCardScrollView;
 
 @end
 
-@implementation FVPostCardPortraitViewController
+@implementation FVChatViewController
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
