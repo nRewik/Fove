@@ -77,12 +77,26 @@
     return NO;
 }
 
-#pragma mark - mapkit
-
+#pragma mark - mapview delegate
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    //...
+    if ( (! [view.annotation isKindOfClass:[MKUserLocation class]])  &&
+        view.leftCalloutAccessoryView == nil)
+    {
+        FVMailboxAnnotation *pin = (FVMailboxAnnotation *)view.annotation;
+        
+        NSURL *ownerImageUrl = [NSURL URLWithString:pin.mailbox.owner.profileImageUrl];
+        NSData *ownerImageData = [NSData dataWithContentsOfURL:ownerImageUrl];
+        UIImage *ownerImage = [UIImage imageWithData:ownerImageData];
+        UIImageView *ownerImageView = [[UIImageView alloc] initWithImage:ownerImage];
+        
+        ownerImageView.frame = CGRectMake(0, 0, 44, 44);
+        ownerImageView.contentMode = UIViewContentModeScaleAspectFill;
+        ownerImageView.clipsToBounds = YES;
+        
+        view.leftCalloutAccessoryView = ownerImageView;
+    }
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -198,22 +212,6 @@
     
     self.navigationController.navigationBarHidden = YES;
     //transition
-}
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

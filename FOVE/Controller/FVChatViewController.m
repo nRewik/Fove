@@ -7,12 +7,13 @@
 //
 
 #import "FVChatViewController.h"
-#import "FVPostCardScrollViewPortrait.h"
 #import "FVPostCard.h"
+#import "FVPostCardPortraitView.h"
 
 @interface FVChatViewController ()
 
-@property (weak, nonatomic) IBOutlet FVPostCardScrollViewPortrait *postCardScrollView;
+@property (weak, nonatomic) IBOutlet FVPostCardPortraitView *postCardViewGirl;
+@property (weak, nonatomic) IBOutlet FVPostCardPortraitView *postCardViewBoy;
 
 @end
 
@@ -32,15 +33,11 @@
     UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"< Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
     self.navigationItem.leftBarButtonItem=backBtn;
     
-    NSMutableArray *postCards = [[NSMutableArray alloc] init];
-    for (int i=0; i<5; i++) {
-        UIImage *frontImage = [self randomFronTImagePostCard];
-        UIImage *backImage = [self randomBackImagePostCard];
-        FVPostCard *postCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
-        
-        [postCards addObject:postCard];
-    }
-    self.postCardScrollView.postCards = postCards;
+    FVPostCard *postCardBoy = [[FVPostCard alloc] initWithFrontImage:[self randomFronTImagePostCard] backImage:[self randomBackImagePostCard]];
+    FVPostCard *postCardGirl = [[FVPostCard alloc] initWithFrontImage:[self randomFronTImagePostCard] backImage:[self randomBackImagePostCard]];
+
+    self.postCardViewBoy.postCard = postCardBoy;
+    self.postCardViewGirl.postCard = postCardGirl;
 }
 
 -(UIImage *)randomFronTImagePostCard
