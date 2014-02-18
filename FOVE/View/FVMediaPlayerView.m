@@ -89,7 +89,6 @@
         
         _thumbnailMovieImageView.image = thumbnailImage;
         [self.moviePlayerController.view insertSubview:_thumbnailMovieImageView belowSubview:_playButton];
-        
     }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -103,13 +102,13 @@
     [self clearMediaView];
     
     self.moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:movieUrl];
-    self.moviePlayerController.view.frame = self.bounds;
-    
+    self.moviePlayerController.shouldAutoplay = NO;
     self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
     
+    self.moviePlayerController.view.frame = self.bounds;
     self.moviePlayerController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self addSubview: self.moviePlayerController.view];
     
+    [self addSubview: self.moviePlayerController.view];
     
     //thumbnail
     [[NSNotificationCenter defaultCenter] addObserver:self
