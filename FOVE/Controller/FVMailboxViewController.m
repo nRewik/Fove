@@ -23,8 +23,11 @@
 @property (strong, nonatomic) IBOutlet FVMediaPlayerView *mediaView;
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigateBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+//action
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
+@property (weak, nonatomic) IBOutlet UIButton *sendPostCardButton;
 
 @end
 
@@ -126,9 +129,12 @@
             self.sexImageView.image = [UIImage imageNamed:@"gender_female_sign"];
         }
         
-        //hide edit button if not owner
-        if ( ! [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id] )
-        {
+        if ( [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id]){
+            //if owner
+            self.sendPostCardButton.hidden = YES;
+        }
+        else{
+            //if not owner
             UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
             navItem.rightBarButtonItem = nil;
         }

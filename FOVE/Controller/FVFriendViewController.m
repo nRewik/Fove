@@ -11,6 +11,9 @@
 #import "FVProfileViewController.h"
 
 @interface FVFriendViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *harryPotterLabel; //mock up
+
 @property (strong,nonatomic) FVUser *selectedUser;
 @end
 
@@ -22,8 +25,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    //mock up
+    UIGestureRecognizer *tabGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToChat)];
+    [self.harryPotterLabel addGestureRecognizer:tabGesture];
+    self.harryPotterLabel.userInteractionEnabled = YES;
+    //
 }
-- (IBAction)goToChat
+- (void)goToChat
 {
     [self performSegueWithIdentifier:chatSegueID sender:self];
 }
