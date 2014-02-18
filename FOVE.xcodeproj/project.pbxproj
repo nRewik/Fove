@@ -30,7 +30,6 @@
 		A03C376C18AF53A6001BA7E7 /* FVPostCardScrollViewPortrait.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C376B18AF53A6001BA7E7 /* FVPostCardScrollViewPortrait.m */; };
 		A03C376F18AF542F001BA7E7 /* FVPostCard.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C376E18AF542F001BA7E7 /* FVPostCard.m */; };
 		A03C377218AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C377118AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.m */; };
-		A03C377518AF6002001BA7E7 /* FVPostCardLandScapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C377418AF6002001BA7E7 /* FVPostCardLandScapeViewController.m */; };
 		A03C377818AF6320001BA7E7 /* FVPostCardLandScapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C377718AF6320001BA7E7 /* FVPostCardLandScapeView.m */; };
 		A03C377B18AF67B4001BA7E7 /* FVPostCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C377A18AF67B4001BA7E7 /* FVPostCardView.m */; };
 		A03D0C9818A91611006BF805 /* FVMediaPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A03D0C9718A91611006BF805 /* FVMediaPlayerView.m */; };
@@ -93,8 +92,6 @@
 		A03C376E18AF542F001BA7E7 /* FVPostCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVPostCard.m; path = Model/FVPostCard.m; sourceTree = "<group>"; };
 		A03C377018AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVPostCardScrollViewLandScape.h; path = View/FVPostCardScrollViewLandScape.h; sourceTree = "<group>"; };
 		A03C377118AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVPostCardScrollViewLandScape.m; path = View/FVPostCardScrollViewLandScape.m; sourceTree = "<group>"; };
-		A03C377318AF6002001BA7E7 /* FVPostCardLandScapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVPostCardLandScapeViewController.h; path = Controller/FVPostCardLandScapeViewController.h; sourceTree = "<group>"; };
-		A03C377418AF6002001BA7E7 /* FVPostCardLandScapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVPostCardLandScapeViewController.m; path = Controller/FVPostCardLandScapeViewController.m; sourceTree = "<group>"; };
 		A03C377618AF6320001BA7E7 /* FVPostCardLandScapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVPostCardLandScapeView.h; path = View/FVPostCardLandScapeView.h; sourceTree = "<group>"; };
 		A03C377718AF6320001BA7E7 /* FVPostCardLandScapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVPostCardLandScapeView.m; path = View/FVPostCardLandScapeView.m; sourceTree = "<group>"; };
 		A03C377918AF67B4001BA7E7 /* FVPostCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = FVPostCardView.h; path = View/FVPostCardView.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -314,8 +311,6 @@
 			children = (
 				A086301818AA6EB900D2BC4D /* FVPostCardPortraitViewController.h */,
 				A086301918AA6EB900D2BC4D /* FVPostCardPortraitViewController.m */,
-				A03C377318AF6002001BA7E7 /* FVPostCardLandScapeViewController.h */,
-				A03C377418AF6002001BA7E7 /* FVPostCardLandScapeViewController.m */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -424,7 +419,6 @@
 				A01E2A5318924AA400C84F01 /* main.m in Sources */,
 				A031413C18B09B9900CBF55F /* FVCreatePostCardView.m in Sources */,
 				A01E2A5D18924AA400C84F01 /* FVViewController.m in Sources */,
-				A03C377518AF6002001BA7E7 /* FVPostCardLandScapeViewController.m in Sources */,
 				A03C377B18AF67B4001BA7E7 /* FVPostCardView.m in Sources */,
 				A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */,
 				A03C376C18AF53A6001BA7E7 /* FVPostCardScrollViewPortrait.m in Sources */,
