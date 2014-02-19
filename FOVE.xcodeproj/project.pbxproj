@@ -263,8 +263,7 @@
 				A03D0C9718A91611006BF805 /* FVMediaPlayerView.m */,
 				A03C377C18AF6A4A001BA7E7 /* FVPostCardView */,
 				A03C377D18AF7419001BA7E7 /* FVPostCardScrollView */,
-				A031413A18B09B9900CBF55F /* FVCreatePostCardView.h */,
-				A031413B18B09B9900CBF55F /* FVCreatePostCardView.m */,
+				A04E95C118B4FDFB006F5B41 /* FVCreatePostCardView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -291,6 +290,15 @@
 				A03C377118AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.m */,
 			);
 			name = FVPostCardScrollView;
+			sourceTree = "<group>";
+		};
+		A04E95C118B4FDFB006F5B41 /* FVCreatePostCardView */ = {
+			isa = PBXGroup;
+			children = (
+				A031413A18B09B9900CBF55F /* FVCreatePostCardView.h */,
+				A031413B18B09B9900CBF55F /* FVCreatePostCardView.m */,
+			);
+			name = FVCreatePostCardView;
 			sourceTree = "<group>";
 		};
 		A056F67218B0F1FF001C6987 /* FriendView */ = {

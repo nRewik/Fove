@@ -45,5 +45,10 @@
     self.backView.image = self.postCard.backImage;
 }
 
+-(UIView *)currentView
+{
+    return self.postCard.isFlip ? self.backView : self.frontView;
+}
+
 
 @end

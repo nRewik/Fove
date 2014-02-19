@@ -1273,6 +1273,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="type here..." borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQb-at-4jK">
+                                <rect key="frame" x="0.0" y="538" width="271" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="42t-Co-07L"/>
+                                    <constraint firstAttribute="width" constant="271" id="KBR-cV-kHt"/>
+                                </constraints>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWg-5b-iwG">
+                                <rect key="frame" x="279" y="538" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="8cH-cV-PG0"/>
+                                    <constraint firstAttribute="height" constant="30" id="gGN-vd-Tc0"/>
+                                </constraints>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -1282,6 +1304,8 @@
                             <constraint firstItem="KoJ-pE-Zw9" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="4dq-iT-Yaf"/>
                             <constraint firstItem="F08-PA-hYM" firstAttribute="top" secondItem="YN7-Jf-GbF" secondAttribute="top" id="6ER-2y-dg4"/>
                             <constraint firstItem="6Fn-or-PEt" firstAttribute="leading" secondItem="Jr6-CR-whc" secondAttribute="trailing" constant="8" id="7jC-2B-Pjf"/>
+                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="AQb-at-4jK" secondAttribute="bottom" id="Azj-kA-rGA"/>
+                            <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="sWg-5b-iwG" secondAttribute="bottom" id="Qg4-dq-Ltu"/>
                             <constraint firstItem="bO8-Jp-YQS" firstAttribute="leading" secondItem="KoJ-pE-Zw9" secondAttribute="trailing" constant="8" id="S5P-WB-GEu"/>
                             <constraint firstItem="F08-PA-hYM" firstAttribute="leading" secondItem="YN7-Jf-GbF" secondAttribute="trailing" constant="10" id="UsY-XW-uYl"/>
                             <constraint firstItem="YN7-Jf-GbF" firstAttribute="top" secondItem="bO8-Jp-YQS" secondAttribute="bottom" constant="20" id="aXQ-Ba-gqb"/>
@@ -1291,6 +1315,8 @@
                             <constraint firstItem="Jr6-CR-whc" firstAttribute="top" secondItem="HLn-aY-oct" secondAttribute="bottom" constant="10" id="opY-3D-GuZ"/>
                             <constraint firstItem="YN7-Jf-GbF" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="10" id="p4g-Fk-U13"/>
                             <constraint firstAttribute="trailing" secondItem="6Fn-or-PEt" secondAttribute="trailing" constant="10" id="uKa-Z4-Zt2"/>
+                            <constraint firstAttribute="trailing" secondItem="sWg-5b-iwG" secondAttribute="trailing" constant="5" id="xJI-Qe-Hn0"/>
+                            <constraint firstItem="sWg-5b-iwG" firstAttribute="leading" secondItem="AQb-at-4jK" secondAttribute="trailing" constant="8" id="zXc-In-buf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Anna Kiku" id="H8d-3W-dpI"/>
@@ -1467,10 +1493,6 @@
                                     <constraint firstAttribute="height" constant="20" id="tbk-m9-mzV"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gender_female_sign" translatesAutoresizingMaskIntoConstraints="NO" id="Dsz-Yf-Nl9" userLabel="ageImageView">
-                                <rect key="frame" x="116" y="119" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mph-VP-rAh" userLabel="foveView">
                                 <rect key="frame" x="240" y="79" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1520,10 +1542,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mph-VP-rAh" firstAttribute="top" secondItem="2YH-If-kQ1" secondAttribute="top" id="3Lp-RI-GcG"/>
-                            <constraint firstItem="Dsz-Yf-Nl9" firstAttribute="leading" secondItem="6Sf-Yt-p8r" secondAttribute="trailing" constant="8" id="5J0-CK-j2x"/>
                             <constraint firstItem="Mxd-0D-B1I" firstAttribute="leading" secondItem="2YH-If-kQ1" secondAttribute="trailing" constant="8" id="72R-32-kTZ"/>
                             <constraint firstItem="Tcm-em-6bd" firstAttribute="top" secondItem="F9I-ej-amG" secondAttribute="bottom" constant="5" id="7V1-mj-8Np"/>
-                            <constraint firstItem="6Sf-Yt-p8r" firstAttribute="height" secondItem="Dsz-Yf-Nl9" secondAttribute="height" id="9VY-G2-YkT"/>
                             <constraint firstItem="2YH-If-kQ1" firstAttribute="top" secondItem="UEZ-3D-w9y" secondAttribute="top" id="FQj-8M-nxi"/>
                             <constraint firstItem="2YH-If-kQ1" firstAttribute="top" secondItem="aQ2-n2-OY5" secondAttribute="bottom" constant="15" id="Ml9-Lk-grS"/>
                             <constraint firstItem="aQ2-n2-OY5" firstAttribute="leading" secondItem="Iur-fa-gcA" secondAttribute="leading" id="Nos-2d-PwP"/>
@@ -1532,7 +1552,6 @@
                             <constraint firstItem="c4E-Sg-Ex0" firstAttribute="leading" secondItem="Iur-fa-gcA" secondAttribute="leading" constant="20" id="ShO-71-EZ8"/>
                             <constraint firstItem="6Sf-Yt-p8r" firstAttribute="bottom" secondItem="2YH-If-kQ1" secondAttribute="bottom" id="Syn-Ah-WZa"/>
                             <constraint firstItem="e6p-dd-mGu" firstAttribute="top" secondItem="Tcm-em-6bd" secondAttribute="bottom" constant="2" id="V46-ir-Zi6"/>
-                            <constraint firstItem="6Sf-Yt-p8r" firstAttribute="width" secondItem="Dsz-Yf-Nl9" secondAttribute="width" id="WAM-rM-2hl"/>
                             <constraint firstItem="6Sf-Yt-p8r" firstAttribute="leading" secondItem="2YH-If-kQ1" secondAttribute="trailing" constant="8" id="XgE-c6-eSC"/>
                             <constraint firstItem="aQ2-n2-OY5" firstAttribute="top" secondItem="OGR-90-kc9" secondAttribute="bottom" constant="20" symbolic="YES" id="ZEs-Cg-URX"/>
                             <constraint firstItem="wtR-ww-VyI" firstAttribute="top" secondItem="e6p-dd-mGu" secondAttribute="bottom" constant="16" id="ZJV-bC-dPY"/>
@@ -1548,7 +1567,6 @@
                             <constraint firstItem="mph-VP-rAh" firstAttribute="leading" secondItem="Mxd-0D-B1I" secondAttribute="trailing" constant="8" id="vDj-Fc-9AW"/>
                             <constraint firstItem="c4E-Sg-Ex0" firstAttribute="top" secondItem="2YH-If-kQ1" secondAttribute="bottom" constant="8" id="vdj-9O-xP6"/>
                             <constraint firstAttribute="trailing" secondItem="c4E-Sg-Ex0" secondAttribute="trailing" constant="20" id="wFn-nx-c6d"/>
-                            <constraint firstItem="2YH-If-kQ1" firstAttribute="bottom" secondItem="Dsz-Yf-Nl9" secondAttribute="bottom" id="xEe-dk-RAU"/>
                             <constraint firstItem="UEZ-3D-w9y" firstAttribute="leading" secondItem="2YH-If-kQ1" secondAttribute="trailing" constant="8" id="xMv-Ty-c2P"/>
                             <constraint firstItem="F9I-ej-amG" firstAttribute="top" secondItem="c4E-Sg-Ex0" secondAttribute="bottom" constant="5" id="zLp-qY-48N"/>
                         </constraints>
@@ -1605,7 +1623,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnq-9u-ymt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994" y="-452"/>
+            <point key="canvasLocation" x="-698" y="772"/>
         </scene>
     </scenes>
     <resources>

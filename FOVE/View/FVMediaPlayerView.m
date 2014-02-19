@@ -103,6 +103,7 @@
     
     self.moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:movieUrl];
     self.moviePlayerController.shouldAutoplay = NO;
+    [self.moviePlayerController prepareToPlay];
     self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
     
     self.moviePlayerController.view.frame = self.bounds;

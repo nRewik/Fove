@@ -9,7 +9,7 @@
 #import "FVCreatePostCardView.h"
 #import "FVPostCardView.h"
 
-@interface FVCreatePostCardView ()
+@interface FVCreatePostCardView () <UIAlertViewDelegate>
 @end
 
 @implementation FVCreatePostCardView
@@ -21,6 +21,11 @@
     BOOL _isFlip;
     
     UIButton *_addStickerButton;
+    
+    //add text
+    UIButton *_addTextButton;
+    UIAlertView *_addTextAlertView;
+    
     UIButton *_addPhotoButton;
     UIButton *_flipButton;
     
@@ -28,6 +33,9 @@
     
     NSArray *toolBarButtons;
 }
+
+#define DEGREE_TO_RADIAN(degree) ((degree) / 180.0 * M_PI)
+#define RADIAN_TO_DEGREE(radian) ((radian) * 180.0 / M_PI)
 
 #define TOOLBAR_WIDTH 56
 #define IMAGE_RATIO 1.6
@@ -85,6 +93,10 @@
     [self addSubview:_toolBarDetailView];
     [self addSubview:_toolBarView];
     
+    _postCardView.userInteractionEnabled = YES;
+    _postCardView.backView.userInteractionEnabled = YES;
+    _postCardView.frontView.userInteractionEnabled = YES;
+    
     //mock up
     _toolBarView.backgroundColor = [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.000];
     _toolBarDetailView.backgroundColor = [UIColor grayColor];
@@ -131,7 +143,28 @@
         _addStickerButton = button;
         [self setupAddStickerButton];
     }
+    else if( [buttonImageName isEqualToString:BUTTON_ADD_TEXT_NAME]){
+        _addTextButton = button;
+        [self setUpAddTextButton];
+    }
 }
+#pragma mark - add Text Button
+-(void)setUpAddTextButton
+{
+    [_addTextButton addTarget:self action:@selector(addText) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)addText
+{
+    _addTextAlertView = [[UIAlertView alloc] initWithTitle:@"Add Text"
+                                                   message:nil
+                                                  delegate:self
+                                         cancelButtonTitle:@"Cancel"
+                                         otherButtonTitles:@"Add", nil];
+    _addTextAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    [_addTextAlertView show];
+}
+
 #pragma mark - add sticker button
 -(void)setupAddStickerButton
 {
@@ -186,16 +219,86 @@
 }
 
 
+#pragma mark - UIAlertView Delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //add button
+    if (alertView == _addTextAlertView && buttonIndex == 1)
+    {
+        UILabel *Textlabel = [[UILabel alloc] init];
+        Textlabel.textColor = [UIColor blackColor];
+        Textlabel.backgroundColor = [UIColor clearColor];
+        Textlabel.font = [UIFont systemFontOfSize:30.0f];
+        Textlabel.textAlignment = NSTextAlignmentCenter;
 
+        Textlabel.adjustsFontSizeToFitWidth = YES;
+        Textlabel.minimumScaleFactor = 8./14.;
+        Textlabel.numberOfLines = 1;
+        
+        Textlabel.text = [[alertView textFieldAtIndex:0] text];
+        [Textlabel sizeToFit];
+        
+        CGFloat xPos = _postCardView.bounds.size.width/2;
+        CGFloat yPos = _postCardView.bounds.size.height/2;
+        Textlabel.center = CGPointMake(xPos, yPos);
+        
+        [_postCardView.currentView addSubview:Textlabel];
+        
+        UIGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveAccessory:)];
+        [Textlabel addGestureRecognizer:panGesture];
 
+        UIGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scaleAccessory:)];
+        [Textlabel addGestureRecognizer:pinchGesture];
+        
+        UIGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAccessory:)];
+        [Textlabel addGestureRecognizer:rotationGesture];
 
+        Textlabel.userInteractionEnabled = YES;
+    }
+}
 
-
-
-
-
-
-
+#pragma mark - gesture selector
+-(void)moveAccessory:(UIPanGestureRecognizer *)panRecognizer
+{
+    if (panRecognizer.numberOfTouches != 1){
+        return;
+    }
+    
+    UIView *accView = panRecognizer.view;
+    CGPoint translation = [panRecognizer translationInView:accView];
+    accView.center = CGPointMake(panRecognizer.view.center.x+translation.x, panRecognizer.view.center.y + translation.y);
+    
+    [panRecognizer setTranslation:CGPointMake(0, 0) inView:accView];
+}
+-(void)scaleAccessory:(UIPinchGestureRecognizer *)pinchRecognizer
+{
+    UIView *accView = pinchRecognizer.view;
+    
+    if ([accView isKindOfClass:[UILabel class]]) {
+        UILabel *label = (UILabel *)accView;
+        CGPoint oldCenter = label.center;
+        
+        CGFloat pinchScale = pinchRecognizer.scale;
+        label.font = [UIFont fontWithName:label.font.fontName size:(label.font.pointSize*pinchScale)];
+        
+        [label sizeToFit];
+        label.center = oldCenter;
+        
+        pinchRecognizer.scale = 1.0;
+    }
+    else
+    {
+        CGRect frame = accView.frame;
+        frame.size.width = frame.size.width * pinchRecognizer.scale;
+        frame.size.height = frame.size.height * pinchRecognizer.scale;
+        accView.frame = frame;
+    }
+}
+-(void)rotateAccessory:(UIRotationGestureRecognizer *)rotationGesture
+{
+    UIView *accView = rotationGesture.view;
+    accView.transform = CGAffineTransformMakeRotation(rotationGesture.rotation);
+}
 
 
 

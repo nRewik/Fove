@@ -15,4 +15,6 @@
 @property (strong,nonatomic,readonly) UIImageView *frontView;
 @property (strong,nonatomic,readonly) UIImageView *backView;
 
+-(UIView *)currentView;
+
 @end
