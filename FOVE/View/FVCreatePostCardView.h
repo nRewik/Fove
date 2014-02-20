@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FVPostCard.h"
 
 @protocol FVCreatePostCardViewDelegate;
 
@@ -16,4 +17,5 @@
 
 @protocol FVCreatePostCardViewDelegate <NSObject>
 -(void)didCancelCreatePostCard;
+-(void)didFinishCreatePostCard:(FVPostCard *)postCard;
 @end

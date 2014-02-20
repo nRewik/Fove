@@ -28,7 +28,7 @@
     
     UIButton *_addPhotoButton;
     UIButton *_flipButton;
-    
+    UIButton *_doneButton;
     UIButton *_backButton;
     
     NSArray *toolBarButtons;
@@ -146,6 +146,10 @@
     else if( [buttonImageName isEqualToString:BUTTON_ADD_TEXT_NAME]){
         _addTextButton = button;
         [self setUpAddTextButton];
+    }
+    else if( [buttonImageName isEqualToString:BUTTON_OK_BUTTON_NAME]){
+        _doneButton = button;
+        [self setupDoneButton];
     }
 }
 #pragma mark - add Text Button
@@ -301,11 +305,28 @@
 }
 
 
+#pragma mark - done button
+-(void)setupDoneButton
+{
+    [_doneButton addTarget:self action:@selector(finishCreatePostCard) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)finishCreatePostCard
+{
+    UIImage *frontImage = [self snapshot:_postCardView.frontView];
+    UIImage *backImage = [self snapshot:_postCardView.backView];
+    FVPostCard *newPostCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
+    [self.delegate didFinishCreatePostCard:newPostCard];
+}
 
-
-
-
-
+- (UIImage *)snapshot:(UIView *)view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 
 

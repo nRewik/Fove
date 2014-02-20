@@ -89,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic5-hY-qRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-863" y="-135"/>
+            <point key="canvasLocation" x="-850" y="-130"/>
         </scene>
         <!--Feed View Controller - Feed-->
         <scene sceneID="sRm-qo-JHr">
@@ -482,6 +482,43 @@
             </objects>
             <point key="canvasLocation" x="832" y="-990"/>
         </scene>
+        <!--Post Card View Controller-->
+        <scene sceneID="fWe-ER-adG">
+            <objects>
+                <viewController id="K0D-G4-SCb" customClass="FVPostCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FGK-V3-gbY"/>
+                        <viewControllerLayoutGuide type="bottom" id="3ij-je-a6c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GLk-PI-xiq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Egp-ca-DdQ" customClass="FVPostCardPortraitView">
+                                <rect key="frame" x="0.0" y="184" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="bqD-VB-MCc"/>
+                                    <constraint firstAttribute="width" constant="320" id="rW0-jm-Y6a"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Egp-ca-DdQ" secondAttribute="centerY" id="b5Q-km-lup"/>
+                            <constraint firstAttribute="centerX" secondItem="Egp-ca-DdQ" secondAttribute="centerX" id="zcU-T9-qdN"/>
+                        </constraints>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="postcardView" destination="Egp-ca-DdQ" id="AED-6j-qBx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xys-qu-b3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-85" y="1372"/>
+        </scene>
         <!--Setting View Controller - Settings-->
         <scene sceneID="BXv-3v-be6">
             <objects>
@@ -517,7 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lP-wb-fyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="860"/>
+            <point key="canvasLocation" x="317" y="882"/>
         </scene>
         <!--Friend View Controller-->
         <scene sceneID="I6H-z5-J1h">
@@ -1619,11 +1656,12 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="createPostCardView" destination="z4O-e5-54i" id="tuC-Eo-di2"/>
+                        <segue destination="K0D-G4-SCb" kind="modal" identifier="viewPostcard" id="ZSY-2m-Hgr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnq-9u-ymt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-698" y="772"/>
+            <point key="canvasLocation" x="-740" y="832"/>
         </scene>
     </scenes>
     <resources>
