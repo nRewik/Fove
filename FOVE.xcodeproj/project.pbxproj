@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */; };
 		A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0118A1918A78B6E00664363 /* MediaPlayer.framework */; };
+		A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01A272818B78DAC00524C99 /* FVFriendCollectionViewCell.m */; };
 		A01E2A4718924AA400C84F01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4618924AA400C84F01 /* Foundation.framework */; };
 		A01E2A4918924AA400C84F01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4818924AA400C84F01 /* CoreGraphics.framework */; };
 		A01E2A4B18924AA400C84F01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E2A4A18924AA400C84F01 /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxViewController.h; path = Controller/FVMailboxViewController.h; sourceTree = "<group>"; };
 		A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxViewController.m; path = Controller/FVMailboxViewController.m; sourceTree = "<group>"; };
 		A0118A1918A78B6E00664363 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A01A272718B78DAC00524C99 /* FVFriendCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVFriendCollectionViewCell.h; path = Controller/FVFriendCollectionViewCell.h; sourceTree = "<group>"; };
+		A01A272818B78DAC00524C99 /* FVFriendCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVFriendCollectionViewCell.m; path = Controller/FVFriendCollectionViewCell.m; sourceTree = "<group>"; };
 		A01E2A4318924AA400C84F01 /* FOVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOVE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01E2A4618924AA400C84F01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A01E2A4818924AA400C84F01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,6 +149,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A01A272A18B78E1000524C99 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				A056F66C18B0F1D0001C6987 /* FVFriendViewController.h */,
+				A056F66D18B0F1D0001C6987 /* FVFriendViewController.m */,
+				A01A272718B78DAC00524C99 /* FVFriendCollectionViewCell.h */,
+				A01A272818B78DAC00524C99 /* FVFriendCollectionViewCell.m */,
+			);
+			name = Friend;
+			sourceTree = "<group>";
+		};
+		A01A272B18B78E1A00524C99 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				A056F66F18B0F1F5001C6987 /* FVPostCardGalleryViewController.h */,
+				A056F67018B0F1F5001C6987 /* FVPostCardGalleryViewController.m */,
+			);
+			name = Gallery;
+			sourceTree = "<group>";
+		};
 		A01E2A3A18924AA400C84F01 = {
 			isa = PBXGroup;
 			children = (
@@ -311,10 +334,8 @@
 			children = (
 				A0251A0618A9F622005A6536 /* FVFriendSegmentedViewController.h */,
 				A0251A0718A9F622005A6536 /* FVFriendSegmentedViewController.m */,
-				A056F66C18B0F1D0001C6987 /* FVFriendViewController.h */,
-				A056F66D18B0F1D0001C6987 /* FVFriendViewController.m */,
-				A056F66F18B0F1F5001C6987 /* FVPostCardGalleryViewController.h */,
-				A056F67018B0F1F5001C6987 /* FVPostCardGalleryViewController.m */,
+				A01A272A18B78E1000524C99 /* Friend */,
+				A01A272B18B78E1A00524C99 /* Gallery */,
 			);
 			name = FriendView;
 			sourceTree = "<group>";
@@ -426,6 +447,7 @@
 				A02EFD2F189FECBD001E5516 /* FVMailboxAnnotation.m in Sources */,
 				A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */,
 				A056F67518B0F8F2001C6987 /* FVindexTabBarController.m in Sources */,
+				A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */,
 				A02EFD2B189FE8D8001E5516 /* FVMail.m in Sources */,
 				A03C376F18AF542F001BA7E7 /* FVPostCard.m in Sources */,
 				A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */,

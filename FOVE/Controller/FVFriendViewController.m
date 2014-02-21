@@ -9,12 +9,14 @@
 #import "FVFriendViewController.h"
 #import "FVUser.h"
 #import "FVProfileViewController.h"
+#import "FVFriendCollectionViewCell.h"
 
-@interface FVFriendViewController ()
-
-@property (weak, nonatomic) IBOutlet UILabel *harryPotterLabel; //mock up
-
+@interface FVFriendViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *friendCollectionView;
 @property (strong,nonatomic) FVUser *selectedUser;
+
+@property (strong,nonatomic) NSMutableArray *friends; //of FVUser;
+
 @end
 
 #define chatSegueID @"chat"
@@ -26,12 +28,69 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //mock up
-    UIGestureRecognizer *tabGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToChat)];
-    [self.harryPotterLabel addGestureRecognizer:tabGesture];
-    self.harryPotterLabel.userInteractionEnabled = YES;
-    //
+    self.friendCollectionView.dataSource = self;
+    self.friendCollectionView.delegate = self;
+    //mockup
+    [self setupFriends];
 }
+
+#pragma mark - mock up friends
+-(void)setupFriends
+{
+    int numberOfFriends = 20;
+    
+    self.friends = [[NSMutableArray alloc] init];
+    for (int i=0; i<numberOfFriends; i++) {
+        FVUser *xUser = [[FVUser alloc] init];
+        xUser.name = [NSString stringWithFormat:@"name number %d",i+1];
+        xUser.status = [NSString stringWithFormat:@"status number %d",i+1];
+        [self.friends addObject:xUser];
+    }
+}
+
+#pragma mark - UICollectionViewDataSource
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.friends count];
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *friendViewCellidentifier = @"friendViewCell";
+    
+    FVUser *user = self.friends[indexPath.row];
+    NSURL *profileImageURL = [NSURL URLWithString:user.profileImageUrl];
+    NSData *profileImageData = [NSData dataWithContentsOfURL:profileImageURL];
+    UIImage *profileImage = [[UIImage alloc] initWithData:profileImageData];
+
+    FVFriendCollectionViewCell * cell = [self.friendCollectionView dequeueReusableCellWithReuseIdentifier:friendViewCellidentifier forIndexPath:indexPath];
+    cell.profileImageView.image = profileImage;
+    cell.profileNameLabel.text = user.name;
+    cell.profileStatusLabel.text = [NSString stringWithFormat:@"section %d row %d",indexPath.section,indexPath.row];
+
+    return cell;
+}
+
+
+#pragma mark - UICollectionViewDelegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor blueColor];
+}
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = nil;
+}
+
+#pragma mark -
+
 - (void)goToChat
 {
     [self performSegueWithIdentifier:chatSegueID sender:self];
