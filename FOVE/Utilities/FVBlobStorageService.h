@@ -20,6 +20,7 @@ static NSString * const blobblobs = @"blobblobs";
 
 static NSString * const profileImageContainer = @"profileimage";
 static NSString * const mailboxMediaContainer = @"mailboxmedia";
+static NSString * const postcardContainer = @"postcard";
 
 #pragma mark -
 
@@ -34,6 +35,7 @@ static NSString * const mailboxMediaContainer = @"mailboxmedia";
 #pragma mark - container
 +(NSString *)profileImageContainer;
 +(NSString *)mailboxMediaContainer;
++(NSString *)postcardContainer;
 #pragma mark -
 
 - (void) getContainersList:(void (^)(id result, NSError *error)) completion;

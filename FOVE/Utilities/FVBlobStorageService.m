@@ -39,6 +39,10 @@ static FVBlobStorageService *singletonInstance;
 {
     return mailboxMediaContainer;
 }
++(NSString *)postcardContainer
+{
+    return postcardContainer;
+}
 
 -(FVBlobStorageService *) init
 {
