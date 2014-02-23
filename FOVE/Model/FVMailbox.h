@@ -26,8 +26,11 @@ typedef NS_ENUM(NSInteger, FVMediaType) {
 @property (strong,nonatomic) FVUser *owner;
 @property (strong,nonatomic) NSString *title;
 @property (strong,nonatomic) NSString *message;
-@property (strong,nonatomic) NSString *media;
+
+@property (strong,nonatomic) NSString *mediaURL;
+@property (strong,nonatomic) NSData *mediaData;
 @property (nonatomic) FVMediaType mediaType;
+
 @property (nonatomic) NSUInteger fovecount;
 @property (nonatomic) CLLocationCoordinate2D location;
 

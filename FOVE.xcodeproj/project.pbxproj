@@ -26,7 +26,6 @@
 		A029C71B189E2B1D00B167C7 /* FVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A029C71A189E2B1D00B167C7 /* FVUser.m */; };
 		A02D675D18BA4285005E1EF4 /* FVGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D675C18BA4285005E1EF4 /* FVGalleryViewController.m */; };
 		A02D676018BA4421005E1EF4 /* FVGalleryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A02D675F18BA4421005E1EF4 /* FVGalleryViewCell.m */; };
-		A02EFD2B189FE8D8001E5516 /* FVMail.m in Sources */ = {isa = PBXBuildFile; fileRef = A02EFD2A189FE8D8001E5516 /* FVMail.m */; };
 		A02EFD2F189FECBD001E5516 /* FVMailboxAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A02EFD2E189FECBD001E5516 /* FVMailboxAnnotation.m */; };
 		A031413918B09A9B00CBF55F /* FVCreatePostCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A031413818B09A9B00CBF55F /* FVCreatePostCardViewController.m */; };
 		A031413C18B09B9900CBF55F /* FVCreatePostCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A031413B18B09B9900CBF55F /* FVCreatePostCardView.m */; };
@@ -87,8 +86,6 @@
 		A02D675C18BA4285005E1EF4 /* FVGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVGalleryViewController.m; path = Controller/FVGalleryViewController.m; sourceTree = "<group>"; };
 		A02D675E18BA4421005E1EF4 /* FVGalleryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVGalleryViewCell.h; path = View/FVGalleryViewCell.h; sourceTree = "<group>"; };
 		A02D675F18BA4421005E1EF4 /* FVGalleryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVGalleryViewCell.m; path = View/FVGalleryViewCell.m; sourceTree = "<group>"; };
-		A02EFD29189FE8D8001E5516 /* FVMail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMail.h; path = Model/FVMail.h; sourceTree = "<group>"; };
-		A02EFD2A189FE8D8001E5516 /* FVMail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMail.m; path = Model/FVMail.m; sourceTree = "<group>"; };
 		A02EFD2D189FECBD001E5516 /* FVMailboxAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxAnnotation.h; path = View/FVMailboxAnnotation.h; sourceTree = "<group>"; };
 		A02EFD2E189FECBD001E5516 /* FVMailboxAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxAnnotation.m; path = View/FVMailboxAnnotation.m; sourceTree = "<group>"; };
 		A031413718B09A9B00CBF55F /* FVCreatePostCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVCreatePostCardViewController.h; path = Controller/FVCreatePostCardViewController.h; sourceTree = "<group>"; };
@@ -252,8 +249,6 @@
 				A029C71A189E2B1D00B167C7 /* FVUser.m */,
 				A01E3769189F6BC3001CCEBA /* FVMailbox.h */,
 				A01E376A189F6BC3001CCEBA /* FVMailbox.m */,
-				A02EFD29189FE8D8001E5516 /* FVMail.h */,
-				A02EFD2A189FE8D8001E5516 /* FVMail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -455,7 +450,6 @@
 				A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */,
 				A056F67518B0F8F2001C6987 /* FVindexTabBarController.m in Sources */,
 				A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */,
-				A02EFD2B189FE8D8001E5516 /* FVMail.m in Sources */,
 				A03C376F18AF542F001BA7E7 /* FVPostCard.m in Sources */,
 				A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */,
 				A03C377218AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.m in Sources */,

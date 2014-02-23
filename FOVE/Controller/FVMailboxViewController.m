@@ -146,12 +146,11 @@
 -(void)updateMedia
 {
     if (self.mailbox.mediaType == FVMediaImageType) {
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.mailbox.media]];
-        UIImage *image = [UIImage imageWithData:imageData];
+        UIImage *image = [UIImage imageWithData:self.mailbox.mediaData];
         [self.mediaView setupWithImage:image];
     }
     else if( self.mailbox.mediaType == FVMediaVideoType){
-        NSURL *movieUrl = [NSURL URLWithString:self.mailbox.media];
+        NSURL *movieUrl = [NSURL URLWithString:self.mailbox.mediaURL];
         [self.mediaView setupWithMovieUrl:movieUrl];
     }
 }

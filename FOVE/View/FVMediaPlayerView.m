@@ -102,6 +102,7 @@
     [self clearMediaView];
     
     self.moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:movieUrl];
+    
     self.moviePlayerController.shouldAutoplay = NO;
     [self.moviePlayerController prepareToPlay];
     self.moviePlayerController.controlStyle = MPMovieControlStyleNone;

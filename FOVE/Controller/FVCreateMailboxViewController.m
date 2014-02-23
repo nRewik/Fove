@@ -106,7 +106,7 @@
                 NSLog(@"create mailbox id = %@ complete",mailboxID);
                 
                 self.createdMailbox.mediaType = mediaType;
-                self.createdMailbox.media = blobUrl;
+                self.createdMailbox.mediaURL = blobUrl;
                 [self performSegueWithIdentifier:@"viewCreatedMailbox" sender:self];
             }
         }];
