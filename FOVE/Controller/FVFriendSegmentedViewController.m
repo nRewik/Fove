@@ -18,7 +18,7 @@
 @end
 
 #define friendStoryboardID @"friendViewController"
-#define galleryStoryboardID @"postCardGalleryViewController"
+#define galleryStoryboardID @"galleryViewController"
 
 @implementation FVFriendSegmentedViewController
 

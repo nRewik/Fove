@@ -633,164 +633,6 @@
             </objects>
             <point key="canvasLocation" x="778" y="-6"/>
         </scene>
-        <!--Post Card Gallery View Controller-->
-        <scene sceneID="nRX-RZ-M7C">
-            <objects>
-                <viewController storyboardIdentifier="postCardGalleryViewController" id="ydc-8A-9sy" customClass="FVPostCardGalleryViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="r9d-6d-hct"/>
-                        <viewControllerLayoutGuide type="bottom" id="QiO-Xz-oGT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2oS-iy-gg1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saD-Au-CgC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90588241815567017" green="0.90588241815567017" blue="0.90588241815567017" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="dJy-h2-aU5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_back_0" translatesAutoresizingMaskIntoConstraints="NO" id="0Ll-YM-y1K">
-                                <rect key="frame" x="20" y="29" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="Fdf-DM-P5b"/>
-                                    <constraint firstAttribute="width" constant="90" id="xBk-Xu-LJq"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_front_2" translatesAutoresizingMaskIntoConstraints="NO" id="Uds-ny-RSj">
-                                <rect key="frame" x="118" y="29" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="pVh-si-ENf"/>
-                                    <constraint firstAttribute="height" constant="57" id="tKt-mM-QPi"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 week ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGB-sZ-6Ls">
-                                <rect key="frame" x="0.0" y="94" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90588241820000004" green="0.90588241820000004" blue="0.90588241820000004" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="73u-i6-up0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_back_3" translatesAutoresizingMaskIntoConstraints="NO" id="kYs-JD-bha">
-                                <rect key="frame" x="20" y="123" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="Oc5-GG-Q8R"/>
-                                    <constraint firstAttribute="width" constant="90" id="hby-Fa-v4l"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 month ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpP-sl-YwX">
-                                <rect key="frame" x="0.0" y="188" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90588241820000004" green="0.90588241820000004" blue="0.90588241820000004" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="qBY-3p-WJe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_front_1" translatesAutoresizingMaskIntoConstraints="NO" id="o9h-Xk-i1E">
-                                <rect key="frame" x="20" y="217" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="NcT-rz-dxy"/>
-                                    <constraint firstAttribute="width" constant="90" id="Oip-8s-EaU"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_front_3" translatesAutoresizingMaskIntoConstraints="NO" id="nuw-37-3Es">
-                                <rect key="frame" x="118" y="217" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="ObJ-Nc-wvz"/>
-                                    <constraint firstAttribute="height" constant="57" id="uaU-I4-c2J"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="postcard_back_template" translatesAutoresizingMaskIntoConstraints="NO" id="d3V-OU-ttV">
-                                <rect key="frame" x="216" y="217" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="74r-HP-wdf"/>
-                                    <constraint firstAttribute="height" constant="57" id="wVJ-CQ-2Sh"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_front_0" translatesAutoresizingMaskIntoConstraints="NO" id="LoZ-gy-N5K">
-                                <rect key="frame" x="20" y="282" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="oaW-pm-fVn"/>
-                                    <constraint firstAttribute="height" constant="57" id="yek-VC-S2d"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 3 months ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2n-l4-SGh">
-                                <rect key="frame" x="0.0" y="347" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90588241820000004" green="0.90588241820000004" blue="0.90588241820000004" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="bfr-cI-K0d"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_postcard_back_1" translatesAutoresizingMaskIntoConstraints="NO" id="crr-hc-OAX">
-                                <rect key="frame" x="20" y="376" width="90" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="j5B-pp-ZzZ"/>
-                                    <constraint firstAttribute="width" constant="90" id="lwb-3x-n0a"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="o9h-Xk-i1E" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" constant="20" id="2TP-qW-zfQ"/>
-                            <constraint firstItem="a2n-l4-SGh" firstAttribute="top" secondItem="LoZ-gy-N5K" secondAttribute="bottom" constant="8" id="2dn-Q7-IQK"/>
-                            <constraint firstItem="0Ll-YM-y1K" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" constant="20" id="3Kd-gg-3bR"/>
-                            <constraint firstItem="saD-Au-CgC" firstAttribute="top" secondItem="2oS-iy-gg1" secondAttribute="top" id="3aP-0x-kFB"/>
-                            <constraint firstItem="kYs-JD-bha" firstAttribute="top" secondItem="KGB-sZ-6Ls" secondAttribute="bottom" constant="8" id="66U-rV-vmZ"/>
-                            <constraint firstAttribute="trailing" secondItem="saD-Au-CgC" secondAttribute="trailing" id="7vt-aj-4k4"/>
-                            <constraint firstItem="LoZ-gy-N5K" firstAttribute="top" secondItem="o9h-Xk-i1E" secondAttribute="bottom" constant="8" id="9XY-c9-N2g"/>
-                            <constraint firstAttribute="trailing" secondItem="ZpP-sl-YwX" secondAttribute="trailing" id="ALG-pr-4bK"/>
-                            <constraint firstItem="a2n-l4-SGh" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" id="AOA-Lg-d2m"/>
-                            <constraint firstItem="Uds-ny-RSj" firstAttribute="top" secondItem="0Ll-YM-y1K" secondAttribute="top" id="BWu-22-4uR"/>
-                            <constraint firstItem="kYs-JD-bha" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" constant="20" id="BYY-za-2Rr"/>
-                            <constraint firstItem="o9h-Xk-i1E" firstAttribute="top" secondItem="ZpP-sl-YwX" secondAttribute="bottom" constant="8" id="GVR-pB-vWR"/>
-                            <constraint firstItem="ZpP-sl-YwX" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" id="Ig8-z6-0MU"/>
-                            <constraint firstItem="LoZ-gy-N5K" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" constant="20" id="LQK-Qh-jol"/>
-                            <constraint firstItem="d3V-OU-ttV" firstAttribute="leading" secondItem="nuw-37-3Es" secondAttribute="trailing" constant="8" id="NY6-8K-S8Q"/>
-                            <constraint firstAttribute="trailing" secondItem="a2n-l4-SGh" secondAttribute="trailing" id="QSf-gj-ltc"/>
-                            <constraint firstAttribute="trailing" secondItem="KGB-sZ-6Ls" secondAttribute="trailing" id="Udm-VR-0UD"/>
-                            <constraint firstItem="d3V-OU-ttV" firstAttribute="top" secondItem="o9h-Xk-i1E" secondAttribute="top" id="XSH-4V-F5F"/>
-                            <constraint firstItem="crr-hc-OAX" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" constant="20" id="bKo-Ns-M2b"/>
-                            <constraint firstItem="saD-Au-CgC" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" id="eGA-wf-mQZ"/>
-                            <constraint firstItem="Uds-ny-RSj" firstAttribute="leading" secondItem="0Ll-YM-y1K" secondAttribute="trailing" constant="8" id="g7Z-Gy-1gr"/>
-                            <constraint firstItem="KGB-sZ-6Ls" firstAttribute="top" secondItem="0Ll-YM-y1K" secondAttribute="bottom" constant="8" id="ggu-Vc-m1e"/>
-                            <constraint firstItem="0Ll-YM-y1K" firstAttribute="top" secondItem="saD-Au-CgC" secondAttribute="bottom" constant="8" id="h8a-SS-dAZ"/>
-                            <constraint firstItem="crr-hc-OAX" firstAttribute="top" secondItem="a2n-l4-SGh" secondAttribute="bottom" constant="8" id="n0n-ry-nAE"/>
-                            <constraint firstItem="ZpP-sl-YwX" firstAttribute="top" secondItem="kYs-JD-bha" secondAttribute="bottom" constant="8" id="ojM-JD-Pey"/>
-                            <constraint firstItem="nuw-37-3Es" firstAttribute="leading" secondItem="o9h-Xk-i1E" secondAttribute="trailing" constant="8" id="rPv-kq-XtV"/>
-                            <constraint firstItem="KGB-sZ-6Ls" firstAttribute="leading" secondItem="2oS-iy-gg1" secondAttribute="leading" id="s59-bI-LK2"/>
-                            <constraint firstItem="nuw-37-3Es" firstAttribute="top" secondItem="o9h-Xk-i1E" secondAttribute="top" id="ugM-8x-aDw"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DT4-BY-Xiy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="796" y="784"/>
-        </scene>
         <!--Profile View Controller-->
         <scene sceneID="9M1-tC-74x">
             <objects>
@@ -1073,6 +915,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZc-FL-YdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1948" y="190"/>
+        </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="FGy-RW-Ji3">
+            <objects>
+                <collectionViewController storyboardIdentifier="galleryViewController" autoresizesArchivedViewToFullSize="NO" id="dhl-4X-1Qi" customClass="FVGalleryViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="ghv-pN-9La">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dHI-4q-xyN">
+                            <size key="itemSize" width="100" height="62.5"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="galleryViewCell" id="O8e-hL-QON" customClass="FVGalleryViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtR-bb-uou" userLabel="postcardView" customClass="FVPostCardView">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mtR-bb-uou" firstAttribute="top" secondItem="O8e-hL-QON" secondAttribute="top" id="J0F-C4-rx0"/>
+                                    <constraint firstAttribute="bottom" secondItem="mtR-bb-uou" secondAttribute="bottom" id="Vba-5q-iaP"/>
+                                    <constraint firstAttribute="trailing" secondItem="mtR-bb-uou" secondAttribute="trailing" id="i22-Qe-eoq"/>
+                                    <constraint firstItem="mtR-bb-uou" firstAttribute="leading" secondItem="O8e-hL-QON" secondAttribute="leading" id="md9-9R-J78"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="62.5"/>
+                                <connections>
+                                    <outlet property="postcardView" destination="mtR-bb-uou" id="r0R-4P-oSh"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="dhl-4X-1Qi" id="fXh-7x-jxK"/>
+                            <outlet property="delegate" destination="dhl-4X-1Qi" id="zpT-uz-Q7a"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wwS-sp-by3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="695"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mJq-Ql-aKp">
@@ -1513,17 +1408,9 @@
         <image name="foveButton" width="50" height="50"/>
         <image name="gender_female_sign" width="30" height="30"/>
         <image name="mapTabBar_icon" width="30" height="30"/>
-        <image name="postcard_back_template" width="512" height="320"/>
         <image name="profileTabBar_icon" width="60" height="60"/>
         <image name="send_postcard_button" width="110" height="30"/>
         <image name="settingTabBar_icon" width="30" height="30"/>
-        <image name="test_postcard_back_0" width="987" height="639"/>
-        <image name="test_postcard_back_1" width="1920" height="1200"/>
-        <image name="test_postcard_back_3" width="1648" height="1060"/>
-        <image name="test_postcard_front_0" width="958" height="512"/>
-        <image name="test_postcard_front_1" width="1366" height="768"/>
-        <image name="test_postcard_front_2" width="1366" height="768"/>
-        <image name="test_postcard_front_3" width="1366" height="768"/>
         <image name="test_profile_1" width="1508" height="2100"/>
         <image name="test_profile_3" width="576" height="694"/>
         <image name="test_profile_5" width="400" height="533"/>
