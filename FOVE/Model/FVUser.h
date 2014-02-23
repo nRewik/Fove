@@ -36,6 +36,7 @@
 @property (nonatomic) NSInteger height;
 
 @property (strong,nonatomic) NSString *profileImageUrl;
+@property (strong,nonatomic) UIImage *profileImage;
 
 //social
 @property (strong,nonatomic) id<FBGraphUser> facebookUserData;

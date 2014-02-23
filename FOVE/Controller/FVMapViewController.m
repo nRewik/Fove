@@ -86,10 +86,7 @@
     {
         FVMailboxAnnotation *pin = (FVMailboxAnnotation *)view.annotation;
         
-        NSURL *ownerImageUrl = [NSURL URLWithString:pin.mailbox.owner.profileImageUrl];
-        NSData *ownerImageData = [NSData dataWithContentsOfURL:ownerImageUrl];
-        UIImage *ownerImage = [UIImage imageWithData:ownerImageData];
-        UIImageView *ownerImageView = [[UIImageView alloc] initWithImage:ownerImage];
+        UIImageView *ownerImageView = [[UIImageView alloc] initWithImage:pin.mailbox.owner.profileImage];
         
         ownerImageView.frame = CGRectMake(0, 0, 44, 44);
         ownerImageView.contentMode = UIViewContentModeScaleAspectFill;

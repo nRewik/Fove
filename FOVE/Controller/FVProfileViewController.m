@@ -65,13 +65,10 @@
 //        self.interestedGenderLabel.text = self.user.interestedGender;
 //        self.hobbyLabel.text = self.user.hobby;
         
-        NSURL *imageUrl = [NSURL URLWithString:self.user.profileImageUrl];
-        NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-        UIImage *image = [UIImage imageWithData:imageData];
-        self.profileImageView.image = image;
+        self.profileImageView.image = self.user.profileImage;
         
         for (UIImageView *imv in self.photos) {
-            imv.image = image;
+            imv.image = self.user.profileImage;
         }
         
     }

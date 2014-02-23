@@ -38,8 +38,6 @@ static FVUser *currentUser;
     currentUser = user;
 }
 
-
-
 -(instancetype)initWithUserDictionary:(NSDictionary *)dictionary
 {
     self = [super init];
@@ -88,6 +86,16 @@ static FVUser *currentUser;
     }
 }
 
+-(UIImage *)profileImage
+{
+    if (!_profileImage) {
+        NSURL *imageURL = [NSURL URLWithString:self.profileImageUrl];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData];
+        _profileImage = image;
+    }
+    return _profileImage;
+}
 
 
 @end

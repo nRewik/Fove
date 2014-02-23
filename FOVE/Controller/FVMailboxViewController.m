@@ -120,11 +120,8 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         dateFormat.dateFormat = @"d LLLL yyyy";
         self.dateLabel.text = [dateFormat stringFromDate:self.mailbox.lastUpdate];
-        
-        //profile image
-        NSData *profileImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.mailbox.owner.profileImageUrl]];
-        UIImage *image = [UIImage imageWithData:profileImageData];
-        self.ownerImageView.image = image;
+
+        self.ownerImageView.image = self.mailbox.owner.profileImage;
         
         if ([self.mailbox.owner.gender isEqualToString:@"male"]) {
             self.sexImageView.image = [UIImage imageNamed:@"gender_male_sign"];

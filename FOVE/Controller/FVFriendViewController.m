@@ -23,29 +23,28 @@
 
 @implementation FVFriendViewController
 
+
+-(NSMutableArray *)friends
+{
+    if (!_friends) {
+        int numberOfFriends = 20;
+        _friends = [[NSMutableArray alloc] init];
+        for (int i=0; i < numberOfFriends; i++) {
+            FVUser *xUser = [[FVUser alloc] init];
+            xUser.name = [NSString stringWithFormat:@"name number %d",i+1];
+            xUser.status = [NSString stringWithFormat:@"status number %d",i+1];
+            [_friends addObject:xUser];
+        }
+    }
+    return _friends;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     self.friendCollectionView.dataSource = self;
     self.friendCollectionView.delegate = self;
-    //mockup
-    [self setupFriends];
-}
-
-#pragma mark - mock up friends
--(void)setupFriends
-{
-    int numberOfFriends = 20;
-    
-    self.friends = [[NSMutableArray alloc] init];
-    for (int i=0; i<numberOfFriends; i++) {
-        FVUser *xUser = [[FVUser alloc] init];
-        xUser.name = [NSString stringWithFormat:@"name number %d",i+1];
-        xUser.status = [NSString stringWithFormat:@"status number %d",i+1];
-        [self.friends addObject:xUser];
-    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -63,12 +62,9 @@
     static NSString *friendViewCellidentifier = @"friendViewCell";
     
     FVUser *user = self.friends[indexPath.row];
-    NSURL *profileImageURL = [NSURL URLWithString:user.profileImageUrl];
-    NSData *profileImageData = [NSData dataWithContentsOfURL:profileImageURL];
-    UIImage *profileImage = [[UIImage alloc] initWithData:profileImageData];
-
+    
     FVFriendCollectionViewCell * cell = [self.friendCollectionView dequeueReusableCellWithReuseIdentifier:friendViewCellidentifier forIndexPath:indexPath];
-    cell.profileImageView.image = profileImage;
+    cell.profileImageView.image = user.profileImage;
     cell.profileNameLabel.text = user.name;
     cell.profileStatusLabel.text = [NSString stringWithFormat:@"section %d row %d",indexPath.section,indexPath.row];
 
