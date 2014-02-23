@@ -46,6 +46,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.createPostCardView.delegate = self;
+    NSLog(@"%@",self.mailbox.mailbox_id);
 }
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
@@ -77,17 +78,19 @@
     MSTable *table = [client tableWithName:@"postcard"];
     
     
-    NSDictionary *postcardInfo = @{ @"sender" : [[FVUser currentUser] user_id]};
+    NSDictionary *postcardInfo = @{ @"sender" : [[FVUser currentUser] user_id],
+                                    @"mailbox_id" : self.mailbox.mailbox_id
+                                    };
     [table insert:postcardInfo completion:^(NSDictionary *item, NSError *error) {
         NSString *itemID = item[@"id"];
         
         FVBlobStorageService *blobService = [FVBlobStorageService getInstance];
 
-        NSString *frontImageName = [NSString stringWithFormat:@"%@_front.png",itemID];
-        NSString *backImageName = [NSString stringWithFormat:@"%@_back.png",itemID];
+        NSString *frontImageName = [NSString stringWithFormat:@"%@_front.jpeg",itemID];
+        NSString *backImageName = [NSString stringWithFormat:@"%@_back.jpeg",itemID];
         
-        NSData *frontImageData = UIImagePNGRepresentation(self.createdPostcard.frontImage);
-        NSData *backImageData = UIImagePNGRepresentation(self.createdPostcard.backImage);
+        NSData *frontImageData = UIImageJPEGRepresentation(self.createdPostcard.frontImage, 0.8);
+        NSData *backImageData = UIImageJPEGRepresentation(self.createdPostcard.backImage, 0.8);
 
         
         [blobService getSasUrlForNewBlob:frontImageName forContainer:[FVBlobStorageService postcardContainer] withCompletion:^(NSString *sasUrl, NSError *error)
@@ -158,6 +161,20 @@
     else if( _isFinishUploadFrontImage && _isFinishUploadBackImage )
     {
         NSLog(@"create postcard complete");
+        
+        //insert friend
+        MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+        MSTable *table = [client tableWithName:@"friend"];
+        
+        NSDictionary *friendInfo = @{ @"user_id" : [[FVUser currentUser] user_id] , @"friend_id" : self.mailbox.owner.user_id };
+        [table insert:friendInfo completion:^(NSDictionary *item, NSError *error) {
+            if (error) {
+                NSLog(@"%@",error);
+                return;
+            }
+            NSLog(@"insert friend complete");
+        }];
+        /////
     }
 }
 

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FVMailbox.h"
+
 
 @interface FVCreatePostCardViewController : UIViewController
+
+@property (strong,nonatomic) FVMailbox *mailbox;
 
 @end

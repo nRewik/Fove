@@ -11,6 +11,7 @@
 #import "FVMapViewController.h"
 #import "FVMediaPlayerView.h"
 #import "FVProfileViewController.h"
+#import "FVCreatePostCardViewController.h"
 
 @interface FVMailboxViewController () <UIGestureRecognizerDelegate>
 
@@ -52,6 +53,10 @@
             FVProfileViewController *pvc = (FVProfileViewController *)destination;
             pvc.user = self.mailbox.owner;
         }
+    }
+    if ([destination isKindOfClass:[FVCreatePostCardViewController class]]) {
+        FVCreatePostCardViewController *cpcv = (FVCreatePostCardViewController *)destination;
+        cpcv.mailbox = self.mailbox;
     }
 }
 
