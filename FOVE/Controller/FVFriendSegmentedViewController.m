@@ -15,12 +15,33 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sengmentedControl;
 @property (strong, nonatomic) IBOutlet UIViewController *currentViewController;
 
+@property (strong,nonatomic) UIViewController *firstVC;
+@property (strong,nonatomic) UIViewController *secondVC;
+
+
 @end
 
 #define friendStoryboardID @"friendViewController"
 #define galleryStoryboardID @"galleryViewController"
 
 @implementation FVFriendSegmentedViewController
+
+#pragma mark - Segmendted VC
+-(UIViewController *)firstVC
+{
+    if (!_firstVC) {
+        _firstVC = [self.storyboard instantiateViewControllerWithIdentifier:friendStoryboardID];
+    }
+    return _firstVC;
+}
+-(UIViewController *)secondVC
+{
+    if (!_secondVC) {
+        _secondVC = [self.storyboard instantiateViewControllerWithIdentifier:galleryStoryboardID];
+    }
+    return _secondVC;
+}
+#pragma mark - 
 
 -(void)viewDidLoad
 {
@@ -37,7 +58,7 @@
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
     UIViewController *vc = [self viewControllerForSegmentIndex:sender.selectedSegmentIndex];
     [self addChildViewController:vc];
-    [self transitionFromViewController:self.currentViewController toViewController:vc duration:0.5 options:0 animations:^{
+    [self transitionFromViewController:self.currentViewController toViewController:vc duration:0.0 options:0 animations:^{
         [self.currentViewController.view removeFromSuperview];
         vc.view.frame = self.contentView.bounds;
         [self.contentView addSubview:vc.view];
@@ -54,10 +75,10 @@
     switch (index)
     {
         case 0:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:friendStoryboardID];
+            vc = self.firstVC;
             break;
         case 1:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:galleryStoryboardID];
+            vc = self.secondVC;
             break;
     }
     return vc;

@@ -116,7 +116,8 @@
     
     NSDictionary *locationDict = @{ @"latitude": @(loc.latitude),
                                     @"longitude" : @(loc.longitude),
-                                    @"radius" : @(spanDistance / 1000.0) //in km.
+                                    @"radius" : @(spanDistance / 1000.0), //in km.
+                                    @"id" : [[FVUser currentUser] user_id]
                                     };
 
     MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
