@@ -938,8 +938,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtR-bb-uou" userLabel="postcardView" customClass="FVPostCardView">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtR-bb-uou" userLabel="postcardView" customClass="FVPostCardView">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="62"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
