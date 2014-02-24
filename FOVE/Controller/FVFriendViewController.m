@@ -11,6 +11,9 @@
 #import "FVProfileViewController.h"
 #import "FVFriendCollectionViewCell.h"
 
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAppDelegate.h"
+
 @interface FVFriendViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *friendCollectionView;
 @property (strong,nonatomic) FVUser *selectedUser;
@@ -27,14 +30,31 @@
 -(NSMutableArray *)friends
 {
     if (!_friends) {
-        int numberOfFriends = 20;
         _friends = [[NSMutableArray alloc] init];
-        for (int i=0; i < numberOfFriends; i++) {
-            FVUser *xUser = [[FVUser alloc] init];
-            xUser.name = [NSString stringWithFormat:@"name number %d",i+1];
-            xUser.status = [NSString stringWithFormat:@"status number %d",i+1];
-            [_friends addObject:xUser];
-        }
+        
+        MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+        
+        NSDictionary *parameter = @{ @"user_id" : [[FVUser currentUser] user_id] };
+        [client invokeAPI:@"friend"
+                     body:nil
+               HTTPMethod:@"GET"
+               parameters:parameter
+                  headers:nil
+               completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                   
+                   if (error){
+                       NSLog(@"%@",error);
+                       return;
+                   }
+                   for (NSUInteger i=0; i<[result count]; i++) {
+                       FVUser *friend = [[FVUser alloc] initWithUserDictionary:result[i]];
+                       [_friends addObject:friend];
+                   }
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                       [self.friendCollectionView reloadData];
+                   });
+                   
+        }];
     }
     return _friends;
 }
@@ -64,9 +84,10 @@
     FVUser *user = self.friends[indexPath.row];
     
     FVFriendCollectionViewCell * cell = [self.friendCollectionView dequeueReusableCellWithReuseIdentifier:friendViewCellidentifier forIndexPath:indexPath];
-    cell.profileImageView.image = user.profileImage;
     cell.profileNameLabel.text = user.name;
-    cell.profileStatusLabel.text = [NSString stringWithFormat:@"section %d row %d",indexPath.section,indexPath.row];
+    cell.profileStatusLabel.text = user.status;
+    cell.profileImageView.image = user.profileImage;
+
 
     return cell;
 }
