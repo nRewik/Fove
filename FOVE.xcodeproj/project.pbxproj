@@ -38,8 +38,6 @@
 		A04ACB17189749AC00587F34 /* FVProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04ACB16189749AC00587F34 /* FVProfileViewController.m */; };
 		A056F66E18B0F1D0001C6987 /* FVFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A056F66D18B0F1D0001C6987 /* FVFriendViewController.m */; };
 		A056F67518B0F8F2001C6987 /* FVindexTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A056F67418B0F8F2001C6987 /* FVindexTabBarController.m */; };
-		A05CC08118968BAA00C0D562 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */; };
-		A05CC08218968BAA00C0D562 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */; };
 		A06856C6189CC967007F0015 /* FVMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06856C5189CC967007F0015 /* FVMapViewController.m */; };
 		A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A086301918AA6EB900D2BC4D /* FVChatViewController.m */; };
 		A09943E4189BDA4F00782AEE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09943E3189BDA4F00782AEE /* CoreLocation.framework */; };
@@ -49,6 +47,8 @@
 		A0B8360818B6116D005A35AC /* FVPostCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B8360718B6116D005A35AC /* FVPostCardViewController.m */; };
 		A0C2BBFB18AE5CA100956797 /* FVPostCardPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2BBFA18AE5CA100956797 /* FVPostCardPortraitView.m */; };
 		A0CE0DEC18BB2F47000CBE55 /* FVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CE0DEB18BB2F47000CBE55 /* FVNotification.m */; };
+		A0CE0DFB18BB4024000CBE55 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CE0DF918BB4024000CBE55 /* WindowsAzureMessaging.framework */; };
+		A0CE0DFC18BB4024000CBE55 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CE0DFA18BB4024000CBE55 /* WindowsAzureMobileServices.framework */; };
 		A0E8717E189CE3F40093D98A /* FVCreateMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -111,8 +111,6 @@
 		A056F66D18B0F1D0001C6987 /* FVFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVFriendViewController.m; path = Controller/FVFriendViewController.m; sourceTree = "<group>"; };
 		A056F67318B0F8F2001C6987 /* FVindexTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVindexTabBarController.h; path = Controller/FVindexTabBarController.h; sourceTree = "<group>"; };
 		A056F67418B0F8F2001C6987 /* FVindexTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVindexTabBarController.m; path = Controller/FVindexTabBarController.m; sourceTree = "<group>"; };
-		A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
-		A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		A06856C4189CC967007F0015 /* FVMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMapViewController.h; path = Controller/FVMapViewController.h; sourceTree = "<group>"; };
 		A06856C5189CC967007F0015 /* FVMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMapViewController.m; path = Controller/FVMapViewController.m; sourceTree = "<group>"; };
 		A086301818AA6EB900D2BC4D /* FVChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVChatViewController.h; path = Controller/FVChatViewController.h; sourceTree = "<group>"; };
@@ -128,6 +126,8 @@
 		A0C2BBFA18AE5CA100956797 /* FVPostCardPortraitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVPostCardPortraitView.m; path = View/FVPostCardPortraitView.m; sourceTree = "<group>"; };
 		A0CE0DEA18BB2F47000CBE55 /* FVNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVNotification.h; path = Model/FVNotification.h; sourceTree = "<group>"; };
 		A0CE0DEB18BB2F47000CBE55 /* FVNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVNotification.m; path = Model/FVNotification.m; sourceTree = "<group>"; };
+		A0CE0DF918BB4024000CBE55 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		A0CE0DFA18BB4024000CBE55 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVCreateMailboxViewController.h; path = Controller/FVCreateMailboxViewController.h; sourceTree = "<group>"; };
 		A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVCreateMailboxViewController.m; path = Controller/FVCreateMailboxViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,11 +140,11 @@
 				A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */,
 				A09943EA189BE42B00782AEE /* MapKit.framework in Frameworks */,
 				A09943E4189BDA4F00782AEE /* CoreLocation.framework in Frameworks */,
-				A05CC08218968BAA00C0D562 /* WindowsAzureMobileServices.framework in Frameworks */,
+				A0CE0DFC18BB4024000CBE55 /* WindowsAzureMobileServices.framework in Frameworks */,
+				A0CE0DFB18BB4024000CBE55 /* WindowsAzureMessaging.framework in Frameworks */,
 				A01E2A4918924AA400C84F01 /* CoreGraphics.framework in Frameworks */,
 				A01E2A8018924BD900C84F01 /* FacebookSDK.framework in Frameworks */,
 				A01E2A4B18924AA400C84F01 /* UIKit.framework in Frameworks */,
-				A05CC08118968BAA00C0D562 /* WindowsAzureMessaging.framework in Frameworks */,
 				A01E2A4718924AA400C84F01 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,10 +194,10 @@
 		A01E2A4518924AA400C84F01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0CE0DF818BB4024000CBE55 /* AzureSDK-iOS */,
 				A0118A1918A78B6E00664363 /* MediaPlayer.framework */,
 				A09943E9189BE42B00782AEE /* MapKit.framework */,
 				A09943E3189BDA4F00782AEE /* CoreLocation.framework */,
-				A05CC07E18968BAA00C0D562 /* AzureSDK-iOS */,
 				A01E2A7F18924BD900C84F01 /* FacebookSDK.framework */,
 				A01E2A4618924AA400C84F01 /* Foundation.framework */,
 				A01E2A4818924AA400C84F01 /* CoreGraphics.framework */,
@@ -354,11 +354,11 @@
 			name = ChatView;
 			sourceTree = "<group>";
 		};
-		A05CC07E18968BAA00C0D562 /* AzureSDK-iOS */ = {
+		A0CE0DF818BB4024000CBE55 /* AzureSDK-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A05CC07F18968BAA00C0D562 /* WindowsAzureMessaging.framework */,
-				A05CC08018968BAA00C0D562 /* WindowsAzureMobileServices.framework */,
+				A0CE0DF918BB4024000CBE55 /* WindowsAzureMessaging.framework */,
+				A0CE0DFA18BB4024000CBE55 /* WindowsAzureMobileServices.framework */,
 			);
 			path = "AzureSDK-iOS";
 			sourceTree = "<group>";
@@ -568,8 +568,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/nRewik/Documents/FacebookSDK,
-					"/Users/nRewik/Developer/iOS\\ Project/Fove/FOVE/AzureSDK-iOS",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/nRewik/Developer/iOS\\ Project/FOVE/AzureSDK-iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
@@ -590,8 +590,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/nRewik/Documents/FacebookSDK,
-					"/Users/nRewik/Developer/iOS\\ Project/Fove/FOVE/AzureSDK-iOS",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/nRewik/Developer/iOS\\ Project/FOVE/AzureSDK-iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOVE/FOVE-Prefix.pch";
