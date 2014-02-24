@@ -113,7 +113,7 @@
                     dispatch_async( dispatch_get_main_queue(), ^{
                         [table update:postcardFrontImageInfo completion:^(NSDictionary *item, NSError *error)
                         {
-                            NSLog(@"font");
+                            NSLog(@"front");
                             _isFinishUploadFrontImage = YES;
                             [[NSNotificationCenter defaultCenter] postNotificationName:FVCREATEPOSTCARD_UPLOAD_NOTIFICATION object:nil];
                         }];
@@ -172,7 +172,22 @@
                 NSLog(@"%@",error);
                 return;
             }
-            NSLog(@"insert friend complete");
+            NSLog(@"insert friend complete --- %@ ",item[@"message"]);
+        }];
+        
+        
+        MSTable *notificationTable = [client tableWithName:@"notification"];
+        NSDictionary *notifyInfo = @{ @"sender_id": [[FVUser currentUser] user_id] ,
+                                      @"recipient_id" : self.mailbox.owner.user_id,
+                                      @"notification_type" : @"send_postcard",
+                                      @"notification_message" : @"sent postcard to"
+                                      };
+        [notificationTable insert:notifyInfo completion:^(NSDictionary *item, NSError *error) {
+            if (error) {
+                NSLog(@"FVCreatePostCardViewController insert notification table error \n\n %@",error);
+                return;
+            }
+            NSLog(@"insert send postcard notification complete");
         }];
         /////
     }
