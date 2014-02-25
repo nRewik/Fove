@@ -12,6 +12,7 @@
 #import "FVMediaPlayerView.h"
 #import "FVProfileViewController.h"
 #import "FVCreatePostCardViewController.h"
+#import "FVAzureService.h"
 
 @interface FVMailboxViewController () <UIGestureRecognizerDelegate>
 
@@ -46,7 +47,10 @@
 }
 - (IBAction)foveMailbox
 {
-    
+    self.mailbox.fovecount += 1;
+    [self updateUI];
+//    MSClient *client = [FVAzureService sharedClient];
+//    MSTable *mailboxTable = [client tableWithName:@"mailbox"];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
