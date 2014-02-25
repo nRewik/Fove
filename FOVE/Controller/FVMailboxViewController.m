@@ -13,9 +13,13 @@
 #import "FVProfileViewController.h"
 #import "FVCreatePostCardViewController.h"
 #import "FVAzureService.h"
+#import "FVPostCard.h"
+#import "FVPostCardPortraitView.h"
 
 @interface FVMailboxViewController () <UIGestureRecognizerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *mailboxInfoView;
 
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mailboxMassageLabel;
@@ -31,14 +35,33 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendPostCardButton;
 
+//
+@property (strong,nonatomic) NSMutableArray *postcards; // of FVPostcard;
+
 @end
-
-
-
-
 
 @implementation FVMailboxViewController
 
+#define POSTCARD_HEIGHT 187
+#define POSTCARD_HEIGHT_GAP 8
+#define POSTCARD_WIDTH 300
+
+-(NSMutableArray *)postcards
+{
+    if (!_postcards) {
+        _postcards = [[NSMutableArray alloc] init];
+        
+        NSString *imageName = @"test_postcard_back_1";
+        UIImage *image = [UIImage imageNamed:imageName];
+        
+        int numberOfPostcard = 10;
+        for (int i=0; i<numberOfPostcard; i++) {
+            FVPostCard *postcard = [[FVPostCard alloc] initWithFrontImage:image backImage:image];
+            [_postcards addObject:postcard];
+        }
+    }
+    return _postcards;
+}
 
 - (IBAction)editMailbox:(id)sender
 {
@@ -92,8 +115,16 @@
     [self updateMedia];
     
     [self ownerPictuerTapGestureSetup];
+    
+    [self reloadPostcard];
 }
-
+-(void)viewDidLayoutSubviews
+{
+    int numberOfPostcard = [self.postcards count];
+    CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + (POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) * numberOfPostcard;
+    self.scrollView.contentSize = CGSizeMake(screenSizeWidth,totalHeight);
+}
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
@@ -112,7 +143,24 @@
 {
     [self performSegueWithIdentifier:@"viewProfile" sender:self];
 }
+-(void)reloadPostcard
+{
+    int numberOfPostcard = [self.postcards count];
+    for (int i=0; i<numberOfPostcard; i++) {
 
+        CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat xPos = (screenSizeWidth - POSTCARD_WIDTH)/2;
+        
+        CGFloat eachPCVHeight = POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP;
+        CGFloat yPos = self.mailboxInfoView.frame.size.height + eachPCVHeight*i;
+
+        CGRect frame = CGRectMake( xPos , yPos , POSTCARD_WIDTH, POSTCARD_HEIGHT);
+        FVPostCardPortraitView *pcv = [[FVPostCardPortraitView alloc] initWithFrame:frame];
+        pcv.postCard = self.postcards[i];
+        
+        [self.scrollView addSubview:pcv];
+    }
+}
 
 -(void)updateUI
 {
