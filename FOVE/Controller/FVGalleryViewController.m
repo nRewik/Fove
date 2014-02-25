@@ -10,6 +10,10 @@
 #import "FVPostCard.h"
 #import "FVGalleryViewCell.h"
 
+#import "FVUser.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAppDelegate.h"
+
 @interface FVGalleryViewController ()
 
 @property (strong,nonatomic) NSMutableArray *postcards; // of FVPostcard
@@ -17,11 +21,16 @@
 @end
 
 @implementation FVGalleryViewController
+{
+    dispatch_queue_t downloadImageQueue;
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    downloadImageQueue = dispatch_queue_create("downloadImageQueue", NULL);
 }
 -(NSUInteger)supportedInterfaceOrientations
 {
@@ -33,16 +42,31 @@
     if (!_postcards) {
         _postcards = [[NSMutableArray alloc] init];
         
-        int numberOFpostCards = 20;
         
-        for (int i=0; i<numberOFpostCards; i++) {
-            NSString *imageName = [NSString stringWithFormat:@"test_postcard_front_%d",i%4];
-            UIImage *frontImage = [UIImage imageNamed:imageName];
-            FVPostCard *postcard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:nil];
-            
-            [self.postcards addObject:postcard];
-        }
+        MSClient *client = [(FVAppDelegate *)[[UIApplication sharedApplication] delegate] client];
+        MSTable *table = [client tableWithName:@"postcard"];
         
+        NSString *user_id = [[FVUser currentUser] user_id];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sender = %@ or recipient = %@",user_id,user_id];
+        [table readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
+            if (error) {
+                NSLog(@"error - FVGalleryViewController postcard table read \n %@",error);
+                return;
+            }
+            [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                dispatch_async( downloadImageQueue, ^{
+                    UIImage *frontImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:obj[@"front_image"]]]];
+                    UIImage *backImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:obj[@"back_image"]]]];
+                    
+                    FVPostCard *newPostcard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
+                    [self.postcards addObject:newPostcard];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.collectionView reloadData];
+                    });
+                });
+            }];
+        }];
     }
     return _postcards;
 }

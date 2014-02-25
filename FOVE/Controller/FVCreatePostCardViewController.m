@@ -79,7 +79,8 @@
     
     
     NSDictionary *postcardInfo = @{ @"sender" : [[FVUser currentUser] user_id],
-                                    @"mailbox_id" : self.mailbox.mailbox_id
+                                    @"mailbox_id" : self.mailbox.mailbox_id,
+                                    @"recipient" : self.mailbox.owner.user_id
                                     };
     [table insert:postcardInfo completion:^(NSDictionary *item, NSError *error) {
         NSString *itemID = item[@"id"];
