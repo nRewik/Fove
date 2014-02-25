@@ -18,8 +18,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     [FBLoginView class];
     [FBProfilePictureView class];
     
-    self.client = [MSClient clientWithApplicationURLString:@"https://fove.azure-mobile.net/" applicationKey:@"sgsdrHNSdIGQQzYmKrNkFlkcCIwmEY95"];
-
     return YES;
 }
 							

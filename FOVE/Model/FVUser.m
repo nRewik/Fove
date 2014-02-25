@@ -8,15 +8,14 @@
 
 #import "FVUser.h"
 
-#import "FVAppDelegate.h"
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAzureService.h"
 
 @implementation FVUser
 
 
 +(void)getUserFromID:(NSString *)user_id completion:(void (^)(FVUser *, NSError *))completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *userTable = [client tableWithName:@"userinfo"];
     [userTable readWithId:user_id completion:^(NSDictionary *item, NSError *error) {
         FVUser *resultUser = nil;

@@ -44,6 +44,10 @@
     //todo
     //.. go to editView
 }
+- (IBAction)foveMailbox
+{
+    
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

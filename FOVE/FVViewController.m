@@ -6,11 +6,16 @@
 //  Copyright (c) 2014 Nutchaphon Rewik. All rights reserved.
 //
 
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "FVViewController.h"
-#import "FVAppDelegate.h"
 #import "FVProfileViewController.h"
 #import "FVUser.h"
 #import "FVBlobStorageService.h"
+#import "FVAzureService.h"
+
+@interface FVViewController () <FBLoginViewDelegate>
+@end
 
 @interface FVViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginActivityIndicatorView;
@@ -144,7 +149,7 @@
         return;
     }
     
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"Facebook"];
     MSQuery *query = [table query];
     
@@ -294,7 +299,7 @@
 
 -(void)updateImageURL:(NSString *)imageUrl toUserInfo:(NSString *)userId withCompletion:(void (^)() )completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"userinfo"];
     
     NSDictionary *item = @{ @"id" : userId , @"profileimage" : imageUrl };
@@ -315,7 +320,7 @@
 
 -(void)updateCheckin:(NSString *)itemId withCompletion:(void (^)() )completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"Facebook"];
     [FBRequestConnection startWithGraphPath:@"/me?fields=checkins.fields(place)&limit=100" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
      {
@@ -345,7 +350,7 @@
 }
 -(void)updateMusic:(NSString *)itemId withCompletion:(void (^)() )completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"Facebook"];
     [FBRequestConnection startWithGraphPath:@"/me?fields=music.fields(id,name)&limit=100" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
      {
@@ -374,7 +379,7 @@
 }
 -(void)updateMovies:(NSString *)itemId withCompletion:(void (^)() )completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"Facebook"];
     [FBRequestConnection startWithGraphPath:@"/me?fields=movies&limit=100" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
      {
@@ -405,7 +410,7 @@
 }
 -(void)updatePagelikes:(NSString *)itemId withCompletion:(void (^)() )completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"Facebook"];
     [FBRequestConnection startWithGraphPath:@"/me/likes?fields=name&limit=200" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
      {

@@ -12,10 +12,10 @@
 
 #import "FVMailbox.h"
 #import "FVUser.h"
-#import "FVAppDelegate.h"
+
+#import "FVAzureService.h"
 
 #import "FVBlobStorageService.h"
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -84,7 +84,7 @@
 
 -(void)updateMediaToMailbox:(NSString *)mailboxID blobUrl:(NSString *)blobUrl mediaType:(FVMediaType)mediaType
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *mailboxTable = [client tableWithName:@"mailbox"];
     
     NSMutableDictionary *mailboxInfo = [[NSMutableDictionary alloc] init];
@@ -173,7 +173,7 @@
                                @"longitude" : @(self.location.longitude)
                                };
     
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *mailboxTable = [client tableWithName:@"mailbox"];
     [mailboxTable insert:mailboxInfo completion:^(NSDictionary *item, NSError *error) {
         if(error)

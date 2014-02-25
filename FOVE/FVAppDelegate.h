@@ -13,7 +13,6 @@
 @interface FVAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) MSClient *client;
 @property (strong, nonatomic) id <FBGraphUser> facebookUser;
 
 @end

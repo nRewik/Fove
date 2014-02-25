@@ -15,8 +15,7 @@
 #import "FVMailboxAnnotation.h"
 #import "FVMailboxViewController.h"
 
-#import "FVAppDelegate.h"
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAzureService.h"
 
 @interface FVMapViewController () <CLLocationManagerDelegate,MKMapViewDelegate>
 
@@ -120,7 +119,7 @@
                                     @"id" : [[FVUser currentUser] user_id]
                                     };
 
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     [client invokeAPI:@"viewnearlymailbox"
                  body:nil HTTPMethod:@"get"
            parameters:locationDict

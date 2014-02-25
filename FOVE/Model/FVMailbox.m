@@ -8,15 +8,14 @@
 
 #import "FVMailbox.h"
 
-#import "FVAppDelegate.h"
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAzureService.h"
 
 @implementation FVMailbox
 
 
 +(void)deleteMailboxWithID:(NSString *)mailboxID completion:(void (^)(id, NSError *))completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *mailTable = [client tableWithName:@"mailbox"];
     [mailTable deleteWithId:mailboxID completion:^(id itemId, NSError *error) {
         completion(itemId,error);
@@ -25,7 +24,7 @@
 
 +(void)getMailboxFormID:(NSString *)mailboxID completion:(void (^)(FVMailbox *, NSError *))completion
 {
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *mailTable = [client tableWithName:@"mailbox"];
     
     [mailTable readWithId:mailboxID completion:^(NSDictionary *item, NSError *error) {

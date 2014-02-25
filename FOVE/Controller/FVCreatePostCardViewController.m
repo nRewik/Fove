@@ -11,8 +11,8 @@
 #import "FVPostCardViewController.h"
 
 #import "FVBlobStorageService.h"
-#import "FVAppDelegate.h"
 #import "FVUser.h"
+#import "FVAzureService.h"
 
 
 @interface FVCreatePostCardViewController () <FVCreatePostCardViewDelegate>
@@ -74,7 +74,7 @@
     //
     
     
-    MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+    MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"postcard"];
     
     
@@ -164,7 +164,7 @@
         NSLog(@"create postcard complete");
         
         //insert friend
-        MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+        MSClient *client = [FVAzureService sharedClient];
         MSTable *table = [client tableWithName:@"friend"];
         
         NSDictionary *friendInfo = @{ @"user_id" : [[FVUser currentUser] user_id] , @"friend_id" : self.mailbox.owner.user_id };

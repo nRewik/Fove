@@ -36,6 +36,7 @@
 		A03C377B18AF67B4001BA7E7 /* FVPostCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C377A18AF67B4001BA7E7 /* FVPostCardView.m */; };
 		A03D0C9818A91611006BF805 /* FVMediaPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A03D0C9718A91611006BF805 /* FVMediaPlayerView.m */; };
 		A03F5E4B18BCA26F00AA3A83 /* FVNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A03F5E4A18BCA26F00AA3A83 /* FVNotificationViewCell.m */; };
+		A03F5E4E18BCB05B00AA3A83 /* FVAzureService.m in Sources */ = {isa = PBXBuildFile; fileRef = A03F5E4D18BCB05B00AA3A83 /* FVAzureService.m */; };
 		A04ACB17189749AC00587F34 /* FVProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04ACB16189749AC00587F34 /* FVProfileViewController.m */; };
 		A056F66E18B0F1D0001C6987 /* FVFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A056F66D18B0F1D0001C6987 /* FVFriendViewController.m */; };
 		A056F67518B0F8F2001C6987 /* FVindexTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A056F67418B0F8F2001C6987 /* FVindexTabBarController.m */; };
@@ -108,6 +109,8 @@
 		A03D0C9718A91611006BF805 /* FVMediaPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMediaPlayerView.m; path = View/FVMediaPlayerView.m; sourceTree = "<group>"; };
 		A03F5E4918BCA26F00AA3A83 /* FVNotificationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVNotificationViewCell.h; path = View/FVNotificationViewCell.h; sourceTree = "<group>"; };
 		A03F5E4A18BCA26F00AA3A83 /* FVNotificationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVNotificationViewCell.m; path = View/FVNotificationViewCell.m; sourceTree = "<group>"; };
+		A03F5E4C18BCB05B00AA3A83 /* FVAzureService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVAzureService.h; path = Utilities/FVAzureService.h; sourceTree = "<group>"; };
+		A03F5E4D18BCB05B00AA3A83 /* FVAzureService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVAzureService.m; path = Utilities/FVAzureService.m; sourceTree = "<group>"; };
 		A04ACB15189749AC00587F34 /* FVProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVProfileViewController.h; path = Controller/FVProfileViewController.h; sourceTree = "<group>"; };
 		A04ACB16189749AC00587F34 /* FVProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVProfileViewController.m; path = Controller/FVProfileViewController.m; sourceTree = "<group>"; };
 		A056F66C18B0F1D0001C6987 /* FVFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVFriendViewController.h; path = Controller/FVFriendViewController.h; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 		A0212FCF18A5EE9D00B8B0A2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A03F5E4C18BCB05B00AA3A83 /* FVAzureService.h */,
+				A03F5E4D18BCB05B00AA3A83 /* FVAzureService.m */,
 				A0212FD018A5F36100B8B0A2 /* FVBlobStorageService.h */,
 				A0212FD118A5F36100B8B0A2 /* FVBlobStorageService.m */,
 			);
@@ -466,6 +471,7 @@
 				A03C377818AF6320001BA7E7 /* FVPostCardLandScapeView.m in Sources */,
 				A0251A0818A9F622005A6536 /* FVFriendSegmentedViewController.m in Sources */,
 				A02EFD2F189FECBD001E5516 /* FVMailboxAnnotation.m in Sources */,
+				A03F5E4E18BCB05B00AA3A83 /* FVAzureService.m in Sources */,
 				A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */,
 				A056F67518B0F8F2001C6987 /* FVindexTabBarController.m in Sources */,
 				A03F5E4B18BCA26F00AA3A83 /* FVNotificationViewCell.m in Sources */,

@@ -11,8 +11,7 @@
 #import "FVGalleryViewCell.h"
 
 #import "FVUser.h"
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
-#import "FVAppDelegate.h"
+#import "FVAzureService.h"
 
 @interface FVGalleryViewController ()
 
@@ -43,7 +42,7 @@
         _postcards = [[NSMutableArray alloc] init];
         
         
-        MSClient *client = [(FVAppDelegate *)[[UIApplication sharedApplication] delegate] client];
+        MSClient *client = [FVAzureService sharedClient];
         MSTable *table = [client tableWithName:@"postcard"];
         
         NSString *user_id = [[FVUser currentUser] user_id];

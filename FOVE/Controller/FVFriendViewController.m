@@ -11,8 +11,7 @@
 #import "FVProfileViewController.h"
 #import "FVFriendCollectionViewCell.h"
 
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
-#import "FVAppDelegate.h"
+#import "FVAzureService.h"
 
 @interface FVFriendViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *friendCollectionView;
@@ -32,7 +31,7 @@
     if (!_friends) {
         _friends = [[NSMutableArray alloc] init];
         
-        MSClient *client = [(FVAppDelegate *) [[UIApplication sharedApplication] delegate] client];
+        MSClient *client = [FVAzureService sharedClient];
         
         NSDictionary *parameter = @{ @"user_id" : [[FVUser currentUser] user_id] };
         [client invokeAPI:@"friend"
