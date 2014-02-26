@@ -12,6 +12,7 @@
 
 @interface FVChatViewController ()
 
+@property (weak, nonatomic) IBOutlet UINavigationItem *chatNavigationItem;
 @property (weak, nonatomic) IBOutlet FVPostCardPortraitView *postCardViewGirl;
 @property (weak, nonatomic) IBOutlet FVPostCardPortraitView *postCardViewBoy;
 
@@ -28,6 +29,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.chatNavigationItem.title = self.friend.name;
     
     self.navigationItem.hidesBackButton = YES;
     UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"< Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
@@ -50,8 +52,7 @@
     NSInteger idx = arc4random() % 4;
     return [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_back_%d",idx]];
 }
-
--(void)goBack
+- (IBAction)goBack:(id)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }

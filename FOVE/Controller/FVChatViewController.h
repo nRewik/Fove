@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FVUser.h"
 
 @interface FVChatViewController : UIViewController
+
+@property (strong,nonatomic) FVUser *user;
+@property (strong,nonatomic) FVUser *friend;
 
 @end

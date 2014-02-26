@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FVUser.h"
+
+@protocol FVFriendCollectionViewCellDelegate;
 
 @interface FVFriendCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UILabel *profileNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *profileStatusLabel;
+
+@property (strong,nonatomic) FVUser *user;
+@property (strong,nonatomic) id<FVFriendCollectionViewCellDelegate> delegate;
+
+@end
+
+@protocol FVFriendCollectionViewCellDelegate
+@required
+-(void)didSelectChatWithUser:(FVUser *)user;
 @end

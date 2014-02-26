@@ -10,12 +10,15 @@
 #import "FVUser.h"
 #import "FVProfileViewController.h"
 #import "FVFriendCollectionViewCell.h"
-
+#import "FVChatViewController.h"
 #import "FVAzureService.h"
 
-@interface FVFriendViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
+@interface FVFriendViewController () <UICollectionViewDataSource,FVFriendCollectionViewCellDelegate>
+
 @property (weak, nonatomic) IBOutlet UICollectionView *friendCollectionView;
+
 @property (strong,nonatomic) FVUser *selectedUser;
+@property (strong,nonatomic) FVUser *selectedChatUser;
 
 @property (strong,nonatomic) NSMutableArray *friends; //of FVUser;
 
@@ -49,10 +52,8 @@
                        FVUser *friend = [[FVUser alloc] initWithUserDictionary:result[i]];
                        [_friends addObject:friend];
                    }
-                   dispatch_async(dispatch_get_main_queue(), ^{
-                       [self.friendCollectionView reloadData];
-                   });
                    
+                   [self.friendCollectionView reloadData];
         }];
     }
     return _friends;
@@ -63,7 +64,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.friendCollectionView.dataSource = self;
-    self.friendCollectionView.delegate = self;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -83,50 +83,41 @@
     FVUser *user = self.friends[indexPath.row];
     
     FVFriendCollectionViewCell * cell = [self.friendCollectionView dequeueReusableCellWithReuseIdentifier:friendViewCellidentifier forIndexPath:indexPath];
-    cell.profileNameLabel.text = user.name;
-    cell.profileStatusLabel.text = user.status;
-    cell.profileImageView.image = user.profileImage;
-
+    cell.user = user;
+    cell.delegate = self;
 
     return cell;
 }
 
-
-#pragma mark - UICollectionViewDelegate
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - FVFriendCollectionViewCellDelegate
+-(void)didSelectChatWithUser:(FVUser *)user
 {
-    UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor blueColor];
+    self.selectedChatUser = user;
+    [self performSegueWithIdentifier:@"chat" sender:self];
 }
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = nil;
-}
-
 #pragma mark -
-
-- (void)goToChat
-{
-    [self performSegueWithIdentifier:chatSegueID sender:self];
-}
-
--(void)viewProfile:(UIGestureRecognizer *)gestureRecognizer
-{
-    self.selectedUser = [FVUser currentUser];
-    [self performSegueWithIdentifier:@"viewProfile" sender:self];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id destination = segue.destinationViewController;
+    
+    if ([destination isKindOfClass:[FVChatViewController class]]) {
+        if ([segue.identifier isEqualToString:@"chat"]) {
+            FVChatViewController *chatVC = (FVChatViewController *)destination;
+            chatVC.user = [FVUser currentUser];
+            chatVC.friend = self.selectedChatUser;
+        }
+    }
     if ( [destination isKindOfClass:[FVProfileViewController class]]) {
         if ([segue.identifier isEqualToString:@"viewProfile"]) {
             FVProfileViewController *pfvc = (FVProfileViewController *)destination;
             pfvc.user = self.selectedUser;
         }
     }
+}
+-(void)viewProfile:(UIGestureRecognizer *)gestureRecognizer
+{
+    self.selectedUser = [FVUser currentUser];
+    [self performSegueWithIdentifier:@"viewProfile" sender:self];
 }
 -(NSUInteger)supportedInterfaceOrientations
 {
