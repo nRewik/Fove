@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A00C82E318BDCBC4002F4189 /* NSDate+NVTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */; };
+		A00C82E618BDED36002F4189 /* FVChatPostCardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A00C82E518BDED36002F4189 /* FVChatPostCardCollectionViewCell.m */; };
 		A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */; };
 		A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0118A1918A78B6E00664363 /* MediaPlayer.framework */; };
 		A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01A272818B78DAC00524C99 /* FVFriendCollectionViewCell.m */; };
@@ -58,6 +59,8 @@
 /* Begin PBXFileReference section */
 		A00C82E118BDCBC4002F4189 /* NSDate+NVTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NVTimeAgo.h"; sourceTree = "<group>"; };
 		A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NVTimeAgo.m"; sourceTree = "<group>"; };
+		A00C82E418BDED36002F4189 /* FVChatPostCardCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVChatPostCardCollectionViewCell.h; path = View/FVChatPostCardCollectionViewCell.h; sourceTree = "<group>"; };
+		A00C82E518BDED36002F4189 /* FVChatPostCardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVChatPostCardCollectionViewCell.m; path = View/FVChatPostCardCollectionViewCell.m; sourceTree = "<group>"; };
 		A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxViewController.h; path = Controller/FVMailboxViewController.h; sourceTree = "<group>"; };
 		A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxViewController.m; path = Controller/FVMailboxViewController.m; sourceTree = "<group>"; };
 		A0118A1918A78B6E00664363 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -381,6 +384,8 @@
 			children = (
 				A086301818AA6EB900D2BC4D /* FVChatViewController.h */,
 				A086301918AA6EB900D2BC4D /* FVChatViewController.m */,
+				A00C82E418BDED36002F4189 /* FVChatPostCardCollectionViewCell.h */,
+				A00C82E518BDED36002F4189 /* FVChatPostCardCollectionViewCell.m */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 				A02D675D18BA4285005E1EF4 /* FVGalleryViewController.m in Sources */,
 				A0212FD218A5F36100B8B0A2 /* FVBlobStorageService.m in Sources */,
 				A056F66E18B0F1D0001C6987 /* FVFriendViewController.m in Sources */,
+				A00C82E618BDED36002F4189 /* FVChatPostCardCollectionViewCell.m in Sources */,
 				A0B8360818B6116D005A35AC /* FVPostCardViewController.m in Sources */,
 				A00C82E318BDCBC4002F4189 /* NSDate+NVTimeAgo.m in Sources */,
 				A0212FCE18A5EE3F00B8B0A2 /* FVFeedViewController.m in Sources */,

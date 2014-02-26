@@ -31,13 +31,26 @@
 
 -(void)FVPostCardPortraitViewSetup
 {
-    UISwipeGestureRecognizer *postCardSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip:)];
+    UISwipeGestureRecognizer *postCardSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flipFromRight:)];
     postCardSwipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self addGestureRecognizer:postCardSwipeLeft];
+    
+    UISwipeGestureRecognizer *postCardSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flipFromLeft:)];
+    postCardSwipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:postCardSwipeRight];
+    
     self.userInteractionEnabled = YES;
 }
 
--(void)flip:(UIGestureRecognizer *)gestureRecognizer
+-(void)flipFromRight:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self doFlip:UIViewAnimationOptionTransitionFlipFromRight];
+}
+-(void)flipFromLeft:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self doFlip:UIViewAnimationOptionTransitionFlipFromLeft];
+}
+-(void)doFlip:(UIViewAnimationOptions)animationOption
 {
     if (_isLockToFlip) {
         return;
@@ -49,7 +62,7 @@
     [UIView transitionFromView:originView
                         toView:destinationView
                       duration:flipDuration
-                       options:UIViewAnimationOptionTransitionFlipFromRight
+                       options:animationOption
                     completion:^(BOOL finished) {
                         if (finished)
                         {
@@ -58,6 +71,7 @@
                         _isLockToFlip = NO;
                     }
      ];
+
 }
 
 @end

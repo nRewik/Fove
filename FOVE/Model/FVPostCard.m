@@ -22,4 +22,13 @@
     return self;
 }
 
+-(id)initWithPostcardInfo:(NSDictionary *)info
+{
+    self = [super init];
+    if (self) {
+        _isFlip = NO;
+    }
+    return self;
+}
+
 @end

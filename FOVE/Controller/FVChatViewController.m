@@ -8,21 +8,40 @@
 
 #import "FVChatViewController.h"
 #import "FVPostCard.h"
-#import "FVPostCardPortraitView.h"
+#import "FVChatPostCardCollectionViewCell.h"
 
-@interface FVChatViewController ()
+@interface FVChatViewController () <UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *chatNavigationItem;
-@property (weak, nonatomic) IBOutlet FVPostCardPortraitView *postCardViewGirl;
-@property (weak, nonatomic) IBOutlet FVPostCardPortraitView *postCardViewBoy;
+@property (weak, nonatomic) IBOutlet UICollectionView *chatCollectionView;
+
+@property (strong,nonatomic) NSMutableArray *postcards; //of FVPostcard
 
 @end
 
 @implementation FVChatViewController
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(NSMutableArray *)postcards
 {
-    //todo
+    if (!_postcards) {
+        _postcards = [[NSMutableArray alloc] init];
+        
+        int numberOfPostcards = 10;
+        for (int i=0; i<numberOfPostcards; i++) {
+            
+            UIImage *frontImage = [UIImage imageNamed:@"test_postcard_front_1"];
+            UIImage *backImage = [UIImage imageNamed:@"test_postcard_back_1"];
+            
+            FVPostCard *newPostcard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
+            newPostcard.timestamp = [NSDate dateWithTimeIntervalSinceNow:(-25 * i)];
+            
+            
+            newPostcard.sender = [FVUser currentUser];
+            
+            [_postcards addObject:newPostcard];
+        }
+    }
+    return _postcards;
 }
 
 - (void)viewDidLoad
@@ -30,31 +49,47 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.chatNavigationItem.title = self.friend.name;
-    
-    self.navigationItem.hidesBackButton = YES;
-    UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"< Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
-    self.navigationItem.leftBarButtonItem=backBtn;
-    
-    FVPostCard *postCardBoy = [[FVPostCard alloc] initWithFrontImage:[self randomFronTImagePostCard] backImage:[self randomBackImagePostCard]];
-    FVPostCard *postCardGirl = [[FVPostCard alloc] initWithFrontImage:[self randomFronTImagePostCard] backImage:[self randomBackImagePostCard]];
-
-    self.postCardViewBoy.postCard = postCardBoy;
-    self.postCardViewGirl.postCard = postCardGirl;
+    self.chatCollectionView.dataSource = self;
 }
-
--(UIImage *)randomFronTImagePostCard
+-(void)viewDidLayoutSubviews
 {
-    NSInteger idx = arc4random() % 4;
-    return [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_front_%d",idx]];
-}
--(UIImage *)randomBackImagePostCard
-{
-    NSInteger idx = arc4random() % 4;
-    return [UIImage imageNamed:[NSString stringWithFormat:@"test_postcard_back_%d",idx]];
+    NSIndexPath *path = [NSIndexPath indexPathForItem:[self.postcards count]-1 inSection:0];
+    [self.chatCollectionView scrollToItemAtIndexPath:path
+                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                            animated:NO];
 }
 - (IBAction)goBack:(id)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - UICollectionViewDataSource
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.postcards count];
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * chatPostcardViewCellIdentifier = @"chatPostcardViewCell";
+    FVChatPostCardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:chatPostcardViewCellIdentifier
+                                                                                       forIndexPath:indexPath];
+    cell.postcard = self.postcards[indexPath.item];
+    
+    return cell;
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
