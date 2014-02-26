@@ -9,7 +9,13 @@
 #import "FVCreatePostCardView.h"
 #import "FVPostCardView.h"
 
-@interface FVCreatePostCardView () <UIAlertViewDelegate>
+@interface FVCreatePostCardView () <UIAlertViewDelegate,UIActionSheetDelegate>
+
+@property (strong,nonatomic) FVPostCardView *postCardView;
+
+@property (strong,nonatomic) UIButton *addStickerButton;
+@property (strong,nonatomic) UIActionSheet *stickerActionSheet;
+
 @end
 
 @implementation FVCreatePostCardView
@@ -17,10 +23,7 @@
     UIView *_toolBarView;
     UIView *_toolBarDetailView;
     
-    FVPostCardView *_postCardView;
     BOOL _isFlip;
-    
-    UIButton *_addStickerButton;
     
     //add text
     UIButton *_addTextButton;
@@ -106,6 +109,18 @@
     FVPostCard *postCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
     _postCardView.postCard = postCard;
 }
+#pragma mark - Lazy Instantiation
+-(UIActionSheet *)stickerActionSheet
+{
+    if (!_stickerActionSheet) {
+        _stickerActionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Sticker"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"cancel"
+                                            destructiveButtonTitle:nil
+                                                 otherButtonTitles:@"USA",@"Cupcake",@"Heart", nil];
+    }
+    return _stickerActionSheet;
+}
 
 #pragma mark - add toolbar buttons
 -(void)setupToolBarButtons
@@ -140,7 +155,7 @@
         [self setupFlipButton];
     }
     else if ([buttonImageName isEqualToString:BUTTON_ADD_STICKER_NAME]){
-        _addStickerButton = button;
+        self.addStickerButton = button;
         [self setupAddStickerButton];
     }
     else if( [buttonImageName isEqualToString:BUTTON_ADD_TEXT_NAME]){
@@ -172,15 +187,11 @@
 #pragma mark - add sticker button
 -(void)setupAddStickerButton
 {
-    [_addStickerButton addTarget:self action:@selector(addSticker) forControlEvents:UIControlEventTouchUpInside];
+    [self.addStickerButton addTarget:self action:@selector(addSticker) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)addSticker
 {
-    //mockup animation
-    [UIView animateWithDuration:0.3 animations:^{
-        CGPoint newCenter = CGPointMake( _toolBarView.center.x + TOOLBAR_WIDTH , _toolBarView.center.y);
-        _toolBarDetailView.center = newCenter;
-    }];
+    [self.stickerActionSheet showInView:self];
 }
 
 
@@ -191,8 +202,8 @@
 }
 -(void)flipPostCard
 {
-    UIView *originView = _postCardView.postCard.isFlip ? _postCardView.backView: _postCardView.frontView;
-    UIView *destinationView = _postCardView.postCard.isFlip ? _postCardView.frontView : _postCardView.backView;
+    UIView *originView = self.postCardView.postCard.isFlip ? self.postCardView.backView: self.postCardView.frontView;
+    UIView *destinationView = self.postCardView.postCard.isFlip ? self.postCardView.frontView : self.postCardView.backView;
     [UIView transitionFromView:originView
                         toView:destinationView
                       duration:FLIP_DUTATION
@@ -200,7 +211,7 @@
                     completion:^(BOOL finished) {
                         if (finished)
                         {
-                            _postCardView.postCard.isFlip  = !_postCardView.postCard.isFlip ;
+                            self.postCardView.postCard.isFlip  = !self.postCardView.postCard.isFlip ;
                         }
                     }
      ];
@@ -223,6 +234,27 @@
 }
 
 
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(actionSheet == self.stickerActionSheet)
+    {
+        if (buttonIndex != self.stickerActionSheet.numberOfButtons-1) {
+            NSString *stickerName = [NSString stringWithFormat:@"sticker_%d",buttonIndex];
+            UIImage *stickerImage = [UIImage imageNamed:stickerName];
+            UIImageView *stickImageView = [[UIImageView alloc] initWithImage:stickerImage];
+            
+            CGFloat xPos = self.postCardView.bounds.size.width/2;
+            CGFloat yPos = self.postCardView.bounds.size.height/2;
+            stickImageView.center = CGPointMake(xPos, yPos);
+            [self.postCardView.currentView addSubview:stickImageView];
+            
+            [self addGestureToPostcardComponent:stickImageView];
+        }
+    }
+    NSLog(@"%d",buttonIndex);
+}
+
 #pragma mark - UIAlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -242,26 +274,34 @@
         Textlabel.text = [[alertView textFieldAtIndex:0] text];
         [Textlabel sizeToFit];
         
-        CGFloat xPos = _postCardView.bounds.size.width/2;
-        CGFloat yPos = _postCardView.bounds.size.height/2;
+        CGFloat xPos = self.postCardView.bounds.size.width/2;
+        CGFloat yPos = self.postCardView.bounds.size.height/2;
         Textlabel.center = CGPointMake(xPos, yPos);
         
-        [_postCardView.currentView addSubview:Textlabel];
+        [self.postCardView.currentView addSubview:Textlabel];
         
-        UIGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveAccessory:)];
-        [Textlabel addGestureRecognizer:panGesture];
-
-        UIGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scaleAccessory:)];
-        [Textlabel addGestureRecognizer:pinchGesture];
-        
-        UIGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAccessory:)];
-        [Textlabel addGestureRecognizer:rotationGesture];
-
-        Textlabel.userInteractionEnabled = YES;
+        [self addGestureToPostcardComponent:Textlabel];
     }
 }
 
-#pragma mark - gesture selector
+#pragma mark - Gesture Selector
+
+-(void)addGestureToPostcardComponent:(UIView *)view
+{
+    UIGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveAccessory:)];
+    [view addGestureRecognizer:panGesture];
+    
+    UIGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scaleAccessory:)];
+    [view addGestureRecognizer:pinchGesture];
+    
+    UIGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAccessory:)];
+    [view addGestureRecognizer:rotationGesture];
+    
+    view.userInteractionEnabled = YES;
+}
+
+
+
 -(void)moveAccessory:(UIPanGestureRecognizer *)panRecognizer
 {
     if (panRecognizer.numberOfTouches != 1){
@@ -288,7 +328,6 @@
         [label sizeToFit];
         label.center = oldCenter;
         
-        pinchRecognizer.scale = 1.0;
     }
     else
     {
@@ -297,6 +336,7 @@
         frame.size.height = frame.size.height * pinchRecognizer.scale;
         accView.frame = frame;
     }
+    pinchRecognizer.scale = 1.0;
 }
 -(void)rotateAccessory:(UIRotationGestureRecognizer *)rotationGesture
 {
@@ -312,8 +352,8 @@
 }
 -(void)finishCreatePostCard
 {
-    UIImage *frontImage = [self snapshot:_postCardView.frontView];
-    UIImage *backImage = [self snapshot:_postCardView.backView];
+    UIImage *frontImage = [self snapshot:self.postCardView.frontView];
+    UIImage *backImage = [self snapshot:self.postCardView.backView];
     FVPostCard *newPostCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
     [self.delegate didFinishCreatePostCard:newPostCard];
 }

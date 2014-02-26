@@ -449,7 +449,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98823535442352295" green="0.17647059261798859" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.98823535442352295" green="0.17647059261798864" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="cNx-zI-GcL" secondAttribute="trailing" id="Zoy-2l-lHh"/>
                                     <constraint firstItem="cNx-zI-GcL" firstAttribute="top" secondItem="zFC-LZ-IV5" secondAttribute="top" id="csT-OG-TxG"/>
@@ -1402,6 +1402,121 @@
             </objects>
             <point key="canvasLocation" x="1435" y="-556"/>
         </scene>
+        <!--Sticker Picker View Controller-->
+        <scene sceneID="Mfh-M8-3CG">
+            <objects>
+                <viewController id="zG2-OM-F2y" customClass="FVStickerPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="voN-eX-jjJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="kUa-VL-OmJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6RX-on-fU0">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="osK-5o-GEu" userLabel="stickkerCollectionView">
+                                <rect key="frame" x="68" y="44" width="500" height="276"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="500" id="LMg-D9-nmi"/>
+                                    <constraint firstAttribute="height" constant="276" id="bGL-yF-gFC"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ike-nq-tAz">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GaI-s5-Iug">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sticker_0" translatesAutoresizingMaskIntoConstraints="NO" id="U4m-eH-nk5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNF-4W-fbv">
+                                <rect key="frame" x="0.0" y="0.0" width="68" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoM-Ft-MK2">
+                                        <rect key="frame" x="13" y="9" width="43" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" title="Select">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggf-aq-xYq">
+                                        <rect key="frame" x="10" y="47" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="AoM-Ft-MK2" firstAttribute="top" secondItem="eNF-4W-fbv" secondAttribute="top" constant="9" id="0Vf-R9-kOI"/>
+                                    <constraint firstItem="ggf-aq-xYq" firstAttribute="centerX" secondItem="AoM-Ft-MK2" secondAttribute="centerX" id="0qm-nK-P0b"/>
+                                    <constraint firstItem="ggf-aq-xYq" firstAttribute="top" secondItem="AoM-Ft-MK2" secondAttribute="bottom" constant="8" symbolic="YES" id="BSp-QG-SSX"/>
+                                    <constraint firstItem="AoM-Ft-MK2" firstAttribute="centerX" secondItem="eNF-4W-fbv" secondAttribute="centerX" id="uDN-jp-kPe"/>
+                                </constraints>
+                            </view>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ime-Ga-AXx" userLabel="typeCollectionView">
+                                <rect key="frame" x="68" y="0.0" width="500" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x9C-OV-68C">
+                                    <size key="itemSize" width="44" height="44"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="voC-IR-0X1">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="osK-5o-GEu" firstAttribute="top" secondItem="6RX-on-fU0" secondAttribute="top" constant="44" id="41M-Gu-fzN"/>
+                            <constraint firstItem="osK-5o-GEu" firstAttribute="leading" secondItem="eNF-4W-fbv" secondAttribute="trailing" id="4aa-Kd-4IL"/>
+                            <constraint firstItem="eNF-4W-fbv" firstAttribute="leading" secondItem="6RX-on-fU0" secondAttribute="leading" id="8W2-dv-dB7"/>
+                            <constraint firstItem="osK-5o-GEu" firstAttribute="top" secondItem="ime-Ga-AXx" secondAttribute="bottom" id="JgA-4P-LY5"/>
+                            <constraint firstAttribute="trailing" secondItem="osK-5o-GEu" secondAttribute="trailing" id="R1J-sJ-sMi"/>
+                            <constraint firstItem="kUa-VL-OmJ" firstAttribute="top" secondItem="eNF-4W-fbv" secondAttribute="bottom" id="V8D-EX-6Lj"/>
+                            <constraint firstItem="ime-Ga-AXx" firstAttribute="leading" secondItem="eNF-4W-fbv" secondAttribute="trailing" id="aGf-Vb-nIz"/>
+                            <constraint firstAttribute="trailing" secondItem="ime-Ga-AXx" secondAttribute="trailing" id="aaY-ey-3yN"/>
+                            <constraint firstItem="eNF-4W-fbv" firstAttribute="top" secondItem="6RX-on-fU0" secondAttribute="top" id="kr9-Ko-rj1"/>
+                            <constraint firstItem="ime-Ga-AXx" firstAttribute="top" secondItem="6RX-on-fU0" secondAttribute="top" id="pc9-Bl-fEb"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6dT-0B-S7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="-860"/>
+        </scene>
         <!--Create Post Card View Controller-->
         <scene sceneID="OlH-ht-L6o">
             <objects>
@@ -1452,6 +1567,7 @@
         <image name="profileTabBar_icon" width="60" height="60"/>
         <image name="send_postcard_button" width="110" height="30"/>
         <image name="settingTabBar_icon" width="30" height="30"/>
+        <image name="sticker_0" width="100" height="100"/>
         <image name="test_profile_1" width="112" height="221"/>
         <image name="test_profile_5" width="285" height="360"/>
     </resources>

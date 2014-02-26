@@ -15,10 +15,13 @@
 #import "FVAzureService.h"
 
 
-@interface FVCreatePostCardViewController () <FVCreatePostCardViewDelegate>
+@interface FVCreatePostCardViewController () <FVCreatePostCardViewDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet FVCreatePostCardView *createPostCardView;
 @property (strong,nonatomic) FVPostCard *createdPostcard;
+
+@property (strong,nonatomic) UIAlertView *waitingSendPostcardAlertView;
+@property (strong,nonatomic) UIAlertView *finishSendPostcardAlertView;
 
 @end
 
@@ -36,13 +39,36 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.createPostCardView.delegate = self;
-    NSLog(@"%@",self.mailbox.mailbox_id);
 }
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
 }
 -(BOOL)prefersStatusBarHidden{
     return YES;
+}
+
+#pragma mark - Lazy Instantiation
+-(UIAlertView *)waitingSendPostcardAlertView
+{
+    if (!_waitingSendPostcardAlertView) {
+        _waitingSendPostcardAlertView = [[UIAlertView alloc] initWithTitle:@"Sending The Postcard..." message:@""
+                                                                  delegate:self
+                                                         cancelButtonTitle:nil
+                                                         otherButtonTitles:nil];
+    }
+    return _waitingSendPostcardAlertView;
+}
+-(UIAlertView *)finishSendPostcardAlertView
+{
+    if (!_finishSendPostcardAlertView) {
+        _finishSendPostcardAlertView = [[UIAlertView alloc] initWithTitle:@"Send Postcard"
+                                                                  message:@"Your postcard is sent."
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil];
+        
+    }
+    return _finishSendPostcardAlertView;
 }
 
 #pragma mark - FVCreatePostCardDelegate
@@ -63,6 +89,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUploadImageProgress) name:FVCREATEPOSTCARD_UPLOAD_NOTIFICATION object:nil];
     //
     
+    [self.waitingSendPostcardAlertView show];
     
     MSClient *client = [FVAzureService sharedClient];
     MSTable *table = [client tableWithName:@"postcard"];
@@ -148,6 +175,8 @@
 {
     if (_uploadImageError) {
         NSLog(@"%@",_uploadImageError);
+        
+        [self.waitingSendPostcardAlertView dismissWithClickedButtonIndex:0 animated:YES];
     }
     else if( _isFinishUploadFrontImage && _isFinishUploadBackImage )
     {
@@ -161,6 +190,7 @@
         [table insert:friendInfo completion:^(NSDictionary *item, NSError *error) {
             if (error) {
                 NSLog(@"%@",error);
+                [self.waitingSendPostcardAlertView dismissWithClickedButtonIndex:0 animated:YES];
                 return;
             }
             NSLog(@"insert friend complete --- %@ ",item[@"message"]);
@@ -176,11 +206,23 @@
         [notificationTable insert:notifyInfo completion:^(NSDictionary *item, NSError *error) {
             if (error) {
                 NSLog(@"FVCreatePostCardViewController insert notification table error \n\n %@",error);
+                [self.waitingSendPostcardAlertView dismissWithClickedButtonIndex:0 animated:YES];
                 return;
             }
             NSLog(@"insert send postcard notification complete");
+            
+            [self.waitingSendPostcardAlertView dismissWithClickedButtonIndex:0 animated:YES];
+            [self.finishSendPostcardAlertView show];
         }];
         /////
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView == self.finishSendPostcardAlertView) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

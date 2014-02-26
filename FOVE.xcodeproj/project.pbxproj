@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A00C82E318BDCBC4002F4189 /* NSDate+NVTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */; };
 		A00C82E618BDED36002F4189 /* FVChatPostCardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A00C82E518BDED36002F4189 /* FVChatPostCardCollectionViewCell.m */; };
+		A00C82EC18BE483F002F4189 /* FVStickerPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00C82EB18BE483F002F4189 /* FVStickerPickerViewController.m */; };
 		A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */; };
 		A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0118A1918A78B6E00664363 /* MediaPlayer.framework */; };
 		A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01A272818B78DAC00524C99 /* FVFriendCollectionViewCell.m */; };
@@ -61,6 +62,8 @@
 		A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NVTimeAgo.m"; sourceTree = "<group>"; };
 		A00C82E418BDED36002F4189 /* FVChatPostCardCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVChatPostCardCollectionViewCell.h; path = View/FVChatPostCardCollectionViewCell.h; sourceTree = "<group>"; };
 		A00C82E518BDED36002F4189 /* FVChatPostCardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVChatPostCardCollectionViewCell.m; path = View/FVChatPostCardCollectionViewCell.m; sourceTree = "<group>"; };
+		A00C82EA18BE483F002F4189 /* FVStickerPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVStickerPickerViewController.h; path = Controller/FVStickerPickerViewController.h; sourceTree = "<group>"; };
+		A00C82EB18BE483F002F4189 /* FVStickerPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVStickerPickerViewController.m; path = Controller/FVStickerPickerViewController.m; sourceTree = "<group>"; };
 		A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxViewController.h; path = Controller/FVMailboxViewController.h; sourceTree = "<group>"; };
 		A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxViewController.m; path = Controller/FVMailboxViewController.m; sourceTree = "<group>"; };
 		A0118A1918A78B6E00664363 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A00C82ED18BE484A002F4189 /* CreateMailbox */ = {
+			isa = PBXGroup;
+			children = (
+				A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */,
+				A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */,
+				A00C82EA18BE483F002F4189 /* FVStickerPickerViewController.h */,
+				A00C82EB18BE483F002F4189 /* FVStickerPickerViewController.m */,
+			);
+			name = CreateMailbox;
+			sourceTree = "<group>";
+		};
 		A01A272A18B78E1000524C99 /* Friend */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,8 +298,7 @@
 				A031413718B09A9B00CBF55F /* FVCreatePostCardViewController.h */,
 				A031413818B09A9B00CBF55F /* FVCreatePostCardViewController.m */,
 				A03F5E4818BCA0AD00AA3A83 /* NotificationViewController */,
-				A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */,
-				A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */,
+				A00C82ED18BE484A002F4189 /* CreateMailbox */,
 				A06856C4189CC967007F0015 /* FVMapViewController.h */,
 				A06856C5189CC967007F0015 /* FVMapViewController.m */,
 				A03F5E4F18BCE9FD00AA3A83 /* MailboxView */,
@@ -506,6 +519,7 @@
 				A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */,
 				A03C376C18AF53A6001BA7E7 /* FVPostCardScrollViewPortrait.m in Sources */,
 				A0B6CD0E1898093E00AFC61C /* FVSettingViewController.m in Sources */,
+				A00C82EC18BE483F002F4189 /* FVStickerPickerViewController.m in Sources */,
 				A029C71B189E2B1D00B167C7 /* FVUser.m in Sources */,
 				A0E8717E189CE3F40093D98A /* FVCreateMailboxViewController.m in Sources */,
 				A031413918B09A9B00CBF55F /* FVCreatePostCardViewController.m in Sources */,

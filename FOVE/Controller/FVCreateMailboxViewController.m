@@ -42,7 +42,6 @@
 @property (strong,nonatomic) UIAlertView *noMessageAlert;
 @property (strong,nonatomic) UIAlertView *noMediaAlert;
 
-
 @end
 
 #define MESSAGE_PLACE_HOLDER @"Type messsage here..."
@@ -58,26 +57,37 @@
     
     self.messageTextArea.delegate = self;
     self.createMailboxActivityIndicator.hidden = YES;
-
-    self.noMessageAlert = [[UIAlertView alloc] initWithTitle:@"NO MESSAGE"
-                                                           message:@"Please type a message"
-                                                          delegate:self
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil
-                                 ];
-    
-    self.noMediaAlert = [[UIAlertView alloc] initWithTitle:@"NO PHOTO/VIDEO"
-                                                         message:@"Please choose a photo or video"
-                                                        delegate:self
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil
-                               ];
-
 }
 
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - lazy instantiation
+-(UIAlertView *)noMessageAlert
+{
+    if (!_noMediaAlert) {
+        _noMessageAlert = [[UIAlertView alloc] initWithTitle:@"NO MESSAGE"
+                                                     message:@"Please type a message"
+                                                    delegate:self
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil
+                           ];
+    }
+    return _noMessageAlert;
+}
+-(UIAlertView *)noMediaAlert
+{
+    if (!_noMediaAlert) {
+        _noMediaAlert = [[UIAlertView alloc] initWithTitle:@"NO PHOTO/VIDEO"
+                                                   message:@"Please choose a photo or video"
+                                                  delegate:self
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil
+                         ];
+    }
+    return _noMediaAlert;
 }
 
 #pragma mark - azure
