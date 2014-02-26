@@ -70,10 +70,22 @@
 }
 - (IBAction)foveMailbox
 {
-    self.mailbox.fovecount += 1;
-    [self updateUI];
-//    MSClient *client = [FVAzureService sharedClient];
-//    MSTable *mailboxTable = [client tableWithName:@"mailbox"];
+    MSClient *client = [FVAzureService sharedClient];
+    NSDictionary *parameter = @{ @"id" : self.mailbox.mailbox_id };
+    [client invokeAPI:@"mailbox/fove"
+                 body:nil
+           HTTPMethod:@"PUT"
+           parameters:parameter
+              headers:nil completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                  if (error) {
+                      NSLog(@"fove error \n %@",error);
+                      return;
+                  }
+                  self.mailbox.fovecount += 1;
+                  [self updateUI];
+                  NSLog(@"fove complete");
+              }
+     ];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -166,36 +178,38 @@
 {
     if(self.mailbox != nil)
     {
-        self.ownerNameLabel.text = self.mailbox.owner.name;
-        self.foveCountLabel.text = [NSString stringWithFormat:@"%d",self.mailbox.fovecount];
-        
-        self.mailboxMassageLabel.text = self.mailbox.message;
-        [self.mailboxMassageLabel sizeToFit];
-        [self.mailboxMassageLabel layoutIfNeeded];
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        dateFormat.dateFormat = @"d LLLL yyyy";
-        self.dateLabel.text = [dateFormat stringFromDate:self.mailbox.lastUpdate];
-
-        self.ownerImageView.image = self.mailbox.owner.profileImage;
-        
-        if ([self.mailbox.owner.gender isEqualToString:@"male"]) {
-            self.sexImageView.image = [UIImage imageNamed:@"gender_male_sign"];
-        }
-        else if ([self.mailbox.owner.gender isEqualToString:@"female"])
-        {
-            self.sexImageView.image = [UIImage imageNamed:@"gender_female_sign"];
-        }
-        
-        if ( [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id]){
-            //if owner
-            self.sendPostCardButton.hidden = YES;
-        }
-        else{
-            //if not owner
-            UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
-            navItem.rightBarButtonItem = nil;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.ownerNameLabel.text = self.mailbox.owner.name;
+            self.foveCountLabel.text = [NSString stringWithFormat:@"%d",self.mailbox.fovecount];
+            
+            self.mailboxMassageLabel.text = self.mailbox.message;
+            [self.mailboxMassageLabel sizeToFit];
+            [self.mailboxMassageLabel layoutIfNeeded];
+            
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            dateFormat.dateFormat = @"d LLLL yyyy";
+            self.dateLabel.text = [dateFormat stringFromDate:self.mailbox.lastUpdate];
+            
+            self.ownerImageView.image = self.mailbox.owner.profileImage;
+            
+            if ([self.mailbox.owner.gender isEqualToString:@"male"]) {
+                self.sexImageView.image = [UIImage imageNamed:@"gender_male_sign"];
+            }
+            else if ([self.mailbox.owner.gender isEqualToString:@"female"])
+            {
+                self.sexImageView.image = [UIImage imageNamed:@"gender_female_sign"];
+            }
+            
+            if ( [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id]){
+                //if owner
+                self.sendPostCardButton.hidden = YES;
+            }
+            else{
+                //if not owner
+                UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
+                navItem.rightBarButtonItem = nil;
+            }
+        });
     }
 }
 
