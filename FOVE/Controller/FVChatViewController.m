@@ -43,13 +43,6 @@ static dispatch_queue_t _readPostcardQueue;
     self.chatNavigationItem.title = self.friend.name;
     self.chatCollectionView.dataSource = self;
 }
--(void)viewDidLayoutSubviews
-{
-//    NSIndexPath *path = [NSIndexPath indexPathForItem:[self.postcards count]-1 inSection:0];
-//    [self.chatCollectionView scrollToItemAtIndexPath:path
-//                                    atScrollPosition:UICollectionViewScrollPositionBottom
-//                                            animated:NO];
-}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id destination = segue.destinationViewController;
@@ -89,6 +82,18 @@ static dispatch_queue_t _readPostcardQueue;
                 [_postcards addObject:newPostcard];
                 
                 [self.chatCollectionView reloadData];
+                
+                //if load all of chat scroll to bottom
+                if ([_postcards count] == [items count])
+                {
+                    NSInteger section = [self numberOfSectionsInCollectionView:self.chatCollectionView] - 1;
+                    NSInteger item = [self collectionView:self.chatCollectionView numberOfItemsInSection:section]-1;
+                    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+                    
+                    [self.chatCollectionView scrollToItemAtIndexPath:lastIndexPath
+                                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                                            animated:NO];
+                }
             }];
         }];
     }
