@@ -7,9 +7,12 @@
 //
 
 #import "FVNotificationViewCell.h"
+#import "NSDate+NVTimeAgo.h"
 
 
 @interface FVNotificationViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *notifyIconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *notificationMessageLabel;
 @end
@@ -20,9 +23,46 @@
 -(void)setNotification:(FVNotification *)notification
 {
     _notification = notification;
-    
-    self.profileImageView.image = self.notification.sender.profileImage;
-    self.notificationMessageLabel.text = self.notification.message;
+    if (self.notification.sender != nil) {
+        [self updateUI];
+    }
 }
+
+
+-(void)updateUI
+{
+    self.profileImageView.image = self.notification.sender.profileImage;
+    
+    NSMutableAttributedString *message = [[NSMutableAttributedString alloc] init];
+    
+    //name
+    NSDictionary *senderNameAttributedInfo = @{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:14.0] };
+    NSMutableAttributedString *senderName = [[NSMutableAttributedString alloc] initWithString:self.notification.sender.name];
+    [senderName setAttributes:senderNameAttributedInfo range:NSMakeRange(0,senderName.mutableString.length)];
+    //
+    [message appendAttributedString:senderName];
+    
+    //message body
+    switch (self.notification.type) {
+        case FVNotifyFove:
+            {
+                NSAttributedString *foveMessage = [[NSAttributedString alloc] initWithString:@" foved your mailbox." attributes:nil];
+                [message appendAttributedString:foveMessage];
+                
+                self.notifyIconImageView.image = [UIImage imageNamed:@"foveButton"];
+            }
+            break;
+        case FVNotifySendPostcard:
+            break;
+        case FVNotifyCreateMailbox:
+            break;
+    }
+    self.notificationMessageLabel.attributedText = message;
+    
+    //time label
+    self.timeLabel.text = [self.notification.timestamp formattedAsTimeAgo];
+    
+}
+
 
 @end

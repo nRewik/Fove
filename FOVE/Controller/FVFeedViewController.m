@@ -33,28 +33,12 @@
                parameters:parameter
                   headers:nil
                completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
-
                    NSUInteger numberOfNotifications = [result count];
                    for (int i=0; i<numberOfNotifications; i++)
                    {
-                       /* result[i] format
-                        "notification_message" = "fove your mailbox";
-                        "notification_type" = "fove";
-                        "recipient_id" = "<null>";
-                        "sender_id" = 5;
-                        */
-                       
-                       FVNotification *xNoti = [[FVNotification alloc] init];
-                       xNoti.message = result[i][@"notification_message"];
-                       
-                       [FVUser getUserFromID:result[i][@"sender_id"] completion:^(FVUser *resultUser, NSError *error) {
-                           xNoti.sender = resultUser;
-                           [self.notificationCollectionView reloadData];
-                       }];
-                       
+                       FVNotification *xNoti = [[FVNotification alloc] initWithNotificaitonInfo:result[i]];
                        [_notifications addObject:xNoti];
                    }
-                   
                    [self.notificationCollectionView reloadData];
                }
          ];

@@ -84,6 +84,28 @@
                   self.mailbox.fovecount += 1;
                   [self updateUI];
                   NSLog(@"fove complete");
+                  
+                  NSDictionary *notifyParameterInfo = @{ @"mailbox_id" : self.mailbox.mailbox_id };
+                  NSData *notifyJsonData = [NSJSONSerialization dataWithJSONObject:notifyParameterInfo
+                                                                    options:NSJSONWritingPrettyPrinted
+                                                                      error:&error];
+                  NSString *notifyJsonString = [[NSString alloc] initWithData:notifyJsonData encoding:NSUTF8StringEncoding];
+                  
+                  MSTable *notificationTable = [client tableWithName:@"notification"];
+                  NSDictionary *notifyInfo = @{ @"sender_id" : [[FVUser currentUser] user_id],
+                                                @"recipient_id" : self.mailbox.owner.user_id,
+                                                @"notification_type" : @"fove",
+                                                @"notification_message" : notifyJsonString
+                                                };
+                  
+                  [notificationTable insert:notifyInfo completion:^(NSDictionary *item, NSError *error) {
+                      if (error) {
+                          NSLog(@"insert fove notification error \n %@",error);
+                          return;
+                      }
+                      NSLog(@"insert fove notification complete");
+                  }];
+                  
               }
      ];
 }

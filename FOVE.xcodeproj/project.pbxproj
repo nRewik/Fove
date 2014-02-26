@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A00C82E318BDCBC4002F4189 /* NSDate+NVTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */; };
 		A00D8815189E97D200DB57B4 /* FVMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */; };
 		A0118A1A18A78B6E00664363 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0118A1918A78B6E00664363 /* MediaPlayer.framework */; };
 		A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01A272818B78DAC00524C99 /* FVFriendCollectionViewCell.m */; };
@@ -55,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A00C82E118BDCBC4002F4189 /* NSDate+NVTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NVTimeAgo.h"; sourceTree = "<group>"; };
+		A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NVTimeAgo.m"; sourceTree = "<group>"; };
 		A00D8813189E97D200DB57B4 /* FVMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMailboxViewController.h; path = Controller/FVMailboxViewController.h; sourceTree = "<group>"; };
 		A00D8814189E97D200DB57B4 /* FVMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMailboxViewController.m; path = Controller/FVMailboxViewController.m; sourceTree = "<group>"; };
 		A0118A1918A78B6E00664363 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -243,6 +246,8 @@
 		A0212FCF18A5EE9D00B8B0A2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A00C82E118BDCBC4002F4189 /* NSDate+NVTimeAgo.h */,
+				A00C82E218BDCBC4002F4189 /* NSDate+NVTimeAgo.m */,
 				A03F5E4C18BCB05B00AA3A83 /* FVAzureService.h */,
 				A03F5E4D18BCB05B00AA3A83 /* FVAzureService.m */,
 				A0212FD018A5F36100B8B0A2 /* FVBlobStorageService.h */,
@@ -471,6 +476,7 @@
 				A0212FD218A5F36100B8B0A2 /* FVBlobStorageService.m in Sources */,
 				A056F66E18B0F1D0001C6987 /* FVFriendViewController.m in Sources */,
 				A0B8360818B6116D005A35AC /* FVPostCardViewController.m in Sources */,
+				A00C82E318BDCBC4002F4189 /* NSDate+NVTimeAgo.m in Sources */,
 				A0212FCE18A5EE3F00B8B0A2 /* FVFeedViewController.m in Sources */,
 				A06856C6189CC967007F0015 /* FVMapViewController.m in Sources */,
 				A0CE0DEC18BB2F47000CBE55 /* FVNotification.m in Sources */,
