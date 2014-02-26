@@ -9,8 +9,11 @@
 #import "FVChatViewController.h"
 #import "FVPostCard.h"
 #import "FVChatPostCardCollectionViewCell.h"
+#import "FVAzureService.h"
 
 @interface FVChatViewController () <UICollectionViewDataSource>
+
++(dispatch_queue_t)readPostcardQueue;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *chatNavigationItem;
 @property (weak, nonatomic) IBOutlet UICollectionView *chatCollectionView;
@@ -21,25 +24,41 @@
 
 @implementation FVChatViewController
 
+static dispatch_queue_t _readPostcardQueue;
++(dispatch_queue_t)readPostcardQueue
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _readPostcardQueue = dispatch_queue_create("readPostcardQueue", NULL);
+    });
+    return _readPostcardQueue;
+}
+
+
 -(NSMutableArray *)postcards
 {
     if (!_postcards) {
         _postcards = [[NSMutableArray alloc] init];
         
-        int numberOfPostcards = 10;
-        for (int i=0; i<numberOfPostcards; i++) {
-            
-            UIImage *frontImage = [UIImage imageNamed:@"test_postcard_front_1"];
-            UIImage *backImage = [UIImage imageNamed:@"test_postcard_back_1"];
-            
-            FVPostCard *newPostcard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
-            newPostcard.timestamp = [NSDate dateWithTimeIntervalSinceNow:(-25 * i)];
-            
-            
-            newPostcard.sender = [FVUser currentUser];
-            
-            [_postcards addObject:newPostcard];
-        }
+        MSClient *client = [FVAzureService sharedClient];
+        MSTable *postcardTable = [client tableWithName:@"postcard"];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender == %@ and recipient == %@) or (recipient == %@ and sender == %@)",
+                                      self.user.user_id,
+                                      self.friend.user_id,
+                                      self.user.user_id,
+                                      self.friend.user_id
+                                  ];
+        postcardTable.query.orderBy = @[@"__createdAt"];
+        [postcardTable readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
+            [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                FVPostCard *newPostcard = [[FVPostCard alloc] initWithPostcardInfo:obj];
+                newPostcard.sender = [obj[@"sender"] isEqualToString:self.user.user_id] ? self.user : self.friend;
+                [_postcards addObject:newPostcard];
+                
+                [self.chatCollectionView reloadData];
+            }];
+        }];
     }
     return _postcards;
 }
@@ -53,10 +72,10 @@
 }
 -(void)viewDidLayoutSubviews
 {
-    NSIndexPath *path = [NSIndexPath indexPathForItem:[self.postcards count]-1 inSection:0];
-    [self.chatCollectionView scrollToItemAtIndexPath:path
-                                    atScrollPosition:UICollectionViewScrollPositionBottom
-                                            animated:NO];
+//    NSIndexPath *path = [NSIndexPath indexPathForItem:[self.postcards count]-1 inSection:0];
+//    [self.chatCollectionView scrollToItemAtIndexPath:path
+//                                    atScrollPosition:UICollectionViewScrollPositionBottom
+//                                            animated:NO];
 }
 - (IBAction)goBack:(id)sender
 {

@@ -40,9 +40,11 @@
 
 -(void)setPostCard:(FVPostCard *)postCard
 {
-    _postCard = postCard;
-    self.frontView.image = self.postCard.frontImage;
-    self.backView.image = self.postCard.backImage;
+    _postCard = postCard;    
+    [self.postCard getFrontImageAndBackImageWithCompletionBlock:^(UIImage *frontImage, UIImage *backImage) {
+        self.frontView.image = frontImage;
+        self.backView.image = backImage;
+    }];
 }
 
 -(UIView *)currentView
