@@ -18,6 +18,16 @@
 
 @implementation FVChatPostCardCollectionViewCell
 
+-(void)awakeFromNib
+{
+    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPostcard)];
+    [self.postcardPortraitView addGestureRecognizer:tapGesture];
+}
+-(void)selectPostcard
+{
+    [self.delegate didSelectPostcard:self.postcard];
+}
+
 -(void)setSender:(FVUser *)sender
 {
     _sender = sender;

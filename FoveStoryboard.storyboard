@@ -420,33 +420,63 @@
                         <viewControllerLayoutGuide type="bottom" id="3ij-je-a6c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GLk-PI-xiq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Egp-ca-DdQ" customClass="FVPostCardPortraitView">
-                                <rect key="frame" x="0.0" y="184" width="320" height="200"/>
+                                <rect key="frame" x="56" y="0.0" width="512" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="bqD-VB-MCc"/>
-                                    <constraint firstAttribute="width" constant="320" id="rW0-jm-Y6a"/>
+                                    <constraint firstAttribute="width" constant="512" id="kVb-vU-4Da"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-LZ-IV5">
+                                <rect key="frame" x="0.0" y="0.0" width="56" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNx-zI-GcL">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="95z-2c-IGQ"/>
+                                        </constraints>
+                                        <state key="normal" image="click_back_button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack" destination="K0D-G4-SCb" eventType="touchUpInside" id="QGB-lO-YXv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98823535442352295" green="0.17647059261798859" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cNx-zI-GcL" secondAttribute="trailing" id="Zoy-2l-lHh"/>
+                                    <constraint firstItem="cNx-zI-GcL" firstAttribute="top" secondItem="zFC-LZ-IV5" secondAttribute="top" id="csT-OG-TxG"/>
+                                    <constraint firstItem="cNx-zI-GcL" firstAttribute="leading" secondItem="zFC-LZ-IV5" secondAttribute="leading" id="x6u-z7-dMI"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Egp-ca-DdQ" secondAttribute="centerY" id="b5Q-km-lup"/>
-                            <constraint firstAttribute="centerX" secondItem="Egp-ca-DdQ" secondAttribute="centerX" id="zcU-T9-qdN"/>
+                            <constraint firstAttribute="trailing" secondItem="Egp-ca-DdQ" secondAttribute="trailing" id="2TU-Nc-NM2"/>
+                            <constraint firstItem="zFC-LZ-IV5" firstAttribute="leading" secondItem="GLk-PI-xiq" secondAttribute="leading" id="BAZ-8t-1Hg"/>
+                            <constraint firstItem="3ij-je-a6c" firstAttribute="top" secondItem="zFC-LZ-IV5" secondAttribute="bottom" id="EwQ-Z5-5DV"/>
+                            <constraint firstItem="Egp-ca-DdQ" firstAttribute="top" secondItem="GLk-PI-xiq" secondAttribute="top" id="KT9-ba-JTs"/>
+                            <constraint firstItem="3ij-je-a6c" firstAttribute="top" secondItem="Egp-ca-DdQ" secondAttribute="bottom" id="PTk-Z8-duD"/>
+                            <constraint firstItem="zFC-LZ-IV5" firstAttribute="top" secondItem="GLk-PI-xiq" secondAttribute="top" id="edZ-ko-Tba"/>
+                            <constraint firstItem="Egp-ca-DdQ" firstAttribute="leading" secondItem="zFC-LZ-IV5" secondAttribute="trailing" id="vcp-wD-deE"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="postcardView" destination="Egp-ca-DdQ" id="AED-6j-qBx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xys-qu-b3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2755" y="-476"/>
+            <point key="canvasLocation" x="2429" y="982"/>
         </scene>
         <!--Setting View Controller - Settings-->
         <scene sceneID="BXv-3v-be6">
@@ -929,10 +959,13 @@
                             <outlet property="delegate" destination="dhl-4X-1Qi" id="zpT-uz-Q7a"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="K0D-G4-SCb" kind="modal" identifier="viewPostcard" id="yo8-jA-y1q"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwS-sp-by3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="695"/>
+            <point key="canvasLocation" x="790" y="691"/>
         </scene>
         <!--Chat View Controller - Anna Kiku-->
         <scene sceneID="KmJ-Nt-LLz">
@@ -947,11 +980,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="type here..." borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQb-at-4jK">
-                                <rect key="frame" x="0.0" y="538" width="271" height="30"/>
+                                <rect key="frame" x="29" y="538" width="242" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="42t-Co-07L"/>
-                                    <constraint firstAttribute="width" constant="271" id="KBR-cV-kHt"/>
+                                    <constraint firstAttribute="width" constant="242" id="KBR-cV-kHt"/>
                                 </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1045,14 +1078,27 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-zF-eUx">
+                                <rect key="frame" x="8" y="542" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="cb4-Lv-rW0"/>
+                                    <constraint firstAttribute="width" constant="15" id="ehW-iR-r45"/>
+                                </constraints>
+                                <state key="normal" image="notification_postcard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Hss-M4-zg7" secondAttribute="trailing" id="9MI-Vw-SN9"/>
                             <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="AQb-at-4jK" secondAttribute="bottom" id="Azj-kA-rGA"/>
+                            <constraint firstItem="Mfy-zF-eUx" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" constant="8" id="CUM-jn-wgr"/>
                             <constraint firstItem="jvl-fC-44J" firstAttribute="top" secondItem="sWg-5b-iwG" secondAttribute="bottom" id="Qg4-dq-Ltu"/>
                             <constraint firstItem="Hss-M4-zg7" firstAttribute="top" secondItem="HLn-aY-oct" secondAttribute="bottom" id="TQL-Ii-1Pz"/>
                             <constraint firstItem="AQb-at-4jK" firstAttribute="top" secondItem="gES-7D-jeJ" secondAttribute="bottom" id="TyP-Be-jK4"/>
+                            <constraint firstItem="Mfy-zF-eUx" firstAttribute="centerY" secondItem="AQb-at-4jK" secondAttribute="centerY" id="YCW-Uy-tlp"/>
                             <constraint firstItem="gES-7D-jeJ" firstAttribute="leading" secondItem="upV-Wd-sKl" secondAttribute="leading" id="jzR-ep-cc3"/>
                             <constraint firstAttribute="trailing" secondItem="gES-7D-jeJ" secondAttribute="trailing" id="kVv-2N-Kew"/>
                             <constraint firstItem="gES-7D-jeJ" firstAttribute="top" secondItem="Hss-M4-zg7" secondAttribute="bottom" constant="5" id="l0e-oh-tUc"/>
@@ -1065,11 +1111,12 @@
                     <connections>
                         <outlet property="chatCollectionView" destination="gES-7D-jeJ" id="xLR-7h-O1g"/>
                         <outlet property="chatNavigationItem" destination="QgW-hQ-ZlA" id="gJr-Sf-PGI"/>
+                        <segue destination="K0D-G4-SCb" kind="modal" identifier="viewPostcard" id="ul7-iq-v6h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnf-vm-Tlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1322" y="602"/>
+            <point key="canvasLocation" x="1328" y="600"/>
         </scene>
         <!--Friend Segmented View Controller - Friend-->
         <scene sceneID="lvY-CV-dIL">
@@ -1385,7 +1432,6 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="createPostCardView" destination="z4O-e5-54i" id="tuC-Eo-di2"/>
-                        <segue destination="K0D-G4-SCb" kind="modal" identifier="viewPostcard" id="ZSY-2m-Hgr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnq-9u-ymt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1396,11 +1442,13 @@
     <resources>
         <image name="addMailboxButtton" width="87" height="56"/>
         <image name="addMediaButton" width="50" height="50"/>
+        <image name="click_back_button" width="56" height="40"/>
         <image name="createMailboxButton" width="95" height="54"/>
         <image name="feedTabBar_icon" width="30" height="30"/>
         <image name="foveButton" width="50" height="50"/>
         <image name="gender_female_sign" width="30" height="30"/>
         <image name="mapTabBar_icon" width="30" height="30"/>
+        <image name="notification_postcard" width="15" height="15"/>
         <image name="profileTabBar_icon" width="60" height="60"/>
         <image name="send_postcard_button" width="110" height="30"/>
         <image name="settingTabBar_icon" width="30" height="30"/>
@@ -1415,5 +1463,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="tuB-K6-12K"/>
         <segue reference="iRg-Cx-rMY"/>
+        <segue reference="ul7-iq-v6h"/>
     </inferredMetricsTieBreakers>
 </document>

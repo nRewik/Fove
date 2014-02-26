@@ -9,14 +9,14 @@
 #import "FVGalleryViewController.h"
 #import "FVPostCard.h"
 #import "FVGalleryViewCell.h"
-
+#import "FVPostCardViewController.h"
 #import "FVUser.h"
 #import "FVAzureService.h"
 
 @interface FVGalleryViewController ()
 
 @property (strong,nonatomic) NSMutableArray *postcards; // of FVPostcard
-
+@property (strong,nonatomic) FVPostCard *selectedPostcard;
 @end
 
 @implementation FVGalleryViewController
@@ -35,6 +35,19 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    id destination = segue.destinationViewController;
+    if([destination isKindOfClass:[FVPostCardViewController class]])
+    {
+        if ([segue.identifier isEqualToString:@"viewPostcard"]) {
+            FVPostCardViewController *postcardVC = (FVPostCardViewController *)destination;
+            postcardVC.postcard = self.selectedPostcard;
+        }
+    }
+}
+
+
 
 -(NSMutableArray *)postcards
 {
@@ -85,9 +98,19 @@
     
     FVGalleryViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.postcard = self.postcards[indexPath.row];
+    
+    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewPostcard:)];
+    [cell addGestureRecognizer:tapGesture];
+    
     return cell;
 }
-
+#pragma mark -
+-(void)viewPostcard:(UIGestureRecognizer *)gesture;
+{
+    FVGalleryViewCell *galleryViewCell = (FVGalleryViewCell *)gesture.view;
+    self.selectedPostcard = galleryViewCell.postcard;
+    [self performSegueWithIdentifier:@"viewPostcard" sender:self];
+}
 
 
 

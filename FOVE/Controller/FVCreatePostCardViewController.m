@@ -30,16 +30,6 @@
 }
 #define FVCREATEPOSTCARD_UPLOAD_NOTIFICATION @"FVCREATEPOSTCARD_UPLOAD_NOTIFICATION"
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"viewPostcard"]) {
-        UIViewController *vc = segue.destinationViewController;
-        if ([vc isKindOfClass:[FVPostCardViewController class]]) {
-            FVPostCardViewController *pcvc = (FVPostCardViewController *)vc;
-            pcvc.postcard = self.createdPostcard;
-        }
-    }
-}
 #pragma mark - view controller stuff
 - (void)viewDidLoad
 {

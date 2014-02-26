@@ -27,8 +27,15 @@
 {
     return UIInterfaceOrientationMaskLandscape;
 }
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
-
+- (IBAction)goBack
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(void)setPostcard:(FVPostCard *)postcard
 {
