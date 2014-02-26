@@ -49,16 +49,22 @@
                 NSAttributedString *foveMessage = [[NSAttributedString alloc] initWithString:@" foved your mailbox." attributes:nil];
                 [message appendAttributedString:foveMessage];
                 
-                self.notifyIconImageView.image = [UIImage imageNamed:@"foveButton"];
+                self.notifyIconImageView.image = [UIImage imageNamed:@"notification_fove"];
             }
             break;
         case FVNotifySendPostcard:
             {
                 NSAttributedString *sendPostcardMessage = [[NSAttributedString alloc] initWithString:@" sent postcard to you." attributes:nil];
                 [message appendAttributedString:sendPostcardMessage];
+                
+                self.notifyIconImageView.image = [UIImage imageNamed:@"notification_postcard"];
+
             }
             break;
         case FVNotifyCreateMailbox:
+            {
+                self.notifyIconImageView.image = [UIImage imageNamed:@"notification_mailbox"];
+            }
             break;
     }
     self.notificationMessageLabel.attributedText = message;
