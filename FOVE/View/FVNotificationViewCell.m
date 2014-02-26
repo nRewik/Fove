@@ -53,6 +53,10 @@
             }
             break;
         case FVNotifySendPostcard:
+            {
+                NSAttributedString *sendPostcardMessage = [[NSAttributedString alloc] initWithString:@" sent postcard to you." attributes:nil];
+                [message appendAttributedString:sendPostcardMessage];
+            }
             break;
         case FVNotifyCreateMailbox:
             break;
