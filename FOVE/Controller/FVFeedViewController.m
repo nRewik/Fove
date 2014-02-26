@@ -9,6 +9,7 @@
 #import "FVFeedViewController.h"
 #import "FVNotification.h"
 #import "FVNotificationViewCell.h"
+#import "FVAzureService.h"
 
 @interface FVFeedViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *notificationCollectionView;
@@ -21,25 +22,42 @@
 -(NSMutableArray *)notifications
 {
     if (!_notifications) {
+        
         _notifications = [[NSMutableArray alloc] init];
         
-        int numberOfNotifications = 25;
-        
-        for (int i=0; i<numberOfNotifications; i++) {
-            FVNotification *xNoti = [[FVNotification alloc] init];
-            FVUser *user = [[FVUser alloc] init];
-            NSString *imageName = [NSString stringWithFormat:@"test_profile_%d",i%6];
-            user.profileImage = [UIImage imageNamed:imageName];
-            
-            xNoti.sender = user;
-            NSMutableString *message = [[NSMutableString alloc] init];
-            for (int j=0; j<i; j++) {
-                [message appendString:@"MMM "];
-            }
-            xNoti.message = message;
-            
-            [_notifications addObject:xNoti];
-        }
+        NSDictionary *parameter = @{@"user_id": [[FVUser currentUser] user_id]};
+        MSClient *client = [FVAzureService sharedClient];
+        [client invokeAPI:@"notification"
+                     body:nil
+               HTTPMethod:@"GET"
+               parameters:parameter
+                  headers:nil
+               completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+
+                   NSUInteger numberOfNotifications = [result count];
+                   for (int i=0; i<numberOfNotifications; i++)
+                   {
+                       /* result[i] format
+                        "notification_message" = "fove your mailbox";
+                        "notification_type" = "fove";
+                        "recipient_id" = "<null>";
+                        "sender_id" = 5;
+                        */
+                       
+                       FVNotification *xNoti = [[FVNotification alloc] init];
+                       xNoti.message = result[i][@"notification_message"];
+                       
+                       [FVUser getUserFromID:result[i][@"sender_id"] completion:^(FVUser *resultUser, NSError *error) {
+                           xNoti.sender = resultUser;
+                           [self.notificationCollectionView reloadData];
+                       }];
+                       
+                       [_notifications addObject:xNoti];
+                   }
+                   
+                   [self.notificationCollectionView reloadData];
+               }
+         ];
     }
     return _notifications;
 }
