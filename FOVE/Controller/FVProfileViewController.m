@@ -8,7 +8,6 @@
 
 #import "FVProfileViewController.h"
 #import "FVUser.h"
-#import "FVProfileTableViewCell.h"
 
 @interface FVProfileViewController () <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
@@ -188,7 +187,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *profileCellIdentifier = @"profileCell";
-    FVProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:profileCellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:profileCellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.details[indexPath.row];
     
     return cell;
