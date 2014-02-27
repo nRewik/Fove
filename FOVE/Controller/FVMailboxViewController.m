@@ -258,7 +258,8 @@
             
             if ( [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id]){
                 //if owner
-                self.sendPostCardButton.hidden = YES;            }
+//                self.sendPostCardButton.hidden = YES;
+            }
             else{
                 //if not owner
                 UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
