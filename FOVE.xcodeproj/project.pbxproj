@@ -55,6 +55,7 @@
 		A0CE0DFB18BB4024000CBE55 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CE0DF918BB4024000CBE55 /* WindowsAzureMessaging.framework */; };
 		A0CE0DFC18BB4024000CBE55 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CE0DFA18BB4024000CBE55 /* WindowsAzureMobileServices.framework */; };
 		A0E8717E189CE3F40093D98A /* FVCreateMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */; };
+		A0ECCD8318BFA06100D62EFC /* FVProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ECCD8218BFA06100D62EFC /* FVProfileTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,8 @@
 		A0CE0DFA18BB4024000CBE55 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		A0E8717C189CE3F40093D98A /* FVCreateMailboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVCreateMailboxViewController.h; path = Controller/FVCreateMailboxViewController.h; sourceTree = "<group>"; };
 		A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVCreateMailboxViewController.m; path = Controller/FVCreateMailboxViewController.m; sourceTree = "<group>"; };
+		A0ECCD8118BFA06100D62EFC /* FVProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVProfileTableViewCell.h; path = View/FVProfileTableViewCell.h; sourceTree = "<group>"; };
+		A0ECCD8218BFA06100D62EFC /* FVProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVProfileTableViewCell.m; path = View/FVProfileTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,8 +307,7 @@
 				A06856C4189CC967007F0015 /* FVMapViewController.h */,
 				A06856C5189CC967007F0015 /* FVMapViewController.m */,
 				A03F5E4F18BCE9FD00AA3A83 /* MailboxView */,
-				A04ACB15189749AC00587F34 /* FVProfileViewController.h */,
-				A04ACB16189749AC00587F34 /* FVProfileViewController.m */,
+				A0ECCD8018BFA03000D62EFC /* ProfileView */,
 				A056F67318B0F8F2001C6987 /* FVindexTabBarController.h */,
 				A056F67418B0F8F2001C6987 /* FVindexTabBarController.m */,
 				A01E2A5B18924AA400C84F01 /* FVViewController.h */,
@@ -412,6 +414,17 @@
 			path = "AzureSDK-iOS";
 			sourceTree = "<group>";
 		};
+		A0ECCD8018BFA03000D62EFC /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				A04ACB15189749AC00587F34 /* FVProfileViewController.h */,
+				A04ACB16189749AC00587F34 /* FVProfileViewController.m */,
+				A0ECCD8118BFA06100D62EFC /* FVProfileTableViewCell.h */,
+				A0ECCD8218BFA06100D62EFC /* FVProfileTableViewCell.m */,
+			);
+			name = ProfileView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -507,6 +520,7 @@
 				A03F5E4E18BCB05B00AA3A83 /* FVAzureService.m in Sources */,
 				A086301A18AA6EB900D2BC4D /* FVChatViewController.m in Sources */,
 				A056F67518B0F8F2001C6987 /* FVindexTabBarController.m in Sources */,
+				A0ECCD8318BFA06100D62EFC /* FVProfileTableViewCell.m in Sources */,
 				A03F5E4B18BCA26F00AA3A83 /* FVNotificationViewCell.m in Sources */,
 				A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */,
 				A03C376F18AF542F001BA7E7 /* FVPostCard.m in Sources */,
