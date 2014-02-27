@@ -12,23 +12,27 @@
 #import "FVAzureService.h"
 
 @interface FVFeedViewController () <UICollectionViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UICollectionView *notificationCollectionView;
+
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
+@property (strong,nonatomic) NSTimer *refreshTimer;
+@property (nonatomic) BOOL isRefreshing;
+
 @property (strong,nonatomic) NSMutableArray *notifications; // of FVNotifcation
 @end
 
 @implementation FVFeedViewController
 
+#define NOTIFICATION_REFRESH_TIME 30
 
--(NSMutableArray *)notifications
-{
-    if (!_notifications) {
-        _notifications = [[NSMutableArray alloc] init];
-    }
-    return _notifications;
-}
 -(void)fetchNotifications
 {
+    if (self.isRefreshing) {
+        return;
+    }
+    
+    self.isRefreshing = YES;
     [self.refreshControl beginRefreshing];
     
     NSDictionary *parameter = @{@"user_id": [[FVUser currentUser] user_id]};
@@ -39,8 +43,6 @@
            parameters:parameter
               headers:nil
            completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
-               
-               [self.refreshControl endRefreshing];
                
                NSUInteger numberOfNotifications = [result count];
                for (int i=numberOfNotifications-1; i>=0; i--)
@@ -53,6 +55,9 @@
                    }
                }
                [self.notificationCollectionView reloadData];
+               
+               [self.refreshControl endRefreshing];
+               self.isRefreshing = NO;
            }
      ];
 }
@@ -76,24 +81,32 @@
     [self.notificationCollectionView addSubview:self.refreshControl];
     
     [self fetchNotifications];
+    
+    //init refresh timer
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:NOTIFICATION_REFRESH_TIME
+                                                         target:self
+                                                       selector:@selector(fetchNotifications)
+                                                       userInfo:nil
+                                                        repeats:YES];
 }
 
 #pragma mark - Lazy Instantiation
+-(NSMutableArray *)notifications
+{
+    if (!_notifications) {
+        _notifications = [[NSMutableArray alloc] init];
+    }
+    return _notifications;
+}
 -(UIRefreshControl *)refreshControl
 {
     if (!_refreshControl) {
         _refreshControl = [[UIRefreshControl alloc] init];
-        [_refreshControl addTarget:self action:@selector(startRefresh:)
+        [_refreshControl addTarget:self action:@selector(fetchNotifications)
                  forControlEvents:UIControlEventValueChanged];
     }
     return _refreshControl;
 }
-#pragma mark - refresh selector
--(void)startRefresh:(UIRefreshControl *)refreshControl
-{
-    [self fetchNotifications];
-}
-
 #pragma mark - UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
