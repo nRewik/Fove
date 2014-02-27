@@ -16,10 +16,13 @@
 #import "FVPostCard.h"
 #import "FVPostCardPortraitView.h"
 
-@interface FVMailboxViewController () <UIGestureRecognizerDelegate>
+@interface FVMailboxViewController () <UIGestureRecognizerDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *mailboxInfoView;
+
+@property (strong,nonatomic) UIView *footerView;
+@property (nonatomic) BOOL isReadPostcard;
 
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mailboxMassageLabel;
@@ -45,6 +48,8 @@
 #define POSTCARD_HEIGHT 187
 #define POSTCARD_HEIGHT_GAP 8
 #define POSTCARD_WIDTH 300
+#define PULL_THRESHOLD 80
+#define FOOTER_HEIGHT 60
 
 -(NSMutableArray *)postcards
 {
@@ -141,6 +146,8 @@
     }
 }
 
+#pragma mark - ViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -150,19 +157,33 @@
     
     [self ownerPictuerTapGestureSetup];
     
-    [self reloadPostcard];
+    self.scrollView.delegate = self;
 }
 -(void)viewDidLayoutSubviews
 {
-    int numberOfPostcard = [self.postcards count];
     CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + (POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) * numberOfPostcard;
-    self.scrollView.contentSize = CGSizeMake(screenSizeWidth,totalHeight);
+    //footer view
+    CGFloat footerHeight = FOOTER_HEIGHT + PULL_THRESHOLD;
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0,self.scrollView.bounds.size.height-FOOTER_HEIGHT,screenSizeWidth,footerHeight)];
+    [footerView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.scrollView addSubview:footerView];
+    self.footerView = footerView;
+    
+    UILabel *pullLabel = [[UILabel alloc] init];
+    pullLabel.text = @"Pull To Read Postcard";
+    [pullLabel sizeToFit];
+    pullLabel.center = CGPointMake( footerView.center.x, (footerView.bounds.size.height-PULL_THRESHOLD)/2 );
+    [footerView addSubview:pullLabel];
+    
+    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + footerView.bounds.size.height - PULL_THRESHOLD;
+    self.scrollView.contentSize = CGSizeMake(screenSizeWidth, totalHeight);
 }
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
+
+#pragma mark -
 
 - (void)ownerPictuerTapGestureSetup
 {
@@ -179,14 +200,15 @@
 }
 -(void)reloadPostcard
 {
+    self.scrollView.scrollEnabled = NO;
+    
     int numberOfPostcard = [self.postcards count];
     for (int i=0; i<numberOfPostcard; i++) {
 
         CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
         CGFloat xPos = (screenSizeWidth - POSTCARD_WIDTH)/2;
         
-        CGFloat eachPCVHeight = POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP;
-        CGFloat yPos = self.mailboxInfoView.frame.size.height + eachPCVHeight*i;
+        CGFloat yPos = self.mailboxInfoView.frame.size.height + (POSTCARD_HEIGHT * i) + (POSTCARD_HEIGHT_GAP * (i+1));
 
         CGRect frame = CGRectMake( xPos , yPos , POSTCARD_WIDTH, POSTCARD_HEIGHT);
         FVPostCardPortraitView *pcv = [[FVPostCardPortraitView alloc] initWithFrame:frame];
@@ -194,6 +216,18 @@
         
         [self.scrollView addSubview:pcv];
     }
+    
+    [self.footerView removeFromSuperview];
+    
+    CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + (POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) * numberOfPostcard;
+    self.scrollView.contentSize = CGSizeMake(screenSizeWidth,totalHeight);
+  
+    [UIView animateWithDuration:1.0 animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, self.mailboxInfoView.bounds.size.height);
+    } completion:^(BOOL finished) {
+        self.scrollView.scrollEnabled = YES;
+    }];
 }
 
 -(void)updateUI
@@ -224,8 +258,7 @@
             
             if ( [[[FVUser currentUser] user_id] isEqualToString:self.mailbox.owner.user_id]){
                 //if owner
-                self.sendPostCardButton.hidden = YES;
-            }
+                self.sendPostCardButton.hidden = YES;            }
             else{
                 //if not owner
                 UINavigationItem *navItem =  (UINavigationItem *)self.navigateBar.items[0];
@@ -244,6 +277,39 @@
     else if( self.mailbox.mediaType == FVMediaVideoType){
         NSURL *movieUrl = [NSURL URLWithString:self.mailbox.mediaURL];
         [self.mediaView setupWithMovieUrl:movieUrl];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + PULL_THRESHOLD)
+    {
+        if (!self.isReadPostcard)
+        {
+            self.isReadPostcard = YES;
+            [self reloadPostcard];
+            
+        }
+    }
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate && scrollView.contentOffset.y >= scrollView.frame.size.height)
+    {
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + PULL_THRESHOLD)
+    {
+        if (!self.isReadPostcard)
+        {
+            self.isReadPostcard = YES;
+            [self reloadPostcard];
+            
+        }
     }
 }
 
