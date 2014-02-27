@@ -63,6 +63,9 @@
             break;
         case FVNotifyCreateMailbox:
             {
+                NSAttributedString *sendPostcardMessage = [[NSAttributedString alloc] initWithString:@" created a new mailbox." attributes:nil];
+                [message appendAttributedString:sendPostcardMessage];
+                
                 self.notifyIconImageView.image = [UIImage imageNamed:@"notification_mailbox"];
             }
             break;
