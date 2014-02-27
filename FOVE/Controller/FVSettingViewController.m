@@ -10,42 +10,60 @@
 #import "FVViewController.h"
 #import "FVUser.h"
 #import "FVMailbox.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "FVProfileViewController.h"
 
 @interface FVSettingViewController ()
-
-@property (weak, nonatomic) IBOutlet FBLoginView *fbLoginView;
-
+@property (weak, nonatomic) IBOutlet UITableViewCell *myMailboxCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *LogoutCell;
 @end
 
 @implementation FVSettingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
+#pragma mark - viewController State
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+#pragma mark - Lazy Instantiation
+
+#pragma mark - Segue
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    id destination = segue.destinationViewController;
+    if ([destination isKindOfClass:[FVProfileViewController class]]) {
+        if ([segue.identifier isEqualToString:@"viewProfile"]) {
+            FVProfileViewController *pvc = (FVProfileViewController *)destination;
+            pvc.user = [FVUser currentUser];
+        }
+    }
+}
+
+
+#pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIView *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    self.fbLoginView.delegate = self;
+    if (cell == self.myMailboxCell) {
+        NSLog(@"mailbox");
+    }
+    if (cell == self.LogoutCell) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self logout];
+    }
 }
-
-- (void)didReceiveMemoryWarning
+#pragma mark - Action
+-(void)logout
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
-{
+    FBSession *session = [FBSession activeSession];
+    [session closeAndClearTokenInformation];
     [FVUser setCurrentUser:nil];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"logout");
 }
 
 
