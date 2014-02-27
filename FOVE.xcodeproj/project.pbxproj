@@ -56,6 +56,7 @@
 		A0CE0DFC18BB4024000CBE55 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CE0DFA18BB4024000CBE55 /* WindowsAzureMobileServices.framework */; };
 		A0E8717E189CE3F40093D98A /* FVCreateMailboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */; };
 		A0ECCD8318BFA06100D62EFC /* FVProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ECCD8218BFA06100D62EFC /* FVProfileTableViewCell.m */; };
+		A0ECCD8D18BFBC5D00D62EFC /* FVMatchingMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ECCD8C18BFBC5D00D62EFC /* FVMatchingMailbox.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,8 @@
 		A0E8717D189CE3F40093D98A /* FVCreateMailboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVCreateMailboxViewController.m; path = Controller/FVCreateMailboxViewController.m; sourceTree = "<group>"; };
 		A0ECCD8118BFA06100D62EFC /* FVProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVProfileTableViewCell.h; path = View/FVProfileTableViewCell.h; sourceTree = "<group>"; };
 		A0ECCD8218BFA06100D62EFC /* FVProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVProfileTableViewCell.m; path = View/FVProfileTableViewCell.m; sourceTree = "<group>"; };
+		A0ECCD8B18BFBC5D00D62EFC /* FVMatchingMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FVMatchingMailbox.h; path = Model/FVMatchingMailbox.h; sourceTree = "<group>"; };
+		A0ECCD8C18BFBC5D00D62EFC /* FVMatchingMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FVMatchingMailbox.m; path = Model/FVMatchingMailbox.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,8 +288,7 @@
 				A03C376E18AF542F001BA7E7 /* FVPostCard.m */,
 				A029C719189E2B1D00B167C7 /* FVUser.h */,
 				A029C71A189E2B1D00B167C7 /* FVUser.m */,
-				A01E3769189F6BC3001CCEBA /* FVMailbox.h */,
-				A01E376A189F6BC3001CCEBA /* FVMailbox.m */,
+				A0ECCD8418BFB9C400D62EFC /* Mailbox */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -425,6 +427,17 @@
 			name = ProfileView;
 			sourceTree = "<group>";
 		};
+		A0ECCD8418BFB9C400D62EFC /* Mailbox */ = {
+			isa = PBXGroup;
+			children = (
+				A01E3769189F6BC3001CCEBA /* FVMailbox.h */,
+				A01E376A189F6BC3001CCEBA /* FVMailbox.m */,
+				A0ECCD8B18BFBC5D00D62EFC /* FVMatchingMailbox.h */,
+				A0ECCD8C18BFBC5D00D62EFC /* FVMatchingMailbox.m */,
+			);
+			name = Mailbox;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -525,6 +538,7 @@
 				A01A272918B78DAC00524C99 /* FVFriendCollectionViewCell.m in Sources */,
 				A03C376F18AF542F001BA7E7 /* FVPostCard.m in Sources */,
 				A01E2A5718924AA400C84F01 /* FVAppDelegate.m in Sources */,
+				A0ECCD8D18BFBC5D00D62EFC /* FVMatchingMailbox.m in Sources */,
 				A03C377218AF5EFC001BA7E7 /* FVPostCardScrollViewLandScape.m in Sources */,
 				A01E2A5318924AA400C84F01 /* main.m in Sources */,
 				A031413C18B09B9900CBF55F /* FVCreatePostCardView.m in Sources */,

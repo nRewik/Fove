@@ -33,7 +33,7 @@
     return self;
 }
 
--(instancetype)initWithMailbox:(FVMailbox *)mailbox
+-(instancetype)initWithMailbox:(FVMatchingMailbox *)mailbox
 {
     _mailbox = mailbox;
     return [self initWithTitle:mailbox.owner.name subtitle:mailbox.message coordinate:mailbox.location];

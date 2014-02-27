@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "FVMailbox.h"
+#import "FVMatchingMailbox.h"
 
 @interface FVMailboxAnnotation : NSObject <MKAnnotation>
 
@@ -20,6 +20,6 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
-@property (strong,nonatomic) FVMailbox *mailbox;
+@property (strong,nonatomic) FVMatchingMailbox *mailbox;
 
 @end

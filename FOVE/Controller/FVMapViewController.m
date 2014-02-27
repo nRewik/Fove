@@ -11,7 +11,7 @@
 #import "FVCreateMailboxViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "FVMailbox.h"
+#import "FVMatchingMailbox.h"
 #import "FVMailboxAnnotation.h"
 #import "FVMailboxViewController.h"
 
@@ -140,12 +140,17 @@
                            NSInteger mailCount = [result[@"found"] integerValue];
                            NSMutableArray *mailboxList = [[NSMutableArray alloc] initWithCapacity:mailCount];
                            NSArray *mailDictArray = result[@"mailbox_list"];
-                           for (int i=0; i<mailCount; i++)
-                           {
-                               mailboxList[i] = [[FVMailbox alloc] initWithMailboxDictionary:mailDictArray[i]];
+                           //init mailboxs
+                           for (int i=0; i<mailCount; i++){
+                               
+                               NSDictionary *maiboxlInfo = (NSDictionary *)mailDictArray[i];
+                               FVMatchingMailbox *newMailbox = [[FVMatchingMailbox alloc] initWithMailboxDictionary:maiboxlInfo];
+                               newMailbox.matchingLevel = [maiboxlInfo[@"matching_level"] integerValue];
+                               
+                               mailboxList[i] =  newMailbox;
                            }
-                           for (int i=0; i<mailCount; i++)
-                           {
+                           //add to map
+                           for (int i=0; i<mailCount; i++){
                                FVMailbox *mailbox = (FVMailbox *)mailboxList[i];
                                [self addMailboxToMap:mailbox];
                            }
@@ -183,6 +188,11 @@
         {
             annotationView.annotation = annotation;
         }
+        
+        FVMailboxAnnotation *annotation = annotationView.annotation;
+        
+        NSString *imageName = [NSString stringWithFormat:@"mailbox_pin_%d",annotation.mailbox.matchingLevel];
+        annotationView.image = [UIImage imageNamed:imageName];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         annotationView.rightCalloutAccessoryView = button;
