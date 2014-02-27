@@ -40,6 +40,10 @@
 	// Do any additional setup after loading the view.
     self.createPostCardView.delegate = self;
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
 }
