@@ -66,36 +66,33 @@ static dispatch_queue_t _readPostcardQueue;
         _postcards = [[NSMutableArray alloc] init];
         
         MSClient *client = [FVAzureService sharedClient];
-        MSTable *postcardTable = [client tableWithName:@"postcard"];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender == %@ and recipient == %@) or (recipient == %@ and sender == %@)",
-                                  self.user.user_id,
-                                  self.friend.user_id,
-                                  self.user.user_id,
-                                  self.friend.user_id
-                                  ];
-        postcardTable.query.orderBy = @[@"__createdAt"];
-        [postcardTable readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
-            [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                FVPostCard *newPostcard = [[FVPostCard alloc] initWithPostcardInfo:obj];
-                newPostcard.sender = [obj[@"sender"] isEqualToString:self.user.user_id] ? self.user : self.friend;
-                [_postcards addObject:newPostcard];
-                
-                [self.chatCollectionView reloadData];
-                
-                //if load all of chat scroll to bottom
-                if ([_postcards count] == [items count])
-                {
-                    NSInteger section = [self numberOfSectionsInCollectionView:self.chatCollectionView] - 1;
-                    NSInteger item = [self collectionView:self.chatCollectionView numberOfItemsInSection:section]-1;
-                    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
-                    
-                    [self.chatCollectionView scrollToItemAtIndexPath:lastIndexPath
-                                                    atScrollPosition:UICollectionViewScrollPositionBottom
-                                                            animated:NO];
-                }
-            }];
-        }];
+        NSDictionary *parameter = @{ @"user_id" : self.user.user_id , @"friend_id" : self.friend.user_id };
+        [client invokeAPI:@"chat"
+                     body:nil
+               HTTPMethod:@"GET"
+               parameters:parameter
+                  headers:nil completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                      
+                      for (int i=[result count]-1; i>=0; i--){
+                          id obj = result[i];
+                          FVPostCard *newPostcard = [[FVPostCard alloc] initWithPostcardInfo:obj];
+                          newPostcard.sender = [obj[@"sender"] isEqualToString:self.user.user_id] ? self.user : self.friend;
+                          [_postcards addObject:newPostcard];
+                          
+                          [self.chatCollectionView reloadData];
+                      }
+                      
+                      NSInteger section = [self numberOfSectionsInCollectionView:self.chatCollectionView] - 1;
+                      NSInteger item = [self collectionView:self.chatCollectionView numberOfItemsInSection:section]-1;
+                      NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+                      
+                      [self.chatCollectionView scrollToItemAtIndexPath:lastIndexPath
+                                                      atScrollPosition:UICollectionViewScrollPositionBottom
+                                                              animated:NO];
+
+                  }
+         ];
     }
     return _postcards;
 }
