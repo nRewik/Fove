@@ -62,8 +62,8 @@
             }
         }
         
-        if ( dictionary[@"fovecount"] != [NSNull null]) {
-            _fovecount = [dictionary[@"fovecount"] integerValue];
+        if ( dictionary[@"fove_count"] != [NSNull null]) {
+            _fovecount = [dictionary[@"fove_count"] integerValue];
         }
         if( dictionary[@"latitude"] != [NSNull null]){
             _location.latitude = [dictionary[@"latitude"] doubleValue];
