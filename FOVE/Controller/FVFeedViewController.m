@@ -92,7 +92,6 @@
 -(void)startRefresh:(UIRefreshControl *)refreshControl
 {
     [self fetchNotifications];
-    NSLog(@"refresh");
 }
 
 #pragma mark - UICollectionViewDataSource

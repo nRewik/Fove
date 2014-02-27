@@ -92,6 +92,25 @@
 
 #pragma mark - azure
 
+-(void)sendCreateMailboxNotification
+{
+    MSClient *client = [FVAzureService sharedClient];
+    MSTable *notiTable = [client tableWithName:@"notification"];
+    
+    NSDictionary *parameter =  @{ @"notification_type" : @"create_mailbox" ,
+                                  @"notification_message" : self.createdMailbox.mailbox_id,
+                                  @"sender_id" : [[FVUser currentUser] user_id],
+                                  @"recipient_id" : self.createdMailbox.owner.user_id
+                                  };
+    [notiTable insert:parameter completion:^(NSDictionary *item, NSError *error) {
+        if(error)
+        {
+            NSLog(@"create create_mailbox notification error \n %@",error);
+            return;
+        }
+        NSLog(@"create create_mailbox notification complete");
+    }];
+}
 -(void)updateMediaToMailbox:(NSString *)mailboxID blobUrl:(NSString *)blobUrl mediaType:(FVMediaType)mediaType
 {
     MSClient *client = [FVAzureService sharedClient];
@@ -115,9 +134,12 @@
                 NSLog(@"3/3 update media to mailbox table complete");
                 NSLog(@"create mailbox id = %@ complete",mailboxID);
                 
+                [self sendCreateMailboxNotification];
+
                 self.createdMailbox.mediaType = mediaType;
                 self.createdMailbox.mediaURL = blobUrl;
                 [self performSegueWithIdentifier:@"viewCreatedMailbox" sender:self];
+                
             }
         }];
     });
