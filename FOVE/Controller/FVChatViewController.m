@@ -74,6 +74,10 @@ static dispatch_queue_t _readPostcardQueue;
                parameters:parameter
                   headers:nil completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
                       
+                      if ([result count] == 0) {
+                          return;
+                      }
+                      
                       for (int i=[result count]-1; i>=0; i--){
                           id obj = result[i];
                           FVPostCard *newPostcard = [[FVPostCard alloc] initWithPostcardInfo:obj];
