@@ -1486,6 +1486,7 @@
                         <outlet property="navigateBar" destination="aQ2-n2-OY5" id="I95-8C-Zru"/>
                         <outlet property="ownerImageView" destination="2YH-If-kQ1" id="lLY-JR-ZWp"/>
                         <outlet property="ownerNameLabel" destination="UEZ-3D-w9y" id="Yod-2u-Nui"/>
+                        <outlet property="ownerStatusLabel" destination="Mxd-0D-B1I" id="GaA-GJ-o0q"/>
                         <outlet property="scrollView" destination="Ndv-Pp-JRT" id="2kM-Go-R2z"/>
                         <outlet property="sendPostCardButton" destination="wtR-ww-VyI" id="obI-I0-Tn9"/>
                         <outlet property="sexImageView" destination="6Sf-Yt-p8r" id="t7t-F0-4wb"/>

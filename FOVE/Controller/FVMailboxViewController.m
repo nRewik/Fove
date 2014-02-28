@@ -25,6 +25,8 @@
 @property (nonatomic) BOOL isReadPostcard;
 
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ownerStatusLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *mailboxMassageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *ownerImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
@@ -236,6 +238,7 @@
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.ownerNameLabel.text = self.mailbox.owner.name;
+            self.ownerStatusLabel.text = self.mailbox.owner.status;
             self.foveCountLabel.text = [NSString stringWithFormat:@"%d",self.mailbox.fovecount];
             
             self.mailboxMassageLabel.text = self.mailbox.message;
