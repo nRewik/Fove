@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UILabel *aboutMeLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailTableView;
 
@@ -161,9 +160,7 @@
     self.nameLabel.text = self.user.name;
     self.statusLabel.text = self.user.status;
     
-//    self.aboutMeLabel.text = self.user.aboutMe;
-    
-    [self.aboutMeLabel sizeToFit];
+    [self.statusLabel sizeToFit];
     
     self.profileImageView.image = self.user.profileImage;
     

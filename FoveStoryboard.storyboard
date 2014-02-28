@@ -757,11 +757,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-tf-Nu8">
-                                                    <rect key="frame" x="269" y="5" width="50" height="40"/>
+                                                    <rect key="frame" x="274" y="9" width="40" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="DxS-CQ-AyL"/>
-                                                        <constraint firstAttribute="width" constant="50" id="TG4-KI-A2i"/>
+                                                        <constraint firstAttribute="height" constant="32" id="DxS-CQ-AyL"/>
+                                                        <constraint firstAttribute="width" constant="40" id="TG4-KI-A2i"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="button_chat">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -777,7 +777,7 @@
                                         <constraints>
                                             <constraint firstItem="XN6-ko-HLM" firstAttribute="top" secondItem="bas-pw-5GE" secondAttribute="top" id="1HJ-LA-Xgc"/>
                                             <constraint firstItem="XN6-ko-HLM" firstAttribute="leading" secondItem="bas-pw-5GE" secondAttribute="leading" id="JbO-6g-6b0"/>
-                                            <constraint firstAttribute="trailing" secondItem="5d2-tf-Nu8" secondAttribute="trailing" id="Ker-gw-EK6"/>
+                                            <constraint firstAttribute="trailing" secondItem="5d2-tf-Nu8" secondAttribute="trailing" constant="5" id="Ker-gw-EK6"/>
                                             <constraint firstItem="QyE-St-hVf" firstAttribute="leading" secondItem="XN6-ko-HLM" secondAttribute="trailing" constant="8" id="Rgy-sv-ao3"/>
                                             <constraint firstItem="5d2-tf-Nu8" firstAttribute="centerY" secondItem="XN6-ko-HLM" secondAttribute="centerY" id="SHv-z7-dNd"/>
                                             <constraint firstItem="gzB-ig-iJl" firstAttribute="top" secondItem="XN6-ko-HLM" secondAttribute="top" id="X4S-AM-JY3"/>

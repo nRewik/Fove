@@ -36,6 +36,7 @@ static dispatch_queue_t _readPostcardQueue;
     return _readPostcardQueue;
 }
 
+#pragma mark - ViewControllerState
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,6 +54,10 @@ static dispatch_queue_t _readPostcardQueue;
             postcardVC.postcard = self.selectedPostcard;
         }
     }
+}
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (IBAction)goBack:(id)sender
