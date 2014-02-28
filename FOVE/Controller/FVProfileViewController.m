@@ -160,8 +160,6 @@
     self.nameLabel.text = self.user.name;
     self.statusLabel.text = self.user.status;
     
-    [self.statusLabel sizeToFit];
-    
     self.profileImageView.image = self.user.profileImage;
     
     for (UIImageView *imv in self.photos) {
