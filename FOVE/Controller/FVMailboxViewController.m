@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIView *mailboxInfoView;
 
 @property (strong,nonatomic) UIView *footerView;
+@property (strong,nonatomic) UIImageView *footerImageView;
+
 @property (nonatomic) BOOL isReadPostcard;
 
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
@@ -49,8 +51,8 @@
 #define POSTCARD_HEIGHT 187
 #define POSTCARD_HEIGHT_GAP 8
 #define POSTCARD_WIDTH 300
-#define PULL_THRESHOLD 80
-#define FOOTER_HEIGHT 60
+#define PULL_THRESHOLD 120
+#define FOOTER_HEIGHT 25
 
 -(NSMutableArray *)postcards
 {
@@ -179,13 +181,12 @@
         CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
         CGFloat footerHeight = FOOTER_HEIGHT + PULL_THRESHOLD;
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0,self.scrollView.bounds.size.height-FOOTER_HEIGHT,screenSizeWidth,footerHeight)];
-        [_footerView setBackgroundColor:[UIColor lightGrayColor]];
+        _footerView.backgroundColor = [UIColor colorWithRed:0.906 green:0.247 blue:0.235 alpha:1.000];
         
-        UILabel *pullLabel = [[UILabel alloc] init];
-        pullLabel.text = @"Pull To Read Postcard";
-        [pullLabel sizeToFit];
-        pullLabel.center = CGPointMake(_footerView.center.x, (_footerView.bounds.size.height-PULL_THRESHOLD)/2 );
-        [_footerView addSubview:pullLabel];
+        self.footerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSizeWidth, FOOTER_HEIGHT)];
+        self.footerImageView.image = [UIImage imageNamed:@"inbox_up"];
+        
+        [_footerView addSubview:self.footerImageView];
     }
     return _footerView;
 }
@@ -292,7 +293,9 @@
 #pragma mark - UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + PULL_THRESHOLD)
+    CGFloat yPos = scrollView.contentOffset.y + scrollView.frame.size.height;
+
+    if ( yPos >= scrollView.contentSize.height + PULL_THRESHOLD)
     {
         if (!self.isReadPostcard)
         {
@@ -301,6 +304,7 @@
             
         }
     }
+
 }
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
@@ -311,8 +315,9 @@
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + PULL_THRESHOLD)
-    {
+    CGFloat yPos = scrollView.contentOffset.y + scrollView.frame.size.height;
+    
+    if ( yPos >= scrollView.contentSize.height + PULL_THRESHOLD){
         if (!self.isReadPostcard)
         {
             self.isReadPostcard = YES;
