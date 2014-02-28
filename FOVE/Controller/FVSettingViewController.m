@@ -15,9 +15,11 @@
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "FVAzureService.h"
 
-@interface FVSettingViewController ()
+@interface FVSettingViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *myMailboxCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *LogoutCell;
+@property (strong,nonatomic) UIAlertView *logoutAlertView;
+
 @end
 
 @implementation FVSettingViewController
@@ -31,7 +33,17 @@
 }
 
 #pragma mark - Lazy Instantiation
-
+-(UIAlertView *)logoutAlertView
+{
+    if (!_logoutAlertView) {
+        _logoutAlertView = [[UIAlertView alloc] initWithTitle:@"Do you want to logout ?"
+                                                      message:nil
+                                                     delegate:self
+                                            cancelButtonTitle:@"No"
+                                            otherButtonTitles:@"Yes", nil];
+    }
+    return _logoutAlertView;
+}
 #pragma mark - Segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -44,6 +56,13 @@
     }
 }
 
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView == self.logoutAlertView && buttonIndex != 0) {
+        [self logout];
+    }
+}
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,7 +89,7 @@
     }
     if (cell == self.LogoutCell) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self logout];
+        [self.logoutAlertView show];
     }
 }
 #pragma mark - Action
