@@ -905,16 +905,6 @@
                                     <constraint firstAttribute="height" constant="2" id="PO7-lU-VrE"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello everyone, checkHello everyone, checkHello everyone, checkHello everyone, check" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="192" translatesAutoresizingMaskIntoConstraints="NO" id="oc3-Q4-ayX" userLabel="statusLabel">
-                                <rect key="frame" x="108" y="103" width="192" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="Iew-LQ-sLq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bRi-Qx-eg7" userLabel="detailTableView">
                                 <rect key="frame" x="0.0" y="255" width="320" height="313"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -948,6 +938,31 @@
                                     <outlet property="delegate" destination="tUZ-aY-pdc" id="CUT-OY-KhC"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8e-td-1CU" userLabel="statusButton">
+                                <rect key="frame" x="108" y="99" width="192" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="WGS-XI-NLY"/>
+                                    <constraint firstAttribute="width" constant="192" id="sd5-EV-FqF"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="statusmessage_profile">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editStatus" destination="tUZ-aY-pdc" eventType="touchUpInside" id="Ynr-KV-o0i"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi My name is rewik." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="oc3-Q4-ayX" userLabel="statusLabel">
+                                <rect key="frame" x="113" y="119" width="182" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="46" id="IrB-cg-MPo"/>
+                                    <constraint firstAttribute="width" constant="182" id="XfZ-Lf-g4U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -962,24 +977,25 @@
                             <constraint firstItem="F2j-7D-zSD" firstAttribute="top" secondItem="j7y-5b-emO" secondAttribute="top" id="Fo1-ZL-itL"/>
                             <constraint firstItem="j7y-5b-emO" firstAttribute="height" secondItem="0Gd-3d-d3u" secondAttribute="height" id="Fza-Au-USs"/>
                             <constraint firstItem="3fD-iK-b6L" firstAttribute="top" secondItem="j7y-5b-emO" secondAttribute="top" id="Gmn-mA-LZg"/>
+                            <constraint firstItem="oc3-Q4-ayX" firstAttribute="centerY" secondItem="u8e-td-1CU" secondAttribute="centerY" constant="0.5" id="PaV-mH-N8A"/>
                             <constraint firstItem="3fD-iK-b6L" firstAttribute="height" secondItem="j7y-5b-emO" secondAttribute="height" id="QPW-Rh-nde"/>
-                            <constraint firstItem="oc3-Q4-ayX" firstAttribute="top" secondItem="JiU-VW-Gjc" secondAttribute="bottom" constant="8" id="R3X-pd-bay"/>
                             <constraint firstItem="jft-Va-VIl" firstAttribute="leading" secondItem="fSp-Oq-ShS" secondAttribute="leading" constant="20" id="Tha-VY-uUk"/>
                             <constraint firstItem="70D-t4-laA" firstAttribute="leading" secondItem="fSp-Oq-ShS" secondAttribute="leading" constant="20" id="U91-f5-p0J"/>
                             <constraint firstItem="F2j-7D-zSD" firstAttribute="height" secondItem="j7y-5b-emO" secondAttribute="height" id="WEH-Lc-ZZ2"/>
+                            <constraint firstItem="jft-Va-VIl" firstAttribute="bottom" secondItem="u8e-td-1CU" secondAttribute="bottom" id="Ydt-5o-Av6"/>
                             <constraint firstItem="CRR-m6-lk1" firstAttribute="top" secondItem="jft-Va-VIl" secondAttribute="bottom" constant="8" id="b4x-L4-v8c"/>
                             <constraint firstItem="y9W-lM-xE6" firstAttribute="top" secondItem="LaY-TA-Nl3" secondAttribute="bottom" constant="20" symbolic="YES" id="bRy-xZ-EVT"/>
                             <constraint firstItem="y9W-lM-xE6" firstAttribute="leading" secondItem="fSp-Oq-ShS" secondAttribute="leading" id="cee-Td-BVE"/>
                             <constraint firstItem="F2j-7D-zSD" firstAttribute="width" secondItem="j7y-5b-emO" secondAttribute="width" id="dQP-2Z-egg"/>
                             <constraint firstItem="3fD-iK-b6L" firstAttribute="leading" secondItem="j7y-5b-emO" secondAttribute="trailing" constant="8" id="eho-dY-EhF"/>
-                            <constraint firstAttribute="trailing" secondItem="oc3-Q4-ayX" secondAttribute="trailing" constant="20" id="g3w-DY-4Pa"/>
                             <constraint firstItem="bRi-Qx-eg7" firstAttribute="top" secondItem="70D-t4-laA" secondAttribute="bottom" constant="8" id="ghL-0E-8rb"/>
+                            <constraint firstItem="u8e-td-1CU" firstAttribute="leading" secondItem="jft-Va-VIl" secondAttribute="trailing" constant="8" id="inQ-P6-jvK"/>
                             <constraint firstItem="JiU-VW-Gjc" firstAttribute="top" secondItem="jft-Va-VIl" secondAttribute="top" id="ji2-Le-rLr"/>
                             <constraint firstAttribute="trailing" secondItem="bRi-Qx-eg7" secondAttribute="trailing" id="lbQ-s0-crv"/>
                             <constraint firstAttribute="trailing" secondItem="CRR-m6-lk1" secondAttribute="trailing" constant="20" id="nJa-KQ-hbH"/>
                             <constraint firstItem="bRi-Qx-eg7" firstAttribute="leading" secondItem="fSp-Oq-ShS" secondAttribute="leading" id="o8Z-ww-23s"/>
-                            <constraint firstItem="oc3-Q4-ayX" firstAttribute="leading" secondItem="jft-Va-VIl" secondAttribute="trailing" constant="8" id="os2-My-i9j"/>
                             <constraint firstItem="j7y-5b-emO" firstAttribute="leading" secondItem="fSp-Oq-ShS" secondAttribute="leading" constant="20" id="rPC-xk-nY5"/>
+                            <constraint firstItem="oc3-Q4-ayX" firstAttribute="leading" secondItem="u8e-td-1CU" secondAttribute="leading" constant="5" id="sLN-XT-6CR"/>
                             <constraint firstItem="0Gd-3d-d3u" firstAttribute="leading" secondItem="3fD-iK-b6L" secondAttribute="trailing" constant="5" id="tA1-Sp-jsc"/>
                             <constraint firstItem="j7y-5b-emO" firstAttribute="width" secondItem="0Gd-3d-d3u" secondAttribute="width" id="tux-Ew-5Yk"/>
                             <constraint firstItem="JiU-VW-Gjc" firstAttribute="leading" secondItem="jft-Va-VIl" secondAttribute="trailing" constant="8" id="uXi-HC-CxN"/>
@@ -995,6 +1011,7 @@
                         <outlet property="nameLabel" destination="JiU-VW-Gjc" id="8hv-vg-CBI"/>
                         <outlet property="navigationBar" destination="y9W-lM-xE6" id="4h3-dG-MoN"/>
                         <outlet property="profileImageView" destination="jft-Va-VIl" id="hIb-Fj-acu"/>
+                        <outlet property="statusButton" destination="u8e-td-1CU" id="ahy-jC-3tV"/>
                         <outlet property="statusLabel" destination="oc3-Q4-ayX" id="aPq-Uk-ZzD"/>
                         <outletCollection property="photos" destination="j7y-5b-emO" id="eaw-Fs-4Jq"/>
                         <outletCollection property="photos" destination="3fD-iK-b6L" id="4No-a7-Haf"/>
@@ -1662,6 +1679,7 @@
         <image name="profileTabBar_icon" width="60" height="60"/>
         <image name="send_postcard_button" width="110" height="30"/>
         <image name="settingTabBar_icon" width="30" height="30"/>
+        <image name="statusmessage_profile" width="170" height="60"/>
         <image name="sticker_0" width="100" height="100"/>
         <image name="test_profile_1" width="112" height="221"/>
         <image name="test_profile_5" width="285" height="360"/>

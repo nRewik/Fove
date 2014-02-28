@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editProfileButton;
 @property (strong,nonatomic) UIBarButtonItem *doneEditProfileButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *statusButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -44,11 +45,7 @@
     NSAssert( self.user != nil , @"self.user should not be nil !!");
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editStatus)];
-    [self.statusLabel addGestureRecognizer:tapGesture];
-    self.statusLabel.userInteractionEnabled = NO;
-    
+    self.statusButton.enabled = NO;
     self.detailTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self updateUI];
 }
@@ -129,16 +126,14 @@
         self.statusLabel.text = @"Edit Status Here...";
         [self.statusLabel sizeToFit];
     }
-    self.statusLabel.textColor = [UIColor blueColor];
-    self.statusLabel.userInteractionEnabled = YES;
+    self.statusButton.enabled = YES;
 }
 -(void)finishEditing
 {
     [self setRightBarButtonItem:self.editProfileButton];
     [self.detailTableView setEditing:NO animated:YES];
-    
-    self.statusLabel.textColor = [UIColor blackColor];
-    self.statusLabel.userInteractionEnabled = NO;
+    self.statusButton.enabled = NO;
+
     
     MSClient *client = [FVAzureService sharedClient];
     MSTable *userTable = [client tableWithName:@"userinfo"];
@@ -153,7 +148,7 @@
         NSLog(@"Update Complete");
     }];
 }
--(void)editStatus
+- (IBAction)editStatus
 {
     [self.statusAlertView show];
 }
