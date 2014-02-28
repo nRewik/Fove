@@ -448,11 +448,24 @@
                                             <action selector="goBack" destination="K0D-G4-SCb" eventType="touchUpInside" id="QGB-lO-YXv"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDS-T3-cRT">
+                                        <rect key="frame" x="8" y="48" width="40" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Share">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="share:" destination="K0D-G4-SCb" eventType="touchUpInside" id="vCr-tx-QOw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98823535442352295" green="0.17647059261798864" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
+                                    <constraint firstItem="sDS-T3-cRT" firstAttribute="centerX" secondItem="cNx-zI-GcL" secondAttribute="centerX" id="5fq-V8-ha6"/>
                                     <constraint firstAttribute="trailing" secondItem="cNx-zI-GcL" secondAttribute="trailing" id="Zoy-2l-lHh"/>
                                     <constraint firstItem="cNx-zI-GcL" firstAttribute="top" secondItem="zFC-LZ-IV5" secondAttribute="top" id="csT-OG-TxG"/>
+                                    <constraint firstItem="sDS-T3-cRT" firstAttribute="top" secondItem="cNx-zI-GcL" secondAttribute="bottom" constant="8" symbolic="YES" id="pRz-ig-5XQ"/>
                                     <constraint firstItem="cNx-zI-GcL" firstAttribute="leading" secondItem="zFC-LZ-IV5" secondAttribute="leading" id="x6u-z7-dMI"/>
                                 </constraints>
                             </view>

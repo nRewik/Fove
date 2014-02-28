@@ -32,14 +32,23 @@
     return YES;
 }
 
-- (IBAction)goBack
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 -(void)setPostcard:(FVPostCard *)postcard
 {
     _postcard = postcard;
     self.postcardView.postCard = self.postcard;
+}
+
+#pragma mark - Action
+- (IBAction)goBack
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)share:(id)sender
+{
+    UIImage *shareImage = [(UIImageView *)self.postcardView.currentView image];
+    NSArray *activitiesItems = @[shareImage];
+    UIActivityViewController *acticityView = [[UIActivityViewController alloc] initWithActivityItems:activitiesItems applicationActivities:nil];
+    acticityView.excludedActivityTypes = @[UIActivityTypeAssignToContact,UIActivityTypeCopyToPasteboard];
+    [self presentViewController:acticityView animated:YES completion:nil];
 }
 @end
