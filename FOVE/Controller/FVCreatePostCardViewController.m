@@ -15,7 +15,7 @@
 #import "FVAzureService.h"
 
 
-@interface FVCreatePostCardViewController () <FVCreatePostCardViewDelegate,UIAlertViewDelegate>
+@interface FVCreatePostCardViewController () <FVCreatePostCardViewDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet FVCreatePostCardView *createPostCardView;
 @property (strong,nonatomic) FVPostCard *createdPostcard;
@@ -79,6 +79,14 @@
 -(void)didCancelCreatePostCard
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)didSelectSetImageButton
+{
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    pickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    pickerController.delegate = self;
+    [self presentViewController:pickerController animated:YES completion:nil];
 }
 -(void)didFinishCreatePostCard:(FVPostCard *)postCard
 {
@@ -175,6 +183,7 @@
     }];
 }
 
+#pragma mark -
 -(void)getUploadImageProgress
 {
     if (_uploadImageError) {
@@ -228,6 +237,13 @@
     if (alertView == self.finishSendPostcardAlertView) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+#pragma mark - UIImagePickerControllerDelegate
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    [self.createPostCardView setImageOfCurrentView:image];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - dealloc

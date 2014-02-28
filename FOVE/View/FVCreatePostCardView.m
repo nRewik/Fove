@@ -16,6 +16,7 @@
 @property (strong,nonatomic) UIButton *addStickerButton;
 @property (strong,nonatomic) UIActionSheet *stickerActionSheet;
 
+
 @end
 
 @implementation FVCreatePostCardView
@@ -29,7 +30,7 @@
     UIButton *_addTextButton;
     UIAlertView *_addTextAlertView;
     
-    UIButton *_addPhotoButton;
+    UIButton *_setPostcardImageButton;
     UIButton *_flipButton;
     UIButton *_doneButton;
     UIButton *_backButton;
@@ -109,6 +110,15 @@
     FVPostCard *postCard = [[FVPostCard alloc] initWithFrontImage:frontImage backImage:backImage];
     _postCardView.postCard = postCard;
 }
+
+-(void)setImageOfCurrentView:(UIImage *)image
+{
+    if (image != nil) {
+        UIImageView *currentImageView = (UIImageView *)_postCardView.currentView;
+        currentImageView.image = image;
+    }
+}
+
 #pragma mark - Lazy Instantiation
 -(UIActionSheet *)stickerActionSheet
 {
@@ -166,7 +176,23 @@
         _doneButton = button;
         [self setupDoneButton];
     }
+    else if( [buttonImageName isEqualToString:BUTTON_LOAD_POSTCARD_TEMPLATE_NAME])
+    {
+        _setPostcardImageButton = button;
+        [self setupSetPostcardImageButton];
+    }
 }
+#pragma mark - SetPostcardImage Button
+-(void)setupSetPostcardImageButton
+{
+    [_setPostcardImageButton addTarget:self action:@selector(setPostcardImage) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)setPostcardImage
+{
+    [self.delegate didSelectSetImageButton];
+}
+
+
 #pragma mark - add Text Button
 -(void)setUpAddTextButton
 {

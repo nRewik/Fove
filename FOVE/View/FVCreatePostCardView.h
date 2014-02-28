@@ -13,9 +13,11 @@
 
 @interface FVCreatePostCardView : UIView
 @property (strong,nonatomic) id<FVCreatePostCardViewDelegate> delegate;
+-(void)setImageOfCurrentView:(UIImage *)image;
 @end
 
 @protocol FVCreatePostCardViewDelegate <NSObject>
 -(void)didCancelCreatePostCard;
 -(void)didFinishCreatePostCard:(FVPostCard *)postCard;
+-(void)didSelectSetImageButton;
 @end
