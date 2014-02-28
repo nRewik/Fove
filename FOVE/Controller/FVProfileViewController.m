@@ -195,6 +195,28 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:profileCellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.details[indexPath.row];
     
+    switch (indexPath.row)
+    {
+        case 0:
+        {
+            cell.imageView.image = [UIImage imageNamed:@"icon_sex"];
+        }
+            break;
+        case 1:
+        {
+            cell.imageView.image = [UIImage imageNamed:@"icon_age"];
+        }
+            break;
+        case 2:
+        {
+            cell.imageView.image = [UIImage imageNamed:@"icon_relationship"];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
     return cell;
 }
 

@@ -910,7 +910,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" editingAccessoryType="disclosureIndicator" textLabel="UXx-bP-BdN" imageView="T1P-8M-Jc8" style="IBUITableViewCellStyleDefault" id="Bgn-RE-Mdm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" editingAccessoryType="disclosureIndicator" textLabel="UXx-bP-BdN" imageView="0T9-Yl-M3C" style="IBUITableViewCellStyleDefault" id="Bgn-RE-Mdm">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bgn-RE-Mdm" id="JNt-qm-rto">
@@ -918,14 +918,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Male" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UXx-bP-BdN">
-                                                    <rect key="frame" x="60" y="0.0" width="245" height="43"/>
+                                                    <rect key="frame" x="90" y="0.0" width="215" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="gender_female_sign" id="T1P-8M-Jc8">
-                                                    <rect key="frame" x="15" y="6" width="30" height="30"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_sex" id="0T9-Yl-M3C">
+                                                    <rect key="frame" x="15" y="1" width="60" height="40"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -1673,6 +1673,7 @@
         <image name="icon_map" width="15" height="15"/>
         <image name="icon_notification" width="15" height="15"/>
         <image name="icon_profile" width="15" height="15"/>
+        <image name="icon_sex" width="60" height="40"/>
         <image name="mapTabBar_icon" width="30" height="30"/>
         <image name="notification_mailbox" width="15" height="15"/>
         <image name="notification_postcard" width="15" height="15"/>
