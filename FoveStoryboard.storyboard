@@ -1454,12 +1454,6 @@
                                                 <action selector="back:" destination="MYZ-zt-QQl" id="KpL-zI-uks"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="DPh-F7-F0N" userLabel="editMailboxBarButton">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="editMailbox:" destination="MYZ-zt-QQl" id="eHJ-r1-fon"/>
-                                            </connections>
-                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1478,7 +1472,6 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
                         <outlet property="dateLabel" destination="Tcm-em-6bd" id="wip-7h-PPy"/>
-                        <outlet property="editMailboxButton" destination="DPh-F7-F0N" id="bNE-bM-M0N"/>
                         <outlet property="foveCountLabel" destination="FxK-a3-FLw" id="q10-cz-szA"/>
                         <outlet property="mailboxInfoView" destination="J47-qi-DWj" id="QHL-bg-vZT"/>
                         <outlet property="mailboxMassageLabel" destination="F9I-ej-amG" id="LCr-FH-9dq"/>
@@ -1674,8 +1667,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gvl-6P-6U4"/>
         <segue reference="riO-Fi-pEk"/>
+        <segue reference="iRg-Cx-rMY"/>
         <segue reference="ul7-iq-v6h"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -37,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 //action
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editMailboxButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendPostCardButton;
 
 //
@@ -159,30 +158,36 @@
     
     [self ownerPictuerTapGestureSetup];
     
+    [self.scrollView addSubview:self.footerView];
     self.scrollView.delegate = self;
 }
 -(void)viewDidLayoutSubviews
 {
     CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
-    //footer view
-    CGFloat footerHeight = FOOTER_HEIGHT + PULL_THRESHOLD;
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0,self.scrollView.bounds.size.height-FOOTER_HEIGHT,screenSizeWidth,footerHeight)];
-    [footerView setBackgroundColor:[UIColor lightGrayColor]];
-    [self.scrollView addSubview:footerView];
-    self.footerView = footerView;
-    
-    UILabel *pullLabel = [[UILabel alloc] init];
-    pullLabel.text = @"Pull To Read Postcard";
-    [pullLabel sizeToFit];
-    pullLabel.center = CGPointMake( footerView.center.x, (footerView.bounds.size.height-PULL_THRESHOLD)/2 );
-    [footerView addSubview:pullLabel];
-    
-    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + footerView.bounds.size.height - PULL_THRESHOLD;
+    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + self.footerView.bounds.size.height - PULL_THRESHOLD;
     self.scrollView.contentSize = CGSizeMake(screenSizeWidth, totalHeight);
 }
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Lazy Instantiation
+-(UIView *)footerView
+{
+    if (!_footerView) {
+        CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat footerHeight = FOOTER_HEIGHT + PULL_THRESHOLD;
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0,self.scrollView.bounds.size.height-FOOTER_HEIGHT,screenSizeWidth,footerHeight)];
+        [_footerView setBackgroundColor:[UIColor lightGrayColor]];
+        
+        UILabel *pullLabel = [[UILabel alloc] init];
+        pullLabel.text = @"Pull To Read Postcard";
+        [pullLabel sizeToFit];
+        pullLabel.center = CGPointMake(_footerView.center.x, (_footerView.bounds.size.height-PULL_THRESHOLD)/2 );
+        [_footerView addSubview:pullLabel];
+    }
+    return _footerView;
 }
 
 #pragma mark -
