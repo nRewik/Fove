@@ -523,7 +523,7 @@
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="notification_fove" id="pw6-r7-D6m">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_profile" id="pw6-r7-D6m">
                                                     <rect key="frame" x="15" y="14" width="15" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -582,7 +582,7 @@
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="notification_postcard" id="33f-fq-sH8">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_friend" id="33f-fq-sH8">
                                                     <rect key="frame" x="15" y="14" width="15" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -614,7 +614,7 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="notification_fove" id="uCL-Zt-R9X">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_map" id="uCL-Zt-R9X">
                                                     <rect key="frame" x="15" y="14" width="15" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -642,7 +642,7 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="notification_mailbox" id="5RT-St-itp">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_notification" id="5RT-St-itp">
                                                     <rect key="frame" x="15" y="14" width="15" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -674,7 +674,7 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="notification_fove" id="CfG-Vl-9Ma">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon_logout" id="CfG-Vl-9Ma">
                                                     <rect key="frame" x="15" y="14" width="15" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -711,7 +711,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="viB-3h-G5o">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="viB-3h-G5o">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -756,14 +756,14 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-tf-Nu8">
-                                                    <rect key="frame" x="273" y="10" width="33" height="30"/>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-tf-Nu8">
+                                                    <rect key="frame" x="269" y="5" width="50" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="bJj-aq-n3m"/>
-                                                        <constraint firstAttribute="width" constant="33" id="cCA-25-LV5"/>
+                                                        <constraint firstAttribute="height" constant="40" id="DxS-CQ-AyL"/>
+                                                        <constraint firstAttribute="width" constant="50" id="TG4-KI-A2i"/>
                                                     </constraints>
-                                                    <state key="normal" title="Chat">
+                                                    <state key="normal" backgroundImage="button_chat">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -777,10 +777,10 @@
                                         <constraints>
                                             <constraint firstItem="XN6-ko-HLM" firstAttribute="top" secondItem="bas-pw-5GE" secondAttribute="top" id="1HJ-LA-Xgc"/>
                                             <constraint firstItem="XN6-ko-HLM" firstAttribute="leading" secondItem="bas-pw-5GE" secondAttribute="leading" id="JbO-6g-6b0"/>
+                                            <constraint firstAttribute="trailing" secondItem="5d2-tf-Nu8" secondAttribute="trailing" id="Ker-gw-EK6"/>
                                             <constraint firstItem="QyE-St-hVf" firstAttribute="leading" secondItem="XN6-ko-HLM" secondAttribute="trailing" constant="8" id="Rgy-sv-ao3"/>
-                                            <constraint firstAttribute="trailing" secondItem="5d2-tf-Nu8" secondAttribute="trailing" constant="13" id="Uxv-2u-47n"/>
+                                            <constraint firstItem="5d2-tf-Nu8" firstAttribute="centerY" secondItem="XN6-ko-HLM" secondAttribute="centerY" id="SHv-z7-dNd"/>
                                             <constraint firstItem="gzB-ig-iJl" firstAttribute="top" secondItem="XN6-ko-HLM" secondAttribute="top" id="X4S-AM-JY3"/>
-                                            <constraint firstItem="5d2-tf-Nu8" firstAttribute="centerY" secondItem="XN6-ko-HLM" secondAttribute="centerY" id="hdG-ao-lrj"/>
                                             <constraint firstAttribute="trailing" secondItem="gzB-ig-iJl" secondAttribute="trailing" constant="71" id="jgq-qe-CkV"/>
                                             <constraint firstItem="XN6-ko-HLM" firstAttribute="bottom" secondItem="QyE-St-hVf" secondAttribute="bottom" constant="5" id="mrf-Ib-rut"/>
                                             <constraint firstItem="gzB-ig-iJl" firstAttribute="leading" secondItem="XN6-ko-HLM" secondAttribute="trailing" constant="8" id="vSH-Yp-fcz"/>
@@ -1645,13 +1645,18 @@
     <resources>
         <image name="addMailboxButtton" width="87" height="56"/>
         <image name="addMediaButton" width="50" height="50"/>
+        <image name="button_chat" width="50" height="40"/>
         <image name="click_back_button" width="56" height="40"/>
         <image name="createMailboxButton" width="95" height="54"/>
         <image name="feedTabBar_icon" width="30" height="30"/>
         <image name="foveButton" width="50" height="50"/>
         <image name="gender_female_sign" width="30" height="30"/>
+        <image name="icon_friend" width="15" height="15"/>
+        <image name="icon_logout" width="15" height="15"/>
+        <image name="icon_map" width="15" height="15"/>
+        <image name="icon_notification" width="15" height="15"/>
+        <image name="icon_profile" width="15" height="15"/>
         <image name="mapTabBar_icon" width="30" height="30"/>
-        <image name="notification_fove" width="15" height="15"/>
         <image name="notification_mailbox" width="15" height="15"/>
         <image name="notification_postcard" width="15" height="15"/>
         <image name="profileTabBar_icon" width="60" height="60"/>
@@ -1667,8 +1672,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Gvl-6P-6U4"/>
         <segue reference="riO-Fi-pEk"/>
-        <segue reference="iRg-Cx-rMY"/>
         <segue reference="ul7-iq-v6h"/>
     </inferredMetricsTieBreakers>
 </document>
