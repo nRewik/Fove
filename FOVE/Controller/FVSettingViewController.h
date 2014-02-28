@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol FVSettingViewControllerDelegate;
+
 @interface FVSettingViewController : UITableViewController
 
+@property (strong,nonatomic) id<FVSettingViewControllerDelegate> delegate;
+
+@end
+
+@protocol FVSettingViewControllerDelegate <NSObject>
+-(void)didSelectViewMyMailboxes:(NSArray *)myMatchingMailboxs;
 @end

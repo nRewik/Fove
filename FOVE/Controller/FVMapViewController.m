@@ -14,13 +14,15 @@
 #import "FVMatchingMailbox.h"
 #import "FVMailboxAnnotation.h"
 #import "FVMailboxViewController.h"
-
+#import "FVSettingViewController.h"
 #import "FVAzureService.h"
 
-@interface FVMapViewController () <CLLocationManagerDelegate,MKMapViewDelegate>
+@interface FVMapViewController () <CLLocationManagerDelegate,MKMapViewDelegate,FVSettingViewControllerDelegate>
 
 @property (strong,nonatomic) FVMailbox *currentSelectedMailbox;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (weak,nonatomic) FVSettingViewController *settingViewController;
 
 @end
 
@@ -204,8 +206,26 @@
         
     return nil;
 }
+#pragma mark - FVSettingViewControllerDelegate
+-(void)didSelectViewMyMailboxes:(NSArray *)myMatchingMailboxs
+{
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    for (int i=0; i<[myMatchingMailboxs count]; i++) {
+        FVMailboxAnnotation *newAnnotation = [[FVMailboxAnnotation alloc] initWithMailbox:myMatchingMailboxs[i]];
+        [annotations addObject:newAnnotation];
+    }
+    
+    [self.mapView addAnnotations:annotations];
+    [self.mapView showAnnotations:annotations animated:YES];
+}
 
-#pragma mark -
+#pragma mark ViewControllerState
+
+-(void)awakeFromNib
+{
+    self.settingViewController = [self.tabBarController.viewControllers objectAtIndex:3];
+    self.settingViewController.delegate = self;
+}
 
 - (void)viewDidLoad
 {

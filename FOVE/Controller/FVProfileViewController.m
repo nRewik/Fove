@@ -8,6 +8,8 @@
 
 #import "FVProfileViewController.h"
 #import "FVUser.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAzureService.h"
 
 @interface FVProfileViewController () <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
@@ -137,6 +139,19 @@
     
     self.statusLabel.textColor = [UIColor blackColor];
     self.statusLabel.userInteractionEnabled = NO;
+    
+    MSClient *client = [FVAzureService sharedClient];
+    MSTable *userTable = [client tableWithName:@"userinfo"];
+    
+    NSDictionary *parameter = @{ @"id" : self.user.user_id,
+                                 @"status" : self.user.status,
+                                 @"relationship" : self.user.relationship,
+                                 @"gender" : self.user.gender
+                                 };
+    
+    [userTable update:parameter completion:^(NSDictionary *item, NSError *error) {
+        NSLog(@"Update Complete");
+    }];
 }
 -(void)editStatus
 {

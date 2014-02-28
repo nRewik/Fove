@@ -9,9 +9,11 @@
 #import "FVSettingViewController.h"
 #import "FVViewController.h"
 #import "FVUser.h"
-#import "FVMailbox.h"
+#import "FVMatchingMailbox.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FVProfileViewController.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "FVAzureService.h"
 
 @interface FVSettingViewController ()
 @property (weak, nonatomic) IBOutlet UITableViewCell *myMailboxCell;
@@ -48,8 +50,23 @@
 {
     UIView *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell == self.myMailboxCell) {
-        NSLog(@"mailbox");
+    if (cell == self.myMailboxCell)
+    {
+        
+        MSClient *client = [FVAzureService sharedClient];
+        MSTable *mailboxTable = [client tableWithName:@"mailbox"];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"owner_id == %@",[[FVUser currentUser] user_id]];
+        [mailboxTable readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
+            
+            NSMutableArray *mailboxs = [[NSMutableArray alloc] init];
+            for (int i=0; i<[items count]; i++) {
+                FVMatchingMailbox *newMailbox = [[FVMatchingMailbox alloc] initWithMailboxDictionary:items[i]];
+                [mailboxs addObject:newMailbox];
+            }
+            [self.tabBarController setSelectedIndex:0];
+            [self.delegate didSelectViewMyMailboxes:mailboxs];
+        }];
     }
     if (cell == self.LogoutCell) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
