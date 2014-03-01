@@ -166,6 +166,7 @@
 {
     CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + self.footerView.bounds.size.height - PULL_THRESHOLD;
+    totalHeight += [self.postcards count]*(POSTCARD_HEIGHT + POSTCARD_HEIGHT_GAP);
     self.scrollView.contentSize = CGSizeMake(screenSizeWidth, totalHeight);
 }
 -(NSUInteger)supportedInterfaceOrientations
@@ -246,11 +247,15 @@
                CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + (POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) * numberOfPostcard;
                self.scrollView.contentSize = CGSizeMake(screenSizeWidth,totalHeight);
                
-               [UIView animateWithDuration:1.0 animations:^{
-                   self.scrollView.contentOffset = CGPointMake(0, self.mailboxInfoView.bounds.size.height);
-               } completion:^(BOOL finished) {
-                   self.scrollView.scrollEnabled = YES;
-               }];
+               if ([self.postcards count] > 0) {
+                   [UIView animateWithDuration:1.0 animations:^{
+                       
+                       CGFloat yPos = self.mailboxInfoView.bounds.size.height + [self.postcards count]*(POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) - self.scrollView.bounds.size.height;
+                       self.scrollView.contentOffset = CGPointMake(0, yPos);
+                   } completion:^(BOOL finished) {
+                       self.scrollView.scrollEnabled = YES;
+                   }];
+               }
            }
      ];
 }
