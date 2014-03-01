@@ -193,8 +193,14 @@
         
         FVMailboxAnnotation *annotation = annotationView.annotation;
         
-        NSString *imageName = [NSString stringWithFormat:@"mailbox_pin_%d",annotation.mailbox.matchingLevel];
-        annotationView.image = [UIImage imageNamed:imageName];
+        if ([annotation.mailbox isKindOfClass:[FVMatchingMailbox class]]) {
+            NSString *imageName = [NSString stringWithFormat:@"mailbox_pin_%d",annotation.mailbox.matchingLevel];
+            annotationView.image = [UIImage imageNamed:imageName];
+        }
+        else
+        {
+            annotationView.image = [UIImage imageNamed:@"mailbox_pin_0"];
+        }
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         annotationView.rightCalloutAccessoryView = button;
