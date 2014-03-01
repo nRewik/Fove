@@ -516,8 +516,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Nutchaphon Rewik" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ry-YQ-cN8">
-                                                    <rect key="frame" x="139" y="11" width="146" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Anna Kiku" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ry-YQ-cN8" userLabel="profileNameLabel">
+                                                    <rect key="frame" x="207" y="11" width="78" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -693,6 +693,7 @@
                     <connections>
                         <outlet property="LogoutCell" destination="BoJ-1a-Scu" id="eGG-B6-yFk"/>
                         <outlet property="myMailboxCell" destination="dab-zu-kuD" id="BUe-Qz-nnX"/>
+                        <outlet property="profileLabelName" destination="8ry-YQ-cN8" id="pMg-An-LjQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wwf-QW-5ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1692,8 +1693,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="riO-Fi-pEk"/>
-        <segue reference="iRg-Cx-rMY"/>
         <segue reference="HZF-HB-9fL"/>
+        <segue reference="riO-Fi-pEk"/>
+        <segue reference="Gvl-6P-6U4"/>
     </inferredMetricsTieBreakers>
 </document>

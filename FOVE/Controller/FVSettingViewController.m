@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *myMailboxCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *LogoutCell;
 @property (strong,nonatomic) UIAlertView *logoutAlertView;
+@property (weak, nonatomic) IBOutlet UILabel *profileLabelName;
 
 @end
 
@@ -30,6 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.profileLabelName.text = [[FVUser currentUser] name];
 }
 
 #pragma mark - Lazy Instantiation
