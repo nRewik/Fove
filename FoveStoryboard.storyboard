@@ -489,7 +489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xys-qu-b3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429" y="982"/>
+            <point key="canvasLocation" x="2347" y="366"/>
         </scene>
         <!--Setting View Controller - Settings-->
         <scene sceneID="hHy-Zd-fwv">
@@ -1501,6 +1501,7 @@
                         <outlet property="sendPostCardButton" destination="wtR-ww-VyI" id="obI-I0-Tn9"/>
                         <outlet property="sexImageView" destination="6Sf-Yt-p8r" id="t7t-F0-4wb"/>
                         <segue destination="tUZ-aY-pdc" kind="modal" identifier="viewProfile" id="iRg-Cx-rMY"/>
+                        <segue destination="K0D-G4-SCb" kind="modal" identifier="viewPostcard" id="HZF-HB-9fL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtR-Qz-TD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1691,8 +1692,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gvl-6P-6U4"/>
         <segue reference="riO-Fi-pEk"/>
-        <segue reference="ul7-iq-v6h"/>
+        <segue reference="iRg-Cx-rMY"/>
+        <segue reference="HZF-HB-9fL"/>
     </inferredMetricsTieBreakers>
 </document>

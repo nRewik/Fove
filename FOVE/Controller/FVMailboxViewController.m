@@ -15,6 +15,7 @@
 #import "FVAzureService.h"
 #import "FVPostCard.h"
 #import "FVPostCardPortraitView.h"
+#import "FVPostCardViewController.h"
 
 @interface FVMailboxViewController () <UIGestureRecognizerDelegate,UIScrollViewDelegate>
 
@@ -43,6 +44,7 @@
 
 //
 @property (strong,nonatomic) NSMutableArray *postcards; // of FVPostcard;
+@property (strong,nonatomic) FVPostCard *selectedPostcard;
 
 @end
 
@@ -58,15 +60,6 @@
 {
     if (!_postcards) {
         _postcards = [[NSMutableArray alloc] init];
-        
-        NSString *imageName = @"test_postcard_back_1";
-        UIImage *image = [UIImage imageNamed:imageName];
-        
-        int numberOfPostcard = 10;
-        for (int i=0; i<numberOfPostcard; i++) {
-            FVPostCard *postcard = [[FVPostCard alloc] initWithFrontImage:image backImage:image];
-            [_postcards addObject:postcard];
-        }
     }
     return _postcards;
 }
@@ -130,6 +123,12 @@
     if ([destination isKindOfClass:[FVCreatePostCardViewController class]]) {
         FVCreatePostCardViewController *cpcv = (FVCreatePostCardViewController *)destination;
         cpcv.mailbox = self.mailbox;
+    }
+    if ([destination isKindOfClass:[FVPostCardViewController class]]) {
+        if ([segue.identifier isEqualToString:@"viewPostcard"]) {
+            FVPostCardViewController *pcvc = (FVPostCardViewController *)destination;
+            pcvc.postcard = self.selectedPostcard;
+        }
     }
 }
 
@@ -210,32 +209,50 @@
 {
     self.scrollView.scrollEnabled = NO;
     
-    int numberOfPostcard = [self.postcards count];
-    for (int i=0; i<numberOfPostcard; i++) {
+    MSClient *client = [FVAzureService sharedClient];
+    NSDictionary *params = @{ @"mailbox_id" : self.mailbox.mailbox_id };
+    [client invokeAPI:@"mailbox/postcard"
+                 body:nil
+           HTTPMethod:@"GET"
+           parameters:params
+              headers:nil
+           completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+               
+               int numberOfPostcard = [result count];
+               
+               for (int i=0; i<numberOfPostcard; i++) {
+                   
+                   FVPostCard *newPostcard = [[FVPostCard alloc] initWithPostcardInfo:result[i]];
+                   [self.postcards addObject:newPostcard];
+                   
+                   CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
+                   CGFloat xPos = (screenSizeWidth - POSTCARD_WIDTH)/2;
+                   
+                   CGFloat yPos = self.mailboxInfoView.frame.size.height + (POSTCARD_HEIGHT * i) + (POSTCARD_HEIGHT_GAP * (i+1));
+                   
+                   CGRect frame = CGRectMake( xPos , yPos , POSTCARD_WIDTH, POSTCARD_HEIGHT);
+                   FVPostCardPortraitView *pcv = [[FVPostCardPortraitView alloc] initWithFrame:frame];
+                   pcv.postCard = newPostcard;
+                   
+                   UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewPostcard:)];
+                   [pcv addGestureRecognizer:tapGesture];
+                   
+                   [self.scrollView addSubview:pcv];
+               }
+               
+               [self.footerView removeFromSuperview];
 
-        CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
-        CGFloat xPos = (screenSizeWidth - POSTCARD_WIDTH)/2;
-        
-        CGFloat yPos = self.mailboxInfoView.frame.size.height + (POSTCARD_HEIGHT * i) + (POSTCARD_HEIGHT_GAP * (i+1));
-
-        CGRect frame = CGRectMake( xPos , yPos , POSTCARD_WIDTH, POSTCARD_HEIGHT);
-        FVPostCardPortraitView *pcv = [[FVPostCardPortraitView alloc] initWithFrame:frame];
-        pcv.postCard = self.postcards[i];
-        
-        [self.scrollView addSubview:pcv];
-    }
-    
-    [self.footerView removeFromSuperview];
-    
-    CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + (POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) * numberOfPostcard;
-    self.scrollView.contentSize = CGSizeMake(screenSizeWidth,totalHeight);
-  
-    [UIView animateWithDuration:1.0 animations:^{
-        self.scrollView.contentOffset = CGPointMake(0, self.mailboxInfoView.bounds.size.height);
-    } completion:^(BOOL finished) {
-        self.scrollView.scrollEnabled = YES;
-    }];
+               CGFloat screenSizeWidth = [UIScreen mainScreen].bounds.size.width;
+               CGFloat totalHeight = self.mailboxInfoView.bounds.size.height + (POSTCARD_HEIGHT+POSTCARD_HEIGHT_GAP) * numberOfPostcard;
+               self.scrollView.contentSize = CGSizeMake(screenSizeWidth,totalHeight);
+               
+               [UIView animateWithDuration:1.0 animations:^{
+                   self.scrollView.contentOffset = CGPointMake(0, self.mailboxInfoView.bounds.size.height);
+               } completion:^(BOOL finished) {
+                   self.scrollView.scrollEnabled = YES;
+               }];
+           }
+     ];
 }
 
 -(void)updateUI
@@ -288,6 +305,15 @@
         NSURL *movieUrl = [NSURL URLWithString:self.mailbox.mediaURL];
         [self.mediaView setupWithMovieUrl:movieUrl];
     }
+}
+
+#pragma mark - Action
+-(void)viewPostcard:(UIGestureRecognizer *)gesture
+{
+    FVPostCardView *pcv = (FVPostCardView *)gesture.view;
+    self.selectedPostcard = pcv.postCard;
+    
+    [self performSegueWithIdentifier:@"viewPostcard" sender:self];
 }
 
 #pragma mark - UIScrollViewDelegate
