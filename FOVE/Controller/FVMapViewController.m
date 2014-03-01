@@ -215,6 +215,8 @@
         [annotations addObject:newAnnotation];
     }
     
+    [annotations addObject:self.mapView.userLocation];
+    
     [self.mapView addAnnotations:annotations];
     [self.mapView showAnnotations:annotations animated:YES];
 }
